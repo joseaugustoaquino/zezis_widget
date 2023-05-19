@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class ZDividerTitle extends StatelessWidget {
   final String title;
   final double? fontSize;
+  final double? thickness;
   final TextStyle? style;
-  final EdgeInsetsGeometry? margin;
+  final Color? colorTitle;
+  final Color? colorDivider;
   final EdgeInsetsGeometry? padding;
 
   const ZDividerTitle({
@@ -12,8 +14,10 @@ class ZDividerTitle extends StatelessWidget {
 
     required this.title,
     this.fontSize,
+    this.thickness = 2,
     this.style,
-    this.margin,
+    this.colorTitle,
+    this.colorDivider,
     this.padding,
   });
 
@@ -24,30 +28,31 @@ class ZDividerTitle extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              margin: margin ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: const Divider(
-                color: Colors.black,
-                height: 50,
+            child: Padding(
+              padding: padding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Divider(
+                thickness: thickness,
+                color: colorDivider,
               ),
             ),
           ),
-    
+
           Text(
             title,
             overflow: TextOverflow.ellipsis,
             style: style ?? TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
+              color: colorTitle,
             ),
           ),
     
           Expanded(
-            child: Container(
-              margin: margin ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: const Divider(
-                color: Colors.black,
-                height: 50,
+            child: Padding(
+              padding: padding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: Divider(
+                thickness: thickness,
+                color: colorDivider,
               ),
             ),
           ),

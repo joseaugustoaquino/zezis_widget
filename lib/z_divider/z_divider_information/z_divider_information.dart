@@ -4,9 +4,11 @@ class ZDividerInformation extends StatelessWidget {
   final String title;
   final IconData? icon;
   final double? fontSize;
+  final double? thickness;
   final TextStyle? style;
   final Color? colorTitle;
   final Color? colorIcon;
+  final Color? colorDivider;
   final EdgeInsetsGeometry? padding;
   final Function()? onTap;
 
@@ -16,9 +18,11 @@ class ZDividerInformation extends StatelessWidget {
     required this.title,
     this.icon,
     this.fontSize,
+    this.thickness = 2,
     this.style,
     this.colorTitle,
     this.colorIcon,
+    this.colorDivider,
     this.padding,
     this.onTap,
   });
@@ -39,11 +43,12 @@ class ZDividerInformation extends StatelessWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Expanded(
+          Expanded(
+            child: Padding(
+              padding: padding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Divider(
-                thickness: 2,
+                thickness: thickness,
+                color: colorDivider,
               ),
             ),
           ),

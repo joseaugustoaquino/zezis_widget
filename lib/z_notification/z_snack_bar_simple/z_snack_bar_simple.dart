@@ -6,7 +6,7 @@ Future zSnackBarSimple({
 
   TextStyle? style,
   Color? backgroundColor,
-  int duration = 600
+  int duration = 3600
 }) async {
   final snackBar = SnackBar(
     content: Text(

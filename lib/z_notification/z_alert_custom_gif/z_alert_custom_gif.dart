@@ -151,7 +151,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
 
                   widget.oneButtonFunction == null ? const SizedBox() : const SizedBox(width: 10),
 
-                  ElevatedButton(
+                  widget.twoButtonFunction == null ? const SizedBox() : ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),
