@@ -1,5 +1,3 @@
-library zezis_widget;
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';

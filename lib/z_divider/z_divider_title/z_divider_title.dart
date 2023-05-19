@@ -1,28 +1,20 @@
-library zezis_widget;
-
 import 'package:flutter/material.dart';
 
-class ZDividerInformation extends StatelessWidget {
+class ZDividerTitle extends StatelessWidget {
   final String title;
-  final IconData? icon;
   final double? fontSize;
   final TextStyle? style;
-  final Color? colorTitle;
-  final Color? colorIcon;
+  final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
-  final Function()? onTap;
 
-  const ZDividerInformation({
+  const ZDividerTitle({
     super.key,
 
     required this.title,
-    this.icon,
     this.fontSize,
     this.style,
-    this.colorTitle,
-    this.colorIcon,
+    this.margin,
     this.padding,
-    this.onTap,
   });
 
   @override
@@ -31,34 +23,36 @@ class ZDividerInformation extends StatelessWidget {
       padding: padding ?? const EdgeInsets.all(8.0),
       child: Row(
         children: [
+          Expanded(
+            child: Container(
+              margin: margin ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: const Divider(
+                color: Colors.black,
+                height: 50,
+              ),
+            ),
+          ),
+    
           Text(
             title,
             overflow: TextOverflow.ellipsis,
             style: style ?? TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
-              color: colorTitle,
             ),
           ),
-
-          const Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Expanded(
-              child: Divider(
-                thickness: 2,
+    
+          Expanded(
+            child: Container(
+              margin: margin ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: const Divider(
+                color: Colors.black,
+                height: 50,
               ),
-            ),
-          ),
-          
-          if (icon != null) InkWell(
-            onTap: onTap,
-            child: Icon(
-              icon,
-              color: colorIcon,
             ),
           ),
         ],
       ),
     );
-  }
+  } 
 }
