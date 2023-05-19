@@ -1,5 +1,3 @@
-library zezis_widget;
-
 import 'package:flutter/material.dart';
 
 class ZLoadingSimple extends StatelessWidget {
