@@ -1,3 +1,6 @@
+import 'package:example/ui/divider_page.dart';
+import 'package:example/ui/loading_page.dart';
+import 'package:example/ui/notification_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -60,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DividerPage())),
             ),
 
             TextButton(
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoadingPage())),
             ),
 
             TextButton(
@@ -100,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationPage())),
             ),
           ],
         ),
