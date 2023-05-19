@@ -177,4 +177,5 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
       ),
     );
   }
+
 }

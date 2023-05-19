@@ -28,7 +28,7 @@ Future<T?> zAlertSimple<T>({
           child: Text(
             textAction ?? "Ok",
             style: styleAction ?? TextStyle(
-              color: colorAction ?? Colors.blue,
+              color: colorAction ?? Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
