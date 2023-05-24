@@ -1,6 +1,6 @@
 # Zezis Widget - Versão 0.0.2
 
-[![Rep](https://img.shields.io/badge/Rep-GitHub-green)](https://dev.azure.com/grupofba/SigaFba%20Treinamentos/_git/sigafba_treinamentos_crm) [![Donate](https://img.shields.io/badge/Donate-PayPal-green)](https://www.paypal.com/donate/?hosted_button_id=X33T6Y8W8B3AY)
+[![Rep](https://img.shields.io/badge/Rep-GitHub-green)](https://github.com/joseaugustoaquino/zezis_widget) [![Donate](https://img.shields.io/badge/Donate-PayPal-green)](https://www.paypal.com/donate/?hosted_button_id=X33T6Y8W8B3AY)
 
 # Information
 Functions/Widget/Alerts/Dialogs in a customized way and with easy dependency management.
