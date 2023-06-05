@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * Implementation items: check and input 
+
+## 0.0.5
+
+* Implementation items: check box custom
