@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ZCheckCustom extends StatelessWidget {
+class ZCheckBoxCustom extends StatelessWidget {
   final bool value;
   final Color? color;
   final String label;
@@ -9,7 +9,7 @@ class ZCheckCustom extends StatelessWidget {
   final Function(bool?)? onChanged;
   final EdgeInsetsGeometry? padding;
   
-  const ZCheckCustom({
+  const ZCheckBoxCustom({
     Key? key,
     this.value = false,
     this.color,

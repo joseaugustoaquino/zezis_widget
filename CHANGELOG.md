@@ -17,3 +17,7 @@
 ## 0.0.5
 
 * Implementation items: check box custom
+
+## 0.0.6
+
+* Fix export check box
