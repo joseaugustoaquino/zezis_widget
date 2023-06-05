@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Removed build and build from Windows, Linux, Macos, Android, iOS and Web
+
+## 0.0.4
+
+* Implementation items: check and input 

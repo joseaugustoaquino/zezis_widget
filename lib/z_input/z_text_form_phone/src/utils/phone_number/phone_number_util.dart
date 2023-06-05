@@ -146,8 +146,6 @@ extension PhoneNumberTypeProperties on PhoneNumberType {
         return 6;
       case PhoneNumberType.personalNumber:
         return 7;
-      case PhoneNumberType.premiumRate:
-        return 8;
       case PhoneNumberType.uan:
         return 9;
       case PhoneNumberType.voicemail:
