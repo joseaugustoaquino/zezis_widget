@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/zezis_widget.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -36,9 +37,9 @@ class _LoadingPageState extends State<LoadingPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               "Loading Simple:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -51,12 +52,12 @@ class _LoadingPageState extends State<LoadingPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Loading Simple",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -70,9 +71,9 @@ class _LoadingPageState extends State<LoadingPage> {
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "Loading Custom:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -85,12 +86,12 @@ class _LoadingPageState extends State<LoadingPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Loading Custom",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),

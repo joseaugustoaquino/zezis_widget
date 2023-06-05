@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/z_notification/z_alert_custom_gif/z_alert_gif.dart';
 import 'package:zezis_widget/z_notification/z_alert_custom_gif/z_alert_animation.dart';
-
 
 class ZAlertCustomGif extends StatefulWidget {
   final String? title;
@@ -105,7 +105,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                 child: Text(
                   widget.title ?? "",
                   textAlign: TextAlign.center,
-                  style: widget.style ?? const TextStyle(
+                  style: widget.style ?? GoogleFonts.roboto(
                     fontSize: 20,
                     color: Colors.black,
                   ),
@@ -116,7 +116,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                 padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: Text(
                   widget.description ?? "",
-                  style: widget.style ?? const TextStyle(
+                  style: widget.style ?? GoogleFonts.roboto(
                     fontSize: 14,
                     color: Colors.black54,
                   ),
@@ -138,7 +138,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                     ),
                     child: Text(
                       widget.oneButton ?? "",
-                      style: widget.style ?? const TextStyle(
+                      style: widget.style ?? GoogleFonts.roboto(
                         fontSize: 16,
                         color: Colors.white,
                       ),
@@ -157,7 +157,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                     ),
                     child: Text(
                       widget.twoButton ?? "",
-                      style: widget.style ?? const TextStyle(
+                      style: widget.style ?? GoogleFonts.roboto(
                         fontSize: 16,
                         color: Colors.white,
                       ),

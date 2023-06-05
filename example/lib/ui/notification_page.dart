@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zezis_widget/zezis_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -23,9 +24,9 @@ class _NotificationPageState extends State<NotificationPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               "Alert Custom Gif:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -38,12 +39,12 @@ class _NotificationPageState extends State<NotificationPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Alert Custom Gif",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -62,9 +63,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "Alert Simple:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -77,12 +78,12 @@ class _NotificationPageState extends State<NotificationPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Alert Simple",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -98,9 +99,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "SnackBar Custom:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -113,12 +114,12 @@ class _NotificationPageState extends State<NotificationPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "SnackBar Custom",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -131,9 +132,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             const SizedBox(height: 10),
 
-            const Text(
+            Text(
               "SnackBar Simple:",
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.bold,
@@ -146,12 +147,12 @@ class _NotificationPageState extends State<NotificationPage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "SnackBar Simple",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ZDividerTitle extends StatelessWidget {
   final String title;
@@ -40,7 +41,7 @@ class ZDividerTitle extends StatelessWidget {
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: style ?? TextStyle(
+            style: style ?? GoogleFonts.roboto(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: colorTitle,

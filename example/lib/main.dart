@@ -2,6 +2,7 @@ import 'package:example/ui/divider_page.dart';
 import 'package:example/ui/loading_page.dart';
 import 'package:example/ui/notification_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,12 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Divider",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -72,12 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Loading",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
@@ -92,12 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundColor: MaterialStatePropertyAll(Colors.blue),
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
-              child: const SizedBox(
+              child: SizedBox(
                 width: 120,
                 child: Text(
                   "Notification",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),

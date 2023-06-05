@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<T?> zAlertSimple<T>({
   required BuildContext context,
@@ -36,7 +37,7 @@ Future<T?> zAlertSimple<T>({
         TextButton(
           child: Text(
             textAction ?? "Ok",
-            style: styleAction ?? TextStyle(
+            style: styleAction ?? GoogleFonts.roboto(
               color: colorAction ?? Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
