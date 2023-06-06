@@ -23,8 +23,8 @@ class ZCheckBoxCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Padding(
+        padding: padding ?? const EdgeInsets.all(8.0),
         child: Row(
           children: [
             SizedBox(
