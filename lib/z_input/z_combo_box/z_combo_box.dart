@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ZComboBox<T> extends StatelessWidget {
@@ -19,6 +20,7 @@ class ZComboBox<T> extends StatelessWidget {
   final Color? dropdownColor;
   final String? errorText;
   final bool enabled;
+  final String? Function(String?)? validator;
 
   const ZComboBox({ 
     Key? key, 
@@ -40,6 +42,7 @@ class ZComboBox<T> extends StatelessWidget {
 
     this.errorText,
     this.enabled = true,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -49,46 +52,51 @@ class ZComboBox<T> extends StatelessWidget {
       child: Padding(
         padding: (padding ?? const EdgeInsets.fromLTRB(8.5, 5.0, 8.5, 5.0)),
 
-        child: InputDecorator(
-          decoration: InputDecoration(
-            enabledBorder: border ?? OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: borderColor ?? const Color(0xFF000000)
+        child: FormField<String>(
+         validator: validator,
+        builder: (FormFieldState<String> state) {
+            return InputDecorator(
+              decoration: InputDecoration(
+                enabledBorder: border ?? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: borderColor ?? Theme.of(context).primaryColor
+                  ),
+                ),
+
+                border: border ?? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: borderColor ?? Get.theme.primaryColor
+                  ),
+                ),
+        
+                contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0, right: 10),
+                enabled: enabled,
+        
+                errorText: state.hasError ? state.errorText : null,
+                hintText: hintText,
+                labelText: labelText,
+                prefixIcon: prefixIcon,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
               ),
-            ),
-
-            border: border ?? OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(
-                color: borderColor ?? const Color(0xFF000000)
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  icon: Icon(Icons.arrow_drop_down, color: color ?? Get.theme.primaryColor),
+                  focusColor: Colors.transparent,
+                  isExpanded: true,
+                  isDense: true,
+                  style: style ?? GoogleFonts.roboto(),
+                  dropdownColor: dropdownColor,
+                  onChanged: onChanged,
+                  value: value,
+                  items: items,
+                ),
               ),
-            ),
-
-            contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0, right: 5),
-            enabled: enabled,
-
-            errorText: errorText,
-            hintText: hintText,
-            labelText: labelText,
-            prefixIcon: prefixIcon,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton(
-              icon: Icon(Icons.arrow_drop_down, color: color),
-              focusColor: Colors.transparent,
-              isExpanded: true,
-              isDense: true,
-              style: style ?? GoogleFonts.roboto(),
-              dropdownColor: dropdownColor,
-              onChanged: onChanged,
-              value: value,
-              items: items,
-            ),
-          ),
+            );
+          }
         ),
       ),
     );

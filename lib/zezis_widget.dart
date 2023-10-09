@@ -5,3 +5,4 @@ export 'package:zezis_widget/z_divider/z_divider.dart';
 export 'package:zezis_widget/z_input/z_input.dart';
 export 'package:zezis_widget/z_loading/z_loading.dart';
 export 'package:zezis_widget/z_notification/z_notification.dart';
+export 'package:zezis_widget/z_input/z_formatter/z_upper_case.dart';
