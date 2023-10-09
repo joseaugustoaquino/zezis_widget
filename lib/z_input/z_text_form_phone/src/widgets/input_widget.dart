@@ -12,10 +12,10 @@ class ZTextFormPhone extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<bool>? onInputValidated;
   final Function(String)? onInputChanged;
-  final Function(CountryModel?)? onChanged;
+  final Function(PaisModel?)? onChanged;
 
-  final List<CountryModel> countries;
-  final CountryModel country;
+  final List<PaisModel> countries;
+  final PaisModel country;
 
   final bool? enable;
   final String? hintText;
@@ -77,7 +77,7 @@ class _ZTextFormPhoneState extends State<ZTextFormPhone> {
               labelText: "DDI",
               padding: widget.paddingDdi ?? const EdgeInsets.all(0),
               items: widget.countries.map((x) { 
-                return DropdownMenuItem<CountryModel>(
+                return DropdownMenuItem<PaisModel>(
                   value: x,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class CountryModel {
+class PaisModel {
   int? id;
   int? ddi;
   int? codigo;
@@ -12,7 +12,7 @@ class CountryModel {
   String mascaraTelefone;
   String mascaraCelular;
 
-  CountryModel({
+  PaisModel({
     this.id,
     this.ddi,
     this.codigo,
@@ -39,8 +39,8 @@ class CountryModel {
     };
   }
 
-  static CountryModel fromMap(Map<String, dynamic> map) {
-    return CountryModel(
+  static PaisModel fromMap(Map<String, dynamic> map) {
+    return PaisModel(
       id: map['id'],
       ddi: map['ddi'],
       codigo: map['codigo'],
@@ -55,5 +55,5 @@ class CountryModel {
 
   String toJson() => json.encode(toMap());
 
-  factory CountryModel.fromJson(String source) => CountryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory PaisModel.fromJson(String source) => PaisModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
