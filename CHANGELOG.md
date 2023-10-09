@@ -2,6 +2,6 @@
 
 * First Version
 
-## 0.0.8
+## 0.1.0
 
 * Fix export check box
