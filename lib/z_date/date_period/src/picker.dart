@@ -6,7 +6,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:zezis_widget/z_date/z_date_picker.dart';
-import 'package:zezis_widget/z_date/src/datetime_picker_theme.dart' as d;
+import 'package:zezis_widget/z_date/date_period/src/datetime_picker_theme.dart' as d;
 
 typedef DateChangedCallback = Function(DateTime time);
 typedef DateCancelledCallback = Function();

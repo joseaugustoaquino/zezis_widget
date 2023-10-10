@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  google_fonts: ^4.0.3
+  google_fonts: ^6.1.0
   zezis_widget:
     path: ../
 
