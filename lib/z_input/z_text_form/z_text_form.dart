@@ -14,6 +14,7 @@ class ZTextForm extends StatefulWidget {
   final String? labelText;
   final String? errorText;
   final Color? focusColor;
+  final Color? disabledColor;
   final Color? hoverColor;
   final Color? fillColor;
   final Color? defocusColor;
@@ -66,6 +67,7 @@ class ZTextForm extends StatefulWidget {
     this.validator,
     this.style,
     this.border,
+    this.disabledColor,
     this.keyboardType,
     this.textInputAction,
     this.inputFormatters,
@@ -273,6 +275,13 @@ class _ZTextFormState extends State<ZTextForm> {
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(
                 color: (widget.focusColor ?? Theme.of(context).primaryColor)
+              ),
+            ),
+
+            disabledBorder: widget.border ?? OutlineInputBorder(
+              borderRadius: BorderRadius.circular(widget.borderRadius),
+              borderSide: BorderSide(
+                color: (widget.disabledColor ?? Theme.of(context).disabledColor)
               ),
             ),
 
