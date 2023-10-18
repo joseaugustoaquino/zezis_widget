@@ -15,6 +15,7 @@ class ZDateTimePicker extends StatelessWidget {
   final String? labelTime;
   final EdgeInsetsGeometry? paddingTime;
   final Widget? iconTime;
+  final double? sizeTimer;
   final TimeOfDay initialTime;
 
   final ValueChanged<DateTime?> onChangedDate;
@@ -35,6 +36,7 @@ class ZDateTimePicker extends StatelessWidget {
     this.labelTime,
     this.paddingTime,
     this.iconTime,
+    this.sizeTimer,
     required this.initialTime,
 
     required this.onChangedDate,
@@ -64,6 +66,7 @@ class ZDateTimePicker extends StatelessWidget {
           ),
 
           SizedBox(
+            width: sizeTimer ?? 120,
             child: InkWell(
               onTap: () async => await _onChangeTime(context),
               child: ZTextForm(
