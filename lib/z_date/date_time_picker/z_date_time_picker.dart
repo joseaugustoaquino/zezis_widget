@@ -5,6 +5,9 @@ import 'package:zezis_widget/z_input/z_input.dart';
 
 class ZDateTimePicker extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? paddingContent;
+  final Color? disabledColor;
+  final String? dateFormat;
 
   final String? labelDate;
   final EdgeInsetsGeometry? paddingDate;
@@ -26,6 +29,9 @@ class ZDateTimePicker extends StatefulWidget {
     super.key,
     
     this.padding,
+    this.paddingContent,
+    this.disabledColor,
+    this.dateFormat,
 
     this.labelDate,
     this.paddingDate,
@@ -54,7 +60,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
   
   @override
   void initState() {
-    dateController.text = DateFormat("dd/MM/yyyy").format(widget.initialDate);
+    dateController.text = DateFormat(widget.dateFormat ?? "dd/MM/yyyy").format(widget.initialDate);
     hourController.text = "${widget.initialTime.hour.toString().padLeft(2, '0')}:${widget.initialTime.minute.toString().padLeft(2, '0')}";
     super.initState();
   }
@@ -73,9 +79,9 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
                 autofocus: false,
                 controller: dateController,
                 labelText: widget.labelDate ?? "Data",
-                disabledColor: Theme.of(context).primaryColor,
-                contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                 padding: widget.paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
+                disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
+                contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
 
                 prefixIcon: widget.iconDate ?? Icon(
                   Icons.date_range_rounded,
@@ -94,9 +100,9 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
                 autofocus: false,
                 controller: hourController,
                 labelText: widget.labelTime ?? "Hora",
-                disabledColor: Theme.of(context).primaryColor,
-                contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
                 padding: widget.paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
+                disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
+                contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
 
                 prefixIcon: widget.iconTime ?? Icon(
                   Icons.access_time_filled_rounded,
@@ -117,7 +123,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
       firstDate: widget.firstDate, 
 
       initialDate: widget.initialDate, 
-    ).then((value) => widget.onChangedDate.call(value))
+    ).then(_thenDate)
      .catchError((_) => printError(info: _.toString()));
   }
 
@@ -125,7 +131,23 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
     await showTimePicker(
       context: context, 
       initialTime: widget.initialTime,
-    ).then((value) => widget.onChangedPicker.call(value))
+    ).then(_thenHour)
      .catchError((_) => printError(info: _.toString()));
+  }
+
+  _thenDate(DateTime? value) {
+    value ??= widget.initialDate;
+
+    dateController.text = DateFormat(widget.dateFormat ?? "dd/MM/yyyy").format(value);
+    widget.onChangedDate.call(value);
+    setState(() {});
+  }
+
+  _thenHour(TimeOfDay? value) {
+    value ??= widget.initialTime;
+
+    hourController.text = "${value.hour.toString().padLeft(2, '0')}:${value.minute.toString().padLeft(2, '0')}";
+    widget.onChangedPicker.call(value);
+    setState(() {});
   }
 }
