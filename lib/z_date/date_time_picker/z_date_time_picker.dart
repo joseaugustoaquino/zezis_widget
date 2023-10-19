@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:zezis_widget/z_input/z_input.dart';
 
-class ZDateTimePicker extends StatelessWidget {
+class ZDateTimePicker extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
 
   final String? labelDate;
@@ -44,9 +45,24 @@ class ZDateTimePicker extends StatelessWidget {
   });
 
   @override
+  State<ZDateTimePicker> createState() => _ZDateTimePickerState();
+}
+
+class _ZDateTimePickerState extends State<ZDateTimePicker> {
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController hourController = TextEditingController();
+  
+  @override
+  void initState() {
+    dateController.text = DateFormat("dd/MM/yyyy").format(widget.initialDate);
+    hourController.text = "${widget.initialTime.hour.toString().padLeft(2, '0')}:${widget.initialTime.minute.toString().padLeft(2, '0')}";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? const EdgeInsets.all(8.0),
+      padding: widget.padding ?? const EdgeInsets.all(8.0),
       child: Row(
         children: [
           Expanded(
@@ -55,9 +71,13 @@ class ZDateTimePicker extends StatelessWidget {
               child: ZTextForm(
                 enable: false,
                 autofocus: false,
-                labelText: labelDate ?? "Data",
-                padding: paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
-                prefixIcon: iconDate ?? Icon(
+                controller: dateController,
+                labelText: widget.labelDate ?? "Data",
+                disabledColor: Theme.of(context).primaryColor,
+                contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                padding: widget.paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
+
+                prefixIcon: widget.iconDate ?? Icon(
                   Icons.date_range_rounded,
                   color: Theme.of(context).primaryColor,
                 ),
@@ -66,15 +86,19 @@ class ZDateTimePicker extends StatelessWidget {
           ),
 
           SizedBox(
-            width: sizeTimer ?? 120,
+            width: widget.sizeTimer ?? 150,
             child: InkWell(
               onTap: () async => await _onChangeTime(context),
               child: ZTextForm(
                 enable: false,
                 autofocus: false,
-                labelText: labelTime ?? "Hora",
-                padding: paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
-                prefixIcon: iconTime ?? Icon(
+                controller: hourController,
+                labelText: widget.labelTime ?? "Hora",
+                disabledColor: Theme.of(context).primaryColor,
+                contentPadding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                padding: widget.paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
+
+                prefixIcon: widget.iconTime ?? Icon(
                   Icons.access_time_filled_rounded,
                   color: Theme.of(context).primaryColor,
                 ),
@@ -89,19 +113,19 @@ class ZDateTimePicker extends StatelessWidget {
   _onChangeDate(BuildContext context) async {
     return await showDatePicker(
       context: context, 
-      lastDate: lastDate,
-      firstDate: firstDate, 
+      lastDate: widget.lastDate,
+      firstDate: widget.firstDate, 
 
-      initialDate: initialDate, 
-    ).then((value) => onChangedDate.call(value))
+      initialDate: widget.initialDate, 
+    ).then((value) => widget.onChangedDate.call(value))
      .catchError((_) => printError(info: _.toString()));
   }
 
   _onChangeTime(BuildContext context) async {
     await showTimePicker(
       context: context, 
-      initialTime: initialTime,
-    ).then((value) => onChangedPicker.call(value))
+      initialTime: widget.initialTime,
+    ).then((value) => widget.onChangedPicker.call(value))
      .catchError((_) => printError(info: _.toString()));
   }
 }

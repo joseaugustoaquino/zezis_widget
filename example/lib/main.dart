@@ -1,8 +1,11 @@
-import 'package:example/ui/divider_page.dart';
-import 'package:example/ui/loading_page.dart';
-import 'package:example/ui/notification_page.dart';
+// ignore_for_file: depend_on_referenced_packages
+import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'ui/divider_page.dart';
+import 'ui/loading_page.dart';
+import 'ui/notification_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -105,6 +108,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationPage())),
+            ),
+          
+            TextButton(
+              style: const ButtonStyle(
+                elevation: MaterialStatePropertyAll(3),
+                backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+              ),
+              child: SizedBox(
+                width: 120,
+                child: Text(
+                  "Date Time",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DateTimePage())),
             ),
           ],
         ),
