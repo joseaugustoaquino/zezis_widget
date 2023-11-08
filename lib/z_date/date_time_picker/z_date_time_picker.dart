@@ -15,12 +15,14 @@ class ZDateTimePicker extends StatefulWidget {
   final DateTime initialDate;
   final DateTime lastDate;
   final DateTime firstDate;
+  final bool visibleDate;
 
   final String? labelTime;
   final EdgeInsetsGeometry? paddingTime;
   final Widget? iconTime;
   final double? sizeTimer;
   final TimeOfDay initialTime;
+  final bool visibleTime;
 
   final ValueChanged<DateTime?> onChangedDate;
   final ValueChanged<TimeOfDay?> onChangedPicker;
@@ -39,12 +41,14 @@ class ZDateTimePicker extends StatefulWidget {
     required this.initialDate,
     required this.lastDate,
     required this.firstDate,
+    this.visibleDate = true,
 
     this.labelTime,
     this.paddingTime,
     this.iconTime,
     this.sizeTimer,
     required this.initialTime,
+    this.visibleTime = true,
 
     required this.onChangedDate,
     required this.onChangedPicker,
@@ -71,42 +75,48 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
       padding: widget.padding ?? const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Expanded(
-            child: InkWell(
-              onTap: () async => await _onChangeDate(context),
-              child: ZTextForm(
-                enable: false,
-                autofocus: false,
-                controller: dateController,
-                labelText: widget.labelDate ?? "Data",
-                padding: widget.paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
-                disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
-                contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
-
-                prefixIcon: widget.iconDate ?? Icon(
-                  Icons.date_range_rounded,
-                  color: Theme.of(context).primaryColor,
+          Visibility(
+            visible: widget.visibleDate,
+            child: Expanded(
+              child: InkWell(
+                onTap: () async => await _onChangeDate(context),
+                child: ZTextForm(
+                  enable: false,
+                  autofocus: false,
+                  controller: dateController,
+                  labelText: widget.labelDate ?? "Data",
+                  padding: widget.paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
+                  disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
+                  contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
+          
+                  prefixIcon: widget.iconDate ?? Icon(
+                    Icons.date_range_rounded,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
           ),
 
-          SizedBox(
-            width: widget.sizeTimer ?? 150,
-            child: InkWell(
-              onTap: () async => await _onChangeTime(context),
-              child: ZTextForm(
-                enable: false,
-                autofocus: false,
-                controller: hourController,
-                labelText: widget.labelTime ?? "Hora",
-                padding: widget.paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
-                disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
-                contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
-
-                prefixIcon: widget.iconTime ?? Icon(
-                  Icons.access_time_filled_rounded,
-                  color: Theme.of(context).primaryColor,
+          Visibility(
+            visible: widget.visibleTime,
+            child: SizedBox(
+              width: widget.sizeTimer ?? 150,
+              child: InkWell(
+                onTap: () async => await _onChangeTime(context),
+                child: ZTextForm(
+                  enable: false,
+                  autofocus: false,
+                  controller: hourController,
+                  labelText: widget.labelTime ?? "Hora",
+                  padding: widget.paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
+                  disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
+                  contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
+          
+                  prefixIcon: widget.iconTime ?? Icon(
+                    Icons.access_time_filled_rounded,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ZComboBox<T> extends StatelessWidget {
@@ -20,7 +20,9 @@ class ZComboBox<T> extends StatelessWidget {
   final Color? dropdownColor;
   final String? errorText;
   final bool enabled;
+  final Color? focusColor;
   final String? Function(String?)? validator;
+  final bool visible;
 
   const ZComboBox({ 
     Key? key, 
@@ -39,6 +41,8 @@ class ZComboBox<T> extends StatelessWidget {
     this.style,
     this.color,
     this.dropdownColor,
+    this.focusColor,
+    this.visible = true,
 
     this.errorText,
     this.enabled = true,
@@ -47,14 +51,15 @@ class ZComboBox<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Visibility(
+      visible: visible,
+
       child: Padding(
         padding: (padding ?? const EdgeInsets.fromLTRB(8.5, 5.0, 8.5, 5.0)),
 
         child: FormField<String>(
          validator: validator,
-        builder: (FormFieldState<String> state) {
+         builder: (FormFieldState<String> state) {
             return InputDecorator(
               decoration: InputDecoration(
                 enabledBorder: border ?? OutlineInputBorder(
@@ -78,7 +83,6 @@ class ZComboBox<T> extends StatelessWidget {
                 hintText: hintText,
                 labelText: labelText,
                 prefixIcon: prefixIcon,
-                focusColor: Colors.transparent,
                 hoverColor: Colors.transparent,
                 labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
               ),
@@ -102,3 +106,16 @@ class ZComboBox<T> extends StatelessWidget {
     );
   }
 }
+
+BoxDecoration zBoxDecoration({Color? color}) => BoxDecoration(
+  color: color,
+  borderRadius: const BorderRadius.all(Radius.circular(10)),
+  boxShadow: [
+    BoxShadow(
+      color: Colors.grey.withOpacity(0.4),
+      spreadRadius: 5,
+      blurRadius: 7,
+      offset: const Offset(0, 3), // changes position of shadow
+    ),
+  ],
+);
