@@ -33,7 +33,7 @@ class TextInternetionalPhone extends StatefulWidget {
   final String? Function(dynamic)? validator;
 
   const TextInternetionalPhone({
-    Key? key,
+    super.key,
     required this.onInputChanged,
     required this.onChanged,
 
@@ -56,7 +56,7 @@ class TextInternetionalPhone extends StatefulWidget {
     this.initialValue,
     this.focusColor,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   State<TextInternetionalPhone> createState() => _TextInternetionalPhoneState();

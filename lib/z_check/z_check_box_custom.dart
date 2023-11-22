@@ -15,7 +15,7 @@ class ZCheckBoxCustom extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   
   const ZCheckBoxCustom({
-    Key? key,
+    super.key,
 
     this.value = false,
     this.label = "",
@@ -28,7 +28,7 @@ class ZCheckBoxCustom extends StatelessWidget {
 
     this.padding,
     this.contentPadding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

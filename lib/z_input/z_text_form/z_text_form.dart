@@ -47,7 +47,7 @@ class ZTextForm extends StatefulWidget {
   final EdgeInsets? scrollPadding;
   final TextAlignVertical? textAlignVertical;
 
-  const ZTextForm({Key? key,
+  const ZTextForm({super.key,
     this.textDirection,
     this.textAlign,
     this.onEditingComplete,
@@ -91,7 +91,7 @@ class ZTextForm extends StatefulWidget {
     this.clearButton = false,
     this.maxLines = 1,
     this.clearButtonAlwaysShow = false, this.readOnly,
-  }) : super(key: key);
+  });
 
   @override
   State<ZTextForm> createState() => _ZTextFormState();

@@ -33,7 +33,7 @@ class ZTextFormPhone extends StatefulWidget {
   final String? Function(dynamic)? validator;
 
   const ZTextFormPhone({
-    Key? key,
+    super.key,
     required this.onInputChanged,
     required this.onChanged,
 
@@ -55,7 +55,7 @@ class ZTextFormPhone extends StatefulWidget {
     this.mask = "## # ####-####",
     this.focusColor,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   State<ZTextFormPhone> createState() => _ZTextFormPhoneState();

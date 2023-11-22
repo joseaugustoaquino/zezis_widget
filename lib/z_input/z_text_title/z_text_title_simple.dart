@@ -8,13 +8,13 @@ class ZTextTileSimple extends StatelessWidget {
   final Color? color;
 
   const ZTextTileSimple({
-    Key? key,
+    super.key,
     this.title = "Título",
     this.startHeight = 20,
     this.endHeight = 20,
     this.color,
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

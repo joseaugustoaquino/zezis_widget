@@ -6,7 +6,7 @@ import 'package:zezis_widget/z_input/z_formatter/z_upper_case.dart';
 
 class CreditCardForm extends StatefulWidget {
   CreditCardForm({
-    Key? key,
+    super.key,
     required this.formKey,
     required this.themeColor,
 
@@ -46,7 +46,7 @@ class CreditCardForm extends StatefulWidget {
     required this.cardNumberController,
     required this.expiryDateController,
     required this.cardHolderNameController, this.border,
-  }) : super(key: key);
+  });
 
   String cvvValidationMessage;
   String dateValidationMessage;

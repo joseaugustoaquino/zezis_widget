@@ -15,7 +15,7 @@ const Map<CardType, String> CardTypeIconAsset = <CardType, String>{
 
 class CreditCardWidget extends StatefulWidget {
   const CreditCardWidget(
-      {Key? key,
+      {super.key,
       required this.cardNumber,
       required this.expiryDate,
       required this.cardHolderName,
@@ -39,8 +39,7 @@ class CreditCardWidget extends StatefulWidget {
       this.isChipVisible = true,
       this.isSwipeGestureEnabled = true,
       this.customCardTypeIcons = const <CustomCardTypeIcon>[],
-      this.chipColor})
-      : super(key: key);
+      this.chipColor});
 
   final String cardNumber;
   final String expiryDate;
@@ -594,23 +593,22 @@ class _CreditCardWidgetState extends State<CreditCardWidget> with SingleTickerPr
 }
 
 class MaskedTextController extends TextEditingController {
-  MaskedTextController({String? text, required this.mask, Map<String, RegExp>? translator})
-  : super(text: text) {
+  MaskedTextController({super.text, required this.mask, Map<String, RegExp>? translator}) {
     this.translator = translator ?? MaskedTextController.getDefaultTranslator();
 
     addListener(() {
       final String previous = _lastUpdatedText;
       
-      if (beforeChange(previous, this.text)) {
-        updateText(this.text);
-        afterChange(previous, this.text);
+      if (beforeChange(previous, text)) {
+        updateText(text);
+        afterChange(previous, text);
       } 
       else {
         updateText(_lastUpdatedText);
       }
     });
 
-    updateText(this.text);
+    updateText(text);
   }
 
   String mask;
@@ -737,7 +735,7 @@ class AnimationCard extends StatelessWidget {
 
 class CardBackground extends StatelessWidget {
   const CardBackground({
-    Key? key,
+    super.key,
     required this.backgroundGradientColor,
     this.backgroundImage,
     this.backgroundNetworkImage,
@@ -750,9 +748,7 @@ class CardBackground extends StatelessWidget {
     (backgroundImage == null && backgroundNetworkImage == null) ||
     (backgroundImage == null && backgroundNetworkImage != null) ||
     (backgroundImage != null && backgroundNetworkImage == null),
-    "Você não pode usar imagem de rede e imagem de ativo ao mesmo tempo para plano de fundo do cartão."),
-    super(key: key
-  );
+    "Você não pode usar imagem de rede e imagem de ativo ao mesmo tempo para plano de fundo do cartão.");
 
   final String? backgroundImage;
   final String? backgroundNetworkImage;

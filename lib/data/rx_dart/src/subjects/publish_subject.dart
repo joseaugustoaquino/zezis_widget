@@ -25,8 +25,7 @@ import 'package:zezis_widget/data/rx_dart/src/subjects/subject.dart';
 ///     subject.add(3);
 ///     subject.close();
 class PublishSubject<T> extends Subject<T> {
-  PublishSubject._(StreamController<T> controller, Stream<T> stream)
-      : super(controller, stream);
+  PublishSubject._(super.controller, super.stream);
 
   /// Constructs a [PublishSubject], optionally pass handlers for
   /// [onListen], [onCancel] and a flag to handle events [sync].

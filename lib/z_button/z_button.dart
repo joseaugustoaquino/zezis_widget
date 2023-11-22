@@ -9,14 +9,14 @@ class ZButton extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final Color? color;
   const ZButton({ 
-    Key? key, 
+    super.key, 
     required this.label, 
     required this.onTap,
     this.height,
     this.width,
     this.padding,
     this.color
-  }) : super(key: key);
+  });
 
   @override
   State<ZButton> createState() => _ZButtonState();

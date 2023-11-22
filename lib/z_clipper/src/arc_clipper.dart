@@ -1,7 +1,7 @@
-///
 /// Author: Damodar Lohani
 /// profile: https://github.com/lohanidamodar
 ///
+library;
 
 import 'package:flutter/material.dart';
 

@@ -89,7 +89,7 @@ class ZLoadingButton extends StatefulWidget {
 
   /// initalize constructor
   const ZLoadingButton({
-    Key? key,
+    super.key,
     required this.controller,
     required this.onPressed,
     required this.child,
@@ -113,7 +113,7 @@ class ZLoadingButton extends StatefulWidget {
     this.completionCurve = Curves.elasticOut,
     this.completionDuration = const Duration(milliseconds: 1000),
     this.disabledColor,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => ZLoadingButtonState();

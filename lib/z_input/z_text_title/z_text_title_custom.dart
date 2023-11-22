@@ -11,7 +11,7 @@ class ZTextTileCustom extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
 
   const ZTextTileCustom({
-    Key? key,
+    super.key,
     required this.title,
     required this.label,
     required this.icon,
@@ -19,7 +19,7 @@ class ZTextTileCustom extends StatelessWidget {
     this.color,
     this.iconColor,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class ZAlertCustomGif extends StatefulWidget {
   final Function? twoButtonFunction;
 
   const ZAlertCustomGif({
-    Key? key,
+    super.key,
     required this.title,
     required this.description,
 
@@ -29,7 +29,7 @@ class ZAlertCustomGif extends StatefulWidget {
     this.oneButtonFunction,
     this.twoButton,
     this.twoButtonFunction,
-  }) : super(key: key);
+  });
 
   @override
   ZAlertCustomGifState createState() => ZAlertCustomGifState();

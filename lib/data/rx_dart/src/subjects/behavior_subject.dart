@@ -45,10 +45,10 @@ class BehaviorSubject<T> extends Subject<T> implements ValueStream<T> {
   final _Wrapper<T> _wrapper;
 
   BehaviorSubject._(
-    StreamController<T> controller,
-    Stream<T> stream,
+    super.controller,
+    super.stream,
     this._wrapper,
-  ) : super(controller, stream);
+  );
 
   /// Constructs a [BehaviorSubject], optionally pass handlers for
   /// [onListen], [onCancel] and a flag to handle events [sync].

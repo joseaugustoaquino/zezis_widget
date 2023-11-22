@@ -5,7 +5,7 @@ abstract class WidgetView<T extends StatefulWidget, S extends State<T>> extends 
 
   T get widget => state.widget;
 
-  const WidgetView({Key? key, required this.state}) : super(key: key);
+  const WidgetView({super.key, required this.state});
 
   @override
   Widget build(BuildContext context);

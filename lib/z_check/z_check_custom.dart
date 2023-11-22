@@ -10,14 +10,14 @@ class ZCheckCustom extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   
   const ZCheckCustom({
-    Key? key,
+    super.key,
     this.value = false,
     this.color,
     this.label = "",
     this.onTap,
     this.onChanged,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -40,7 +40,7 @@ class ZDatePeriod extends StatefulWidget {
   int yearFlex;
 
   ZDatePeriod(
-      {Key? key,
+      {super.key,
       this.textStyle,
       this.boxDecoration,
       this.inputDecoration,
@@ -65,8 +65,7 @@ class ZDatePeriod extends StatefulWidget {
       this.selectedYear,
       this.monthFlex = 3,
       this.dayFlex = 1,
-      this.yearFlex = 2})
-      : super(key: key);
+      this.yearFlex = 2});
 
   @override
   // ignore: library_private_types_in_public_api

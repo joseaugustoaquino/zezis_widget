@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class BadgeText extends StatelessWidget {
   const BadgeText({
-    Key? key,
+    super.key,
     this.count,
     this.right,
     this.show = false,
-  }) : super(key: key);
+  });
 
   // counter showed in notification badge
   // set to 0 will hide notification badge

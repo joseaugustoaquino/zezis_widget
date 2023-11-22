@@ -25,7 +25,7 @@ class ZComboBox<T> extends StatelessWidget {
   final bool visible;
 
   const ZComboBox({ 
-    Key? key, 
+    super.key, 
     this.value, 
     this.border, 
     this.onChanged, 
@@ -47,7 +47,7 @@ class ZComboBox<T> extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.validator,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -14,7 +14,7 @@ class ZDatePicker extends StatelessWidget {
   final Color? iconColor;
 
   const ZDatePicker({
-    Key? key,
+    super.key,
     this.label = "Selecione uma Data",
     this.labelDate,
     this.side,
@@ -25,7 +25,7 @@ class ZDatePicker extends StatelessWidget {
     this.backgroundColor,
     this.disabled = false,
     this.iconColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

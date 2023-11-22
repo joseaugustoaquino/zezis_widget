@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ZTimeLine extends StatelessWidget {
   const ZTimeLine({
-    Key? key,
+    super.key,
     required this.children,
     this.indicators,
     this.isLeftAligned = true,
@@ -25,8 +25,7 @@ class ZTimeLine extends StatelessWidget {
   })  : itemCount = children.length,
         assert(itemGap >= 0),
         assert(lineGap >= 0),
-        assert(indicators == null || children.length == indicators.length),
-        super(key: key);
+        assert(indicators == null || children.length == indicators.length);
 
   final List<Widget> children;
   final double itemGap;

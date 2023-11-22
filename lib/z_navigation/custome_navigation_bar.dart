@@ -28,7 +28,7 @@ class CustomNavigationBar extends StatefulWidget {
   /// create a [CustomNavigationBar]
   ///
   const CustomNavigationBar({
-    Key? key,
+    super.key,
     required this.items,
     this.duration = const Duration(milliseconds: 300),
     this.scaleDuration = const Duration(milliseconds: 400),
@@ -49,8 +49,7 @@ class CustomNavigationBar extends StatefulWidget {
     this.opacity = 0.8,
   })  : assert(scaleFactor <= 0.5, 'Scale factor must smaller than 0.5'),
         assert(scaleFactor > 0, 'Scale factor must bigger than 0'),
-        assert(0 <= currentIndex && currentIndex < items.length),
-        super(key: key);
+        assert(0 <= currentIndex && currentIndex < items.length);
 
   ///
   /// Animation duration
@@ -381,7 +380,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
 
 class _CustomNavigationBarTile extends StatelessWidget {
   const _CustomNavigationBarTile({
-    Key? key,
     this.selected = false,
     this.item,
     this.selectedColor,
@@ -389,7 +387,7 @@ class _CustomNavigationBarTile extends StatelessWidget {
     this.scale,
     this.iconSize,
     this.iconPadding,
-  }) : super(key: key);
+  });
 
   final bool selected;
 
