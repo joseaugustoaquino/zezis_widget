@@ -59,16 +59,6 @@ class ZDateTimePicker extends StatefulWidget {
 }
 
 class _ZDateTimePickerState extends State<ZDateTimePicker> {
-  final TextEditingController dateController = TextEditingController();
-  final TextEditingController hourController = TextEditingController();
-  
-  @override
-  void initState() {
-    dateController.text = DateFormat(widget.dateFormat ?? "dd/MM/yyyy").format(widget.initialDate);
-    hourController.text = "${widget.initialTime.hour.toString().padLeft(2, '0')}:${widget.initialTime.minute.toString().padLeft(2, '0')}";
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,11 +73,11 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
                 child: ZTextForm(
                   enable: false,
                   autofocus: false,
-                  controller: dateController,
                   labelText: widget.labelDate ?? "Data",
                   padding: widget.paddingDate ?? const EdgeInsets.fromLTRB(8, 0, 4, 0),
                   disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
                   contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                  controller: TextEditingController(text: DateFormat(widget.dateFormat ?? "dd/MM/yyyy").format(widget.initialDate)),
           
                   prefixIcon: widget.iconDate ?? Icon(
                     Icons.date_range_rounded,
@@ -107,11 +97,11 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
                 child: ZTextForm(
                   enable: false,
                   autofocus: false,
-                  controller: hourController,
                   labelText: widget.labelTime ?? "Hora",
                   padding: widget.paddingTime ?? const EdgeInsets.fromLTRB(4, 0, 8, 0),
                   disabledColor: widget.disabledColor ?? Theme.of(context).primaryColor,
                   contentPadding: widget.paddingContent ?? const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                  controller: TextEditingController(text: "${widget.initialTime.hour.toString().padLeft(2, '0')}:${widget.initialTime.minute.toString().padLeft(2, '0')}"),
           
                   prefixIcon: widget.iconTime ?? Icon(
                     Icons.access_time_filled_rounded,
@@ -148,7 +138,6 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
   _thenDate(DateTime? value) {
     value ??= widget.initialDate;
 
-    dateController.text = DateFormat(widget.dateFormat ?? "dd/MM/yyyy").format(value);
     widget.onChangedDate.call(value);
     setState(() {});
   }
@@ -156,7 +145,6 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
   _thenHour(TimeOfDay? value) {
     value ??= widget.initialTime;
 
-    hourController.text = "${value.hour.toString().padLeft(2, '0')}:${value.minute.toString().padLeft(2, '0')}";
     widget.onChangedPicker.call(value);
     setState(() {});
   }

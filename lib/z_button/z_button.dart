@@ -8,6 +8,8 @@ class ZButton extends StatefulWidget {
   final double? width;
   final EdgeInsetsGeometry? padding;
   final Color? color;
+  final double border;
+
   const ZButton({ 
     super.key, 
     required this.label, 
@@ -15,7 +17,8 @@ class ZButton extends StatefulWidget {
     this.height,
     this.width,
     this.padding,
-    this.color
+    this.color,
+    this.border = 15.0,
   });
 
   @override
@@ -29,7 +32,7 @@ class _ZButtonState extends State<ZButton> {
       padding: widget.padding ?? const EdgeInsets.all(8.0),
       child: Material(
         elevation: 3.0,
-        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+        borderRadius: BorderRadius.all(Radius.circular(widget.border)),
         child: InkWell(
           onTap: widget.onTap,
           focusColor: Colors.transparent,
