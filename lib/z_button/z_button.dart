@@ -42,7 +42,7 @@ class _ZButtonState extends State<ZButton> {
           child: Ink(
             decoration: BoxDecoration(
               color: widget.color ?? Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              borderRadius: BorderRadius.all(Radius.circular(widget.border)),
             ),
             height: widget.height ?? 50,
             width: widget.width,
