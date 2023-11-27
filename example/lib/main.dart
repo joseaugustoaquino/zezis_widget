@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:example/ui/combo_box_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -128,6 +129,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DateTimePage())),
+            ),
+
+            TextButton(
+              style: const ButtonStyle(
+                elevation: MaterialStatePropertyAll(3),
+                backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+              ),
+              child: SizedBox(
+                width: 120,
+                child: Text(
+                  "Combo Box",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ComboBoxPage())),
             ),
           ],
         ),

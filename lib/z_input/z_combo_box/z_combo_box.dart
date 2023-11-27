@@ -23,6 +23,8 @@ class ZComboBox<T> extends StatelessWidget {
   final Color? focusColor;
   final String? Function(String?)? validator;
   final bool visible;
+  final bool clearButton;
+  final Function()? onTapClean;
 
   const ZComboBox({ 
     super.key, 
@@ -47,6 +49,8 @@ class ZComboBox<T> extends StatelessWidget {
     this.errorText,
     this.enabled = true,
     this.validator,
+    this.clearButton = false,
+    this.onTapClean,
   });
 
   @override
@@ -88,7 +92,17 @@ class ZComboBox<T> extends StatelessWidget {
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
-                  icon: Icon(Icons.arrow_drop_down, color: color ?? Get.theme.primaryColor),
+                  icon: SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: InkWell(
+                      onTap: onTapClean,
+                      child: Icon(
+                        (clearButton && value != null) ? Icons.delete_outline : Icons.arrow_drop_down, 
+                        color: color ?? Get.theme.primaryColor
+                      ),
+                    ),
+                  ),
                   focusColor: Colors.transparent,
                   isExpanded: true,
                   isDense: true,
