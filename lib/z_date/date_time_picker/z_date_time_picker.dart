@@ -123,6 +123,14 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
       firstDate: widget.firstDate, 
 
       initialDate: widget.initialDate, 
+
+      useRootNavigator: false,
+      barrierDismissible: false,
+
+      cancelText: "Cancelar",
+      confirmText: "Confirmar",
+      helpText: "Selecione uma Data",
+      fieldLabelText: "Digite uma Data",
     ).then(_thenDate)
      .catchError((_) => printError(info: _.toString()));
   }
@@ -131,6 +139,22 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
     await showTimePicker(
       context: context, 
       initialTime: widget.initialTime,
+
+      hourLabelText: "Hora",
+      cancelText: "Cancelar",
+      confirmText: "Confirmar",
+      minuteLabelText: "Minutos",
+      helpText: "Selecione um Horário",
+
+      useRootNavigator: false,
+      barrierDismissible: false,
+
+      builder: (c, w) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+          child: w ?? const SizedBox(),
+        );
+      }
     ).then(_thenHour)
      .catchError((_) => printError(info: _.toString()));
   }

@@ -1,7 +1,7 @@
 name: zezis_widget
 description: Functions/Widget/Alerts/Dialogs in a customized way and with easy dependency management.
 
-version: 0.2.37
+version: 0.2.38
 repository: https://github.com/joseaugustoaquino/zezis_widget
 homepage: https://github.com/joseaugustoaquino
 
@@ -13,6 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
   get: ^4.6.6
   intl: ^0.18.1
   equatable: ^2.0.5
@@ -22,6 +25,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
   flutter_lints: ^3.0.1
 
 flutter:
