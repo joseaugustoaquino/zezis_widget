@@ -42,6 +42,7 @@ class ZTextForm extends StatefulWidget {
   final TextAlign? textAlign;
   final Function()? onEditingComplete;
   final Function(String)? onFieldSubmitted;
+  final  TapRegionCallback? onTapOutside;
   final AutovalidateMode? autovalidateMode;
   final Iterable<String>? autofillHints;
   final EdgeInsets? scrollPadding;
@@ -85,6 +86,7 @@ class ZTextForm extends StatefulWidget {
     this.padding,
     this.enable,
     this.onChange,
+    this.onTapOutside,
     this.onSaved,
     this.initialValue,
     this.visible = true,
@@ -208,6 +210,7 @@ class _ZTextFormState extends State<ZTextForm> {
           autofillHints: widget.autofillHints,
           textAlignVertical: widget.textAlignVertical,
           scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20.0),
+          onTapOutside: widget.onTapOutside,
 
           decoration: InputDecoration(
             focusColor: (widget.focusColor ?? Theme.of(context).focusColor),
