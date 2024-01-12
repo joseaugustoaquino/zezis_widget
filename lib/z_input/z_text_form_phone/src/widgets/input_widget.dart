@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/data/country_model.dart';
 import 'package:zezis_widget/z_input/z_combo_box/z_combo_box.dart';
 import 'package:zezis_widget/z_input/z_formatter/z_input_formatter.dart';
-import 'package:zezis_widget/z_input/z_text_form/z_text_form.dart';
+import 'package:zezis_widget/z_input/z_text_form/z_text_form_field.dart';
 
-class ZTextFormPhone extends StatefulWidget {
+class ZTextFormFieldPhone extends StatefulWidget {
   final TextEditingController? textFieldController;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<bool>? onInputValidated;
@@ -32,7 +32,7 @@ class ZTextFormPhone extends StatefulWidget {
 
   final String? Function(dynamic)? validator;
 
-  const ZTextFormPhone({
+  const ZTextFormFieldPhone({
     super.key,
     required this.onInputChanged,
     required this.onChanged,
@@ -58,10 +58,10 @@ class ZTextFormPhone extends StatefulWidget {
   });
 
   @override
-  State<ZTextFormPhone> createState() => _ZTextFormPhoneState();
+  State<ZTextFormFieldPhone> createState() => _ZTextFormFieldPhoneState();
 }
 
-class _ZTextFormPhoneState extends State<ZTextFormPhone> {
+class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +112,7 @@ class _ZTextFormPhoneState extends State<ZTextFormPhone> {
           const SizedBox(width: 8.5),
           
           Expanded(
-            child: ZTextForm(
+            child: ZTextFormField(
               focusColor: widget.focusColor,
               controller: widget.textFieldController,
               padding: widget.paddingText ?? const EdgeInsets.all(0),

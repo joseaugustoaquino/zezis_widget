@@ -113,7 +113,7 @@ class _TextInternetionalPhoneState extends State<TextInternetionalPhone> {
           const SizedBox(width: 8.5),
           
           Expanded(
-            child: ZTextForm(
+            child: ZTextFormField(
               focusColor: widget.focusColor,
               controller: widget.textFieldController,
               padding: widget.paddingText ?? const EdgeInsets.all(0),

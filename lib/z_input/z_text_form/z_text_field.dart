@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ZTextForm extends StatefulWidget {
+class ZTextField extends StatefulWidget {
   final TextEditingController? controller;
   final FormFieldValidator? validator;
   final TextInputType? keyboardType;
@@ -48,7 +48,7 @@ class ZTextForm extends StatefulWidget {
   final EdgeInsets? scrollPadding;
   final TextAlignVertical? textAlignVertical;
 
-  const ZTextForm({super.key,
+  const ZTextField({super.key,
     this.textDirection,
     this.textAlign,
     this.onEditingComplete,
@@ -96,10 +96,10 @@ class ZTextForm extends StatefulWidget {
   });
 
   @override
-  State<ZTextForm> createState() => _ZTextFormState();
+  State<ZTextField> createState() => _ZTextFieldState();
 }
 
-class _ZTextFormState extends State<ZTextForm> {
+class _ZTextFieldState extends State<ZTextField> {
   final _controller = TextEditingController();
 
   FocusNode _focusNode = FocusNode();
@@ -187,26 +187,22 @@ class _ZTextFormState extends State<ZTextForm> {
       child: Padding(
         padding: (widget.padding ?? const EdgeInsets.fromLTRB(8.5, 5.0, 8.5, 5.0)),
 
-        child: TextFormField(
+        child: TextField(
           maxLines: widget.maxLines,
           textCapitalization: widget.textCapitalization,
           autofocus: widget.autofocus,
           readOnly: widget.readOnly ?? false,
           controller: widget.controller ?? _controller,
-          validator: widget.validator,
           obscureText: (widget.obscureText ? _passwordVisible : widget.obscureText),
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction,
           inputFormatters: formatters,
           enabled: (widget.enable ?? true),
           onChanged: widget.onChange,
-          onSaved: widget.onSaved,
           style: widget.style ?? GoogleFonts.roboto(color: widget.textStyle ?? Colors.black),
           textDirection: widget.textDirection,
           textAlign: widget.textAlign ?? TextAlign.start,
           onEditingComplete: widget.onEditingComplete,
-          onFieldSubmitted: widget.onFieldSubmitted,
-          autovalidateMode: widget.autovalidateMode,
           autofillHints: widget.autofillHints,
           textAlignVertical: widget.textAlignVertical,
           scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20.0),

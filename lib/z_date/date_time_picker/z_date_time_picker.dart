@@ -70,7 +70,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
             child: Expanded(
               child: InkWell(
                 onTap: () async => await _onChangeDate(context),
-                child: ZTextForm(
+                child: ZTextFormField(
                   enable: false,
                   autofocus: false,
                   labelText: widget.labelDate ?? "Data",
@@ -94,7 +94,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
               width: widget.sizeTimer ?? 150,
               child: InkWell(
                 onTap: () async => await _onChangeTime(context),
-                child: ZTextForm(
+                child: ZTextFormField(
                   enable: false,
                   autofocus: false,
                   labelText: widget.labelTime ?? "Hora",

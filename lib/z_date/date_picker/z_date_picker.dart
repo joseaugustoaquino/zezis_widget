@@ -29,7 +29,7 @@ class ZDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ZTextForm(
+    return ZTextFormField(
       readOnly: true,
       labelText: label,
       contentPadding: const EdgeInsets.all(18),

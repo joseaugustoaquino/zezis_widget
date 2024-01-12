@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:zezis_widget/z_input/z_text_form/z_text_form.dart';
+import 'package:zezis_widget/z_input/z_text_form/z_text_form_field.dart';
 import 'package:zezis_widget/z_input/z_formatter/z_input_formatter.dart';
 
-class ZMaskedFormatter extends ZTextForm {
+class ZMaskedFormatter extends ZTextFormField {
   ZMaskedFormatter({
     super.key,
     super.initialValue,
