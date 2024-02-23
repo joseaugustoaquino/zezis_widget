@@ -24,18 +24,24 @@ Widget selectAutoComplete({
         leading: leading,
         visualDensity: VisualDensity.comfortable,
 
-        title: Text(
-          title.toUpperCase(),
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: subtitle == null ? FontWeight.normal : FontWeight.w700
+        title: Expanded(
+          child: Text(
+            title.toUpperCase(),
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: subtitle == null ? FontWeight.normal : FontWeight.w700
+            ),
           ),
         ),
 
-        subtitle: subtitle == null ? null : Text(
-          subtitle.toUpperCase(),
-          style: const TextStyle(
-            fontWeight: FontWeight.w400,
+        subtitle: subtitle == null ? null : Expanded(
+          child: Text(
+            subtitle.toUpperCase(),
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
 
