@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 class ZCheckBoxCustom extends StatelessWidget {
   final bool value;
   final String label;
+  final double? space;
+  final double border;
+  final Widget? content;
   final Function()? onTap;
   final Function(bool?)? onChanged;
 
@@ -17,8 +20,11 @@ class ZCheckBoxCustom extends StatelessWidget {
   const ZCheckBoxCustom({
     super.key,
 
+    this.space,
+    this.border = 5,
     this.value = false,
     this.label = "",
+    this.content,
     this.onTap,
     this.onChanged,
 
@@ -44,20 +50,23 @@ class ZCheckBoxCustom extends StatelessWidget {
               child: Checkbox(
                 value: value,
                 onChanged: onChanged,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-
                 checkColor: checkColor,
                 activeColor: activeColor,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(border)),
               ),
             ),
+      
+            SizedBox(width: space),
+      
+            content ?? Expanded(
+              child: Text(
+                label,
+                
+                textAlign: TextAlign.left,
+                overflow: TextOverflow.clip,
 
-            InkWell(
-              onTap: onTap,
-              child: Container(
-                padding: contentPadding ?? const EdgeInsets.only(left: 16),
-                child: Text(
-                  label,
-                  style: GoogleFonts.roboto(),
+                style: GoogleFonts.roboto(
+                  fontWeight: value ? FontWeight.bold : FontWeight.normal,
                 ),
               ),
             ),
