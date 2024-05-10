@@ -16,6 +16,8 @@ class ZAlertCustomGif extends StatefulWidget {
   final String? twoButton;
   final Function? twoButtonFunction;
 
+  final Widget? footer;
+
   const ZAlertCustomGif({
     super.key,
     required this.title,
@@ -29,6 +31,8 @@ class ZAlertCustomGif extends StatefulWidget {
     this.oneButtonFunction,
     this.twoButton,
     this.twoButtonFunction,
+
+    this.footer,
   });
 
   @override
@@ -128,7 +132,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
 
               const SizedBox(height: 10),
 
-              Row(
+              widget.footer ?? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
@@ -170,7 +174,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                 ],
               ),
             
-              const SizedBox(height: 10),
+              SizedBox(height: widget.footer != null ? 35 : 10),
             ],
           ),
         ),
