@@ -35,9 +35,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             TextButton(
               style: const ButtonStyle(
-                elevation: MaterialStatePropertyAll(3),
-                backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                elevation: WidgetStatePropertyAll(3),
+                backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
               child: SizedBox(
                 width: 120,
@@ -74,9 +74,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             TextButton(
               style: const ButtonStyle(
-                elevation: MaterialStatePropertyAll(3),
-                backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                elevation: WidgetStatePropertyAll(3),
+                backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
               child: SizedBox(
                 width: 120,
@@ -110,9 +110,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             TextButton(
               style: const ButtonStyle(
-                elevation: MaterialStatePropertyAll(3),
-                backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                elevation: WidgetStatePropertyAll(3),
+                backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
               child: SizedBox(
                 width: 120,
@@ -143,9 +143,9 @@ class _NotificationPageState extends State<NotificationPage> {
 
             TextButton(
               style: const ButtonStyle(
-                elevation: MaterialStatePropertyAll(3),
-                backgroundColor: MaterialStatePropertyAll(Colors.blue),
-                shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
+                elevation: WidgetStatePropertyAll(3),
+                backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
               child: SizedBox(
                 width: 120,

@@ -132,7 +132,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
       helpText: "Selecione uma Data",
       fieldLabelText: "Digite uma Data",
     ).then(_thenDate)
-     .catchError((_) => printError(info: _.toString()));
+     .catchError((error) => printError(info: error.toString()));
   }
 
   _onChangeTime(BuildContext context) async {
@@ -156,7 +156,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
         );
       }
     ).then(_thenHour)
-     .catchError((_) => printError(info: _.toString()));
+     .catchError((error) => printError(info: error.toString()));
   }
 
   _thenDate(DateTime? value) {

@@ -205,7 +205,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> with SingleTickerPr
 
   Widget _buildFrontContainer() {
     final TextStyle defaultTextStyle =
-    Theme.of(context).textTheme.headline6!.merge(
+    Theme.of(context).textTheme.headlineMedium!.merge(
       GoogleFonts.roboto(
         fontSize: 16,
         color: Colors.white,
@@ -338,7 +338,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> with SingleTickerPr
 
   Widget _buildBackContainer() {
     final TextStyle defaultTextStyle =
-    Theme.of(context).textTheme.headline6!.merge(
+    Theme.of(context).textTheme.titleLarge!.merge(
       GoogleFonts.roboto(
         fontSize: 16,
         color: Colors.black,

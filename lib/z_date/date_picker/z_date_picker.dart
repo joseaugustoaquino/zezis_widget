@@ -7,7 +7,7 @@ class ZDatePicker extends StatelessWidget {
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? padding;
   final Function()? onPressed;
-  final MaterialStateProperty<Color?>? backgroundColor;
+  final WidgetStateProperty<Color?>? backgroundColor;
   final BorderSide? side;
   final Color? borderColor;
   final bool disabled;
