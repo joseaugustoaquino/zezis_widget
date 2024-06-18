@@ -6,6 +6,6 @@
 
 * Fix export check box
 
-## 0.2.55
+## 0.2.57
 
 * Create date time picker
