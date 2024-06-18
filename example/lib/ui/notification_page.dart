@@ -159,7 +159,7 @@ class _NotificationPageState extends State<NotificationPage> {
                 ),
               ),
               onPressed: () {
-                showSnackBar(message: "SnackBar Simple - Zezis Widget");
+                showSnackBar("SnackBar Simple - Zezis Widget");
               },
             ),
           ],

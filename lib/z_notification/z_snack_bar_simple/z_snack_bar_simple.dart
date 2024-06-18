@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void showSnackBar({
+void showSnackBar(
+  String? message, {
   String? title,
-  String? message = "",
 
   Widget? icon,
   Widget? titleText,
@@ -19,7 +19,7 @@ void showSnackBar({
   double? maxWidth = 250,
   double overlayBlur = 0.0,
   double borderWidth = 1.0,
-  double borderRadius = 0.0,
+  double borderRadius = 15,
   
   EdgeInsets margin = const EdgeInsets.all(0.0),
   EdgeInsets padding = const EdgeInsets.all(16),
