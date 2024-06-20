@@ -22,6 +22,7 @@ class ZTextFormFieldPhone extends StatefulWidget {
   final String? hintText;
   final String? errorMessage;
 
+  final double width;
   final EdgeInsetsGeometry? contentPadding;
   final EdgeInsetsGeometry? paddingDdi;
   final EdgeInsetsGeometry? paddingText;
@@ -51,6 +52,7 @@ class ZTextFormFieldPhone extends StatefulWidget {
     this.paddingDdi,
     this.paddingText,
     this.enable,
+    this.width = 135.0,
     this.enableIcon = true,
     this.hintText = 'Celular',
     this.errorMessage = 'Número do Celular Inválido',
@@ -74,7 +76,7 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: 135,
+            width: widget.width,
             child: ZComboBox(
               labelText: "DDI",
               padding: widget.paddingDdi ?? const EdgeInsets.all(0),
