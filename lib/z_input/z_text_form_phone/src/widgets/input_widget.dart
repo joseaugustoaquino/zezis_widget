@@ -18,6 +18,7 @@ class ZTextFormFieldPhone extends StatefulWidget {
   final PaisModel country;
 
   final bool? enable;
+  final bool enableIcon;
   final String? hintText;
   final String? errorMessage;
 
@@ -50,6 +51,7 @@ class ZTextFormFieldPhone extends StatefulWidget {
     this.paddingDdi,
     this.paddingText,
     this.enable,
+    this.enableIcon = true,
     this.hintText = 'Celular',
     this.errorMessage = 'Número do Celular Inválido',
     this.mask = "## # ####-####",
@@ -79,28 +81,34 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
               items: widget.countries.map((x) { 
                 return DropdownMenuItem<PaisModel>(
                   value: x,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage(
-                          'assets/flags/${x.sigla2.toLowerCase()}.png',
-                        ),
-                        width: 30,
-                        height: 25,
-                      ),
-                      
-                      const SizedBox(width: 12.0),
-    
-                      Text(
+                  child: !widget.enableIcon 
+                    ? Text(
                         "+${x.ddi}",
                         textDirection: TextDirection.ltr,
                         style: GoogleFonts.roboto(color: Colors.black),
-                      ),
-                    ],
-                  )
-                );
+                      ) 
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image(
+                            image: AssetImage(
+                              'assets/flags/${x.sigla2.toLowerCase()}.png',
+                            ),
+                            width: 30,
+                            height: 25,
+                          ),
+                          
+                          const SizedBox(width: 12.0),
+        
+                          Text(
+                            "+${x.ddi}",
+                            textDirection: TextDirection.ltr,
+                            style: GoogleFonts.roboto(color: Colors.black),
+                          ),
+                        ],
+                      )
+                    );
               }).toList(),
               
               value: widget.country,
