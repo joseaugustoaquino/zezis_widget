@@ -6,6 +6,7 @@ class ZButtonIcon extends StatefulWidget {
   final IconData icon;
   final GestureTapCallback onTap;
 
+  final double space;
   final double border;
   final double? height;
   final double? width;
@@ -24,6 +25,7 @@ class ZButtonIcon extends StatefulWidget {
     required this.icon, 
     required this.onTap,
 
+    this.space = 5.0,
     this.border = 15.0,
     this.height,
     this.width,
@@ -72,7 +74,7 @@ class _ZButtonIconState extends State<ZButtonIcon> {
                   size: widget.iconSized,
                 ),
 
-                const SizedBox(width: 5),
+                SizedBox(width: widget.space),
                 
                 Text(
                   widget.label,
