@@ -3,6 +3,7 @@ import 'package:example/ui/combo_box_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zezis_widget/z_button/z_button_icon.dart';
 
 import 'ui/divider_page.dart';
 import 'ui/loading_page.dart';
@@ -149,6 +150,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ComboBoxPage())),
+            ),
+
+            ZButtonIcon(
+              icon: Icons.whatshot,
+              label: "Whatsapp", 
+              onTap: () {}
             ),
           ],
         ),
