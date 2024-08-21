@@ -13,6 +13,7 @@ class ZButtonIcon extends StatefulWidget {
   final double? fontSized;
   final double? iconSized;
   
+  final bool disableText;
   final TextStyle? style;
   final EdgeInsetsGeometry? padding;
 
@@ -32,6 +33,7 @@ class ZButtonIcon extends StatefulWidget {
     this.fontSized,
     this.iconSized,
     
+    this.disableText = false,
     this.style,
     this.padding,
 
@@ -74,9 +76,9 @@ class _ZButtonIconState extends State<ZButtonIcon> {
                   size: widget.iconSized,
                 ),
 
-                SizedBox(width: widget.space),
+                widget.disableText ? const SizedBox() : SizedBox(width: widget.space),
                 
-                Text(
+                widget.disableText ? const SizedBox() : Text(
                   widget.label,
                   textAlign: TextAlign.center,
                   style: widget.style ?? GoogleFonts.roboto(
