@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/data/country_model.dart';
 import 'package:zezis_widget/z_input/z_input.dart';
-import 'package:zezis_widget/z_input/z_number_form/z_number_form.dart';
 
 class TextInternetionalPhone extends StatefulWidget {
   final TextEditingController? textFieldController;
@@ -145,4 +144,12 @@ class _TextInternetionalPhoneState extends State<TextInternetionalPhone> {
       ),
     );
   }
+}
+
+class TestHelper {
+  static const String textInputKeyValue = 'intl_text_input_key';
+  static const String dropdownButtonKeyValue = 'intl_dropdown_key';
+  static const String countrySearchInputKeyValue = 'intl_search_input_key';
+  static String Function(String? isoCode) countryItemKeyValue =
+      (String? isoCode) => 'intl_country_${isoCode!.toUpperCase()}_key';
 }

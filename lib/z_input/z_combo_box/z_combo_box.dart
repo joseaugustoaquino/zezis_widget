@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -76,7 +75,7 @@ class ZComboBox<T> extends StatelessWidget {
                 border: border ?? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
-                    color: borderColor ?? Get.theme.primaryColor
+                    color: borderColor ?? Theme.of(context).primaryColor
                   ),
                 ),
         
@@ -99,7 +98,7 @@ class ZComboBox<T> extends StatelessWidget {
                       onTap: onTapClean,
                       child: Icon(
                         (clearButton && value != null) ? Icons.delete_outline : Icons.arrow_drop_down, 
-                        color: color ?? Get.theme.primaryColor
+                        color: color ??Theme.of(context).primaryColor 
                       ),
                     ),
                   ),
