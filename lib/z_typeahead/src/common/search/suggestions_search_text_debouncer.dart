@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/connector_widget.dart';
 
-/// A widget that notifies of changes to a [TextEditingController],
-/// but only after a specified duration has passed since the last change.
 class SuggestionsSearchTextDebouncer extends StatefulWidget {
   const SuggestionsSearchTextDebouncer({
     super.key,
@@ -32,7 +30,6 @@ class _SuggestionsSearchTextDebouncerState
   @override
   void initState() {
     super.initState();
-    // avoid triggering a change when the widget is first built
     lastTextValue = widget.controller.text;
   }
 
@@ -59,7 +56,6 @@ class _SuggestionsSearchTextDebouncerState
     return ConnectorWidget(
       value: widget.controller,
       connect: (value) {
-        // if we switch controllers, we call onChange.
         onChange();
         value.addListener(onChange);
       },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ZDividerInformation extends StatelessWidget {
+  final double space;
   final String title;
   final IconData? icon;
   final double? fontSize;
@@ -17,6 +18,7 @@ class ZDividerInformation extends StatelessWidget {
     super.key,
 
     required this.title,
+    this.space =  5,
     this.icon,
     this.fontSize,
     this.thickness = 2,
@@ -33,6 +35,9 @@ class ZDividerInformation extends StatelessWidget {
     return Padding(
       padding: padding ?? const EdgeInsets.all(8.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+
         children: [
           Text(
             title,
@@ -40,25 +45,27 @@ class ZDividerInformation extends StatelessWidget {
             style: style ?? GoogleFonts.roboto(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
-              color: colorTitle,
+              color: colorTitle ?? Theme.of(context).primaryColor,
             ),
           ),
 
+
+          SizedBox(width: space),
+
           Expanded(
-            child: Padding(
-              padding: padding ?? const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Divider(
-                thickness: thickness,
-                color: colorDivider,
-              ),
+            child: Divider(
+              thickness: thickness,
+              color: colorDivider ?? Theme.of(context).dividerColor,
             ),
           ),
+
+          SizedBox(width: space),
           
           if (icon != null) InkWell(
             onTap: onTap,
             child: Icon(
               icon,
-              color: colorIcon,
+              color: colorIcon ?? Theme.of(context).primaryColor,
             ),
           ),
         ],

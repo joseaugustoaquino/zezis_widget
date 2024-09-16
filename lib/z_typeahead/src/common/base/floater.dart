@@ -4,32 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-/// Holds the last known size and offset of the widget
-/// to which the floater is attached.
 typedef FloaterInfo = ({
   Size size,
   Offset offset,
 });
 
-/// Connects a [Floater] with a [FloaterTarget].
-///
-/// All public members are for internal use only.
 class FloaterLink extends ValueNotifier<FloaterInfo> {
-  FloaterLink()
-      : super(
-          (size: Size.zero, offset: Offset.zero),
-        );
+  FloaterLink() : super((size: Size.zero, offset: Offset.zero));
 
   final LayerLink layerLink = LayerLink();
 
-  /// Manually trigger an update of the floater.
-  ///
-  /// This is useful when our automatic resizing fails,
-  /// however, that should not happen.
   void markNeedsBuild() => notifyListeners();
 }
 
-/// A widgt to which a [Floater] can be attached.
 class FloaterTarget extends StatelessWidget {
   const FloaterTarget({
     super.key,
@@ -106,9 +93,6 @@ class _RenderFloaterTarget extends RenderProxyBox {
   }
 }
 
-/// A widget that can float next to a [FloaterTarget], inheriting its size.
-///
-/// Floaters use the surrounding [Overlay] to position themselves.
 class Floater extends StatefulWidget {
   const Floater({
     super.key,
@@ -123,52 +107,19 @@ class Floater extends StatefulWidget {
     this.autoFlipHeight = 100,
   });
 
-  /// The widget below this widget in the tree.
   final Widget? child;
-
-  /// Builds the content of the floater.
   final WidgetBuilder builder;
-
-  /// The link to the [FloaterTarget] to which the floater should attach.
   final FloaterLink link;
-
-  /// Whether the floater should inherit the width of the target.
   final bool followWidth;
-
-  /// Whether the floater should inherit the height of the target.
   final bool followHeight;
-
-  /// The desired direction of the floater.
-  ///
-  /// The floater will try to open in this direction.
-  /// This also defines how much space the floater has to grow.
   final AxisDirection direction;
-
-  /// The offset of the floater from the target.
-  ///
-  /// This is treated directionally, i.e. the offset is applied
-  /// in the direction of the floater.
-  ///
-  /// For example, if [direction] is [AxisDirection.down],
-  /// the offset is treated as is.
-  /// If [direction] is [AxisDirection.right],
-  /// the offset is applied as if it was [Offset(offset.dy, -offset.dx)].
   final Offset offset;
-
-  /// Whether the floater should automatically flip direction if there's not enough space.
-  ///
-  /// The minimum height of the floater is defined by [autoFlipHeight].
-  /// Defaults to false.
   final bool autoFlip;
-
-  /// The minimum height of the floater before it attempts to flip direction.
   final double autoFlipHeight;
 
-  /// Returns the [FloaterData] of the closest [Floater] ancestor, or null if there is no [Floater] ancestor.
   static FloaterData? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_FloaterProvider>()?.data;
 
-  /// Returns the [FloaterData] of the closest [Floater] ancestor.
   static FloaterData of(BuildContext context) {
     FloaterData? data = maybeOf(context);
     if (data == null) {
@@ -222,8 +173,6 @@ class _FloaterState extends State<Floater> with WidgetsBindingObserver {
 
   @override
   void didChangeMetrics() {
-    // When the keyboard is toggled, we need to update the floater,
-    // since its constraints might have changed.
     OverlayState overlay = Overlay.of(context);
     MediaQueryData mediaQuery = MediaQuery.of(overlay.context);
     if (insets != mediaQuery.viewInsets) {
@@ -484,7 +433,6 @@ class _FloaterState extends State<Floater> with WidgetsBindingObserver {
   }
 }
 
-/// Information about the current state of a [Floater].
 @immutable
 class FloaterData {
   const FloaterData({
@@ -494,16 +442,9 @@ class FloaterData {
     required this.effectiveDirection,
   });
 
-  /// The maximum size of the floater.
   final Size size;
-
-  /// The global offset of the floater.
   final Offset offset;
-
-  /// The desired direction of the floater.
   final AxisDirection direction;
-
-  /// The effective direction of the floater.
   final AxisDirection effectiveDirection;
 
   @override

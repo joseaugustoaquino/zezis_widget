@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/suggestions_controller.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/types.dart';
 
-/// A set of Material specific default builders used by a TypeAheadField.
 abstract final class ZHeadMaterialDefaults {
-  /// The default loading builder used by a TypeAheadField.
-  /// Displays a centered [CircularProgressIndicator].
   static Widget loadingBuilder(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.symmetric(vertical: 16),
@@ -16,8 +13,6 @@ abstract final class ZHeadMaterialDefaults {
     );
   }
 
-  /// The default error builder used by a TypeAheadField.
-  /// Displays the error message in [ThemeData.colorScheme.error].
   static Widget errorBuilder(BuildContext context, Object? error) {
     String message = 'An error has occured';
     message = 'Error: $error';
@@ -30,8 +25,6 @@ abstract final class ZHeadMaterialDefaults {
     );
   }
 
-  /// The default empty builder used by a TypeAheadField.
-  /// Displays 'No items found!'.
   static Widget emptyBuilder(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -43,8 +36,6 @@ abstract final class ZHeadMaterialDefaults {
     );
   }
 
-  /// A Wrapper around the item builder of a TypeAheadField.
-  /// Provides the functionality to select an item on tap.
   static SuggestionsItemBuilder<T> itemBuilder<T>(
     SuggestionsItemBuilder<T> builder,
   ) {
@@ -57,8 +48,6 @@ abstract final class ZHeadMaterialDefaults {
     };
   }
 
-  /// A Wrapper around the suggestions box of a TypeAheadField.
-  /// Adds various Material specific decorations.
   static SuggestionsItemBuilder<Widget> wrapperBuilder(
     DecorationBuilder? builder,
   ) {
@@ -70,7 +59,6 @@ abstract final class ZHeadMaterialDefaults {
     };
   }
 
-  /// The default decoration builder used by a TypeAheadField.
   static Widget decorationBuilder(
     BuildContext context,
     Widget child,
@@ -83,7 +71,6 @@ abstract final class ZHeadMaterialDefaults {
     );
   }
 
-  /// The default text field builder used by a TypeAheadField.
   static Widget builder(
     BuildContext context,
     TextEditingController controller,

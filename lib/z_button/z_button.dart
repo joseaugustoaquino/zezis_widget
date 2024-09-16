@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ZButton extends StatefulWidget {
+class ZButton extends StatelessWidget {
   final String label;
   final GestureTapCallback onTap;
   final double? height;
@@ -22,37 +22,37 @@ class ZButton extends StatefulWidget {
   });
 
   @override
-  State<ZButton> createState() => _ZButtonState();
-}
-
-class _ZButtonState extends State<ZButton> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.padding ?? const EdgeInsets.all(8.0),
+      padding: padding ?? const EdgeInsets.all(8.0),
       child: Material(
         elevation: 3.0,
-        borderRadius: BorderRadius.all(Radius.circular(widget.border)),
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(border)),
+
         child: InkWell(
-          onTap: widget.onTap,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          onTap: onTap,
+          focusColor: Theme.of(context).focusColor,
+          hoverColor: Theme.of(context).hoverColor,
+          splashColor: Theme.of(context).splashColor,
+          highlightColor: Theme.of(context).highlightColor,
+
           child: Ink(
+            width: width,
+            height: height ?? 50,
+            
             decoration: BoxDecoration(
-              color: widget.color ?? Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(widget.border)),
+              color: color ?? Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(border)),
             ),
-            height: widget.height ?? 50,
-            width: widget.width,
+
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Center(
                     child: Text(
-                      widget.label,
+                      label,
                       style: GoogleFonts.roboto(
                         fontSize: 16, 
                         color: Colors.white, 

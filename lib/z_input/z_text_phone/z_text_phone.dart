@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/data/country_model.dart';
 import 'package:zezis_widget/z_input/z_combo_box/z_combo_box.dart';
-import 'package:zezis_widget/z_input/z_formatter/z_input_formatter.dart';
+import 'package:zezis_widget/z_input/utils/z_input_formatter.dart';
 import 'package:zezis_widget/z_input/z_text_form/z_text_form_field.dart';
 
 class ZTextFormFieldPhone extends StatefulWidget {
@@ -23,6 +23,8 @@ class ZTextFormFieldPhone extends StatefulWidget {
   final String? errorMessage;
 
   final double width;
+  final double orderDdi;
+  final double orderContact;
   final EdgeInsetsGeometry? contentPadding;
   final EdgeInsetsGeometry? paddingDdi;
   final EdgeInsetsGeometry? paddingText;
@@ -42,6 +44,8 @@ class ZTextFormFieldPhone extends StatefulWidget {
     required this.country,
     required this.countries,
 
+    this.orderDdi = 1.0,
+    this.orderContact = 2.0,
     this.textFieldController,
     this.onInputValidated,
     this.inputFormatters,
@@ -84,33 +88,33 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
                 return DropdownMenuItem<PaisModel>(
                   value: x,
                   child: !widget.enableIcon 
-                    ? Text(
-                        "+${x.ddi}",
-                        textDirection: TextDirection.ltr,
-                        style: GoogleFonts.roboto(color: Colors.black),
-                      ) 
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              'assets/flags/${x.sigla2.toLowerCase()}.png',
-                            ),
-                            width: 30,
-                            height: 25,
+                  ? Text(
+                      "+${x.ddi}",
+                      textDirection: TextDirection.ltr,
+                      style: GoogleFonts.roboto(color: Colors.black),
+                    ) 
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            'assets/flags/${x.sigla2.toLowerCase()}.png',
                           ),
-                          
-                          const SizedBox(width: 12.0),
-        
-                          Text(
-                            "+${x.ddi}",
-                            textDirection: TextDirection.ltr,
-                            style: GoogleFonts.roboto(color: Colors.black),
-                          ),
-                        ],
-                      )
-                    );
+                          width: 30,
+                          height: 25,
+                        ),
+                        
+                        const SizedBox(width: 12.0),
+                    
+                        Text(
+                          "+${x.ddi}",
+                          textDirection: TextDirection.ltr,
+                          style: GoogleFonts.roboto(color: Colors.black),
+                        ),
+                      ],
+                    )
+                  );
               }).toList(),
               
               value: widget.country,
@@ -123,28 +127,28 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
           
           Expanded(
             child: ZTextFormField(
-              focusColor: widget.focusColor,
-              controller: widget.textFieldController,
-              padding: widget.paddingText ?? const EdgeInsets.all(0),
               autofocus: false,
               enable: widget.enable,
               style: GoogleFonts.roboto(),
+              focusColor: widget.focusColor,
               textDirection: TextDirection.ltr,
+              controller: widget.textFieldController,
               autovalidateMode: AutovalidateMode.disabled,
+              padding: widget.paddingText ?? const EdgeInsets.all(0),
               keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true),
-    
+                
               labelText: widget.hintText,
-              prefixIcon: widget.prefixIcon,
-              suffixIcon: widget.suffixIcon,
               validator: widget.validator,
-    
+              prefixIcon: widget.prefixIcon,  
+              suffixIcon: widget.suffixIcon,
+                
               inputFormatters: [
                 ZInputFormatter(
                   mask: widget.mask?.replaceAll("0", "#"),
                   filter: {"#": RegExp(r'[0-9]'), "A": RegExp(r'[^0-9]')}
                 )
               ],
-    
+                
               onChange: widget.onInputChanged,
             ),
           )

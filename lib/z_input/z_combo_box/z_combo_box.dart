@@ -65,32 +65,39 @@ class ZComboBox<T> extends StatelessWidget {
          builder: (FormFieldState<String> state) {
             return InputDecorator(
               decoration: InputDecoration(
+                enabled: enabled,
+                hintText: hintText,
+                labelText: labelText,
+                prefixIcon: prefixIcon,
+                focusColor: Theme.of(context).focusColor,
+                hoverColor: Theme.of(context).hoverColor,
+                errorText: state.hasError ? state.errorText : null,
+                labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
+                contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0, right: 10),
+                
                 enabledBorder: border ?? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: borderColor ?? Theme.of(context).primaryColor
-                  ),
+                  borderSide: BorderSide(color: borderColor ?? Theme.of(context).primaryColor),
                 ),
 
                 border: border ?? OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                    color: borderColor ?? Theme.of(context).primaryColor
-                  ),
+                  borderSide: BorderSide(color: borderColor ?? Theme.of(context).primaryColor),
                 ),
-        
-                contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0, right: 10),
-                enabled: enabled,
-        
-                errorText: state.hasError ? state.errorText : null,
-                hintText: hintText,
-                labelText: labelText,
-                prefixIcon: prefixIcon,
-                hoverColor: Colors.transparent,
-                labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
               ),
+
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
+                  isDense: true,
+                  isExpanded: true,
+                  dropdownColor: dropdownColor,
+                  style: style ?? GoogleFonts.roboto(),
+                  focusColor: Theme.of(context).focusColor,
+
+                  value: value,
+                  items: items,
+                  onChanged: onChanged,
+
                   icon: SizedBox(
                     width: 30,
                     height: 30,
@@ -98,18 +105,10 @@ class ZComboBox<T> extends StatelessWidget {
                       onTap: onTapClean,
                       child: Icon(
                         (clearButton && value != null) ? Icons.delete_outline : Icons.arrow_drop_down, 
-                        color: color ??Theme.of(context).primaryColor 
+                        color: color ?? Theme.of(context).primaryColor 
                       ),
                     ),
                   ),
-                  focusColor: Colors.transparent,
-                  isExpanded: true,
-                  isDense: true,
-                  style: style ?? GoogleFonts.roboto(),
-                  dropdownColor: dropdownColor,
-                  onChanged: onChanged,
-                  value: value,
-                  items: items,
                 ),
               ),
             );

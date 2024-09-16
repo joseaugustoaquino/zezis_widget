@@ -7,9 +7,6 @@ import 'package:zezis_widget/z_typeahead/src/common/box/suggestions_box_scroll_i
 import 'package:zezis_widget/z_typeahead/src/common/box/suggestions_box_traversal_connector.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
-/// A widget that contains suggestions based on user input.
-///
-/// This widget connects to a [SuggestionsField] through a [SuggestionsController].
 class SuggestionsBox<T> extends StatelessWidget {
   const SuggestionsBox({
     super.key,
@@ -21,82 +18,11 @@ class SuggestionsBox<T> extends StatelessWidget {
     this.animationDuration,
   });
 
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.controller}
-  /// Controller to manage the state of the suggestions box.
-  ///
-  /// This can be used to programmatically open and close the suggestions box
-  /// or read various states such as the suggestions list, loading state, etc.
-  /// {@endtemplate}
   final SuggestionsController<T> controller;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.scrollController}
-  /// Controller for the [ScrollView] containing the suggestions.
-  ///
-  /// You may access the controller via [PrimaryScrollController.of]
-  /// inside the body of the suggestions box.
-  /// {@endtemplate}
   final ScrollController? scrollController;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.builder}
-  /// Builds the content of the suggestions box.
-  ///
-  /// This is typically a [SuggestionsList] widget.
-  /// {@endtemplate}
   final WidgetBuilder builder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.decorationBuilder}
-  /// Builder function for decorating the suggestions box.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// decorationBuilder: (context, child) {
-  ///   return Container(
-  ///     decoration: BoxDecoration(
-  ///       border: Border.all(color: Colors.grey),
-  ///       borderRadius: BorderRadius.circular(5.0),
-  ///     ),
-  ///     child: child,
-  ///   );
-  /// }
-  /// ```
-  ///
-  /// This widget is always built, even when the suggestions box is closed.
-  /// {@endtemplate}
   final DecorationBuilder? decorationBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.transitionBuilder}
-  /// Builder function for animating the suggestions box.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// transitionBuilder: (context, animation, child) {
-  ///   return FadeTransition(
-  ///     opacity: CurvedAnimation(
-  ///       parent: animationController,
-  ///       curve: Curves.fastOutSlowIn,
-  ///     ),
-  ///     child: child,
-  ///   );
-  /// }
-  /// ```
-  ///
-  /// To disable the animation, simply return `child`
-  ///
-  /// Defaults to a [SizeTransition] and [AnimatedSize] combination.
-  ///
-  /// See also:
-  /// * [animationDuration], which is the duration of the animation.
-  /// {@endtemplate}
   final AnimationTransitionBuilder? transitionBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsBox.animationDuration}
-  /// Duration of the animation for showing and hiding the suggestions box.
-  ///
-  /// Defaults to `500 milliseconds`.
-  ///
-  /// See also:
-  /// * [transitionBuilder], which is the builder function for custom animation transitions.
-  /// {@endtemplate}
   final Duration? animationDuration;
 
   @override

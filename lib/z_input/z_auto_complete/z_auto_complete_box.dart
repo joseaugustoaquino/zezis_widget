@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget selectAutoComplete({
   required void Function()? onPressed,
@@ -9,16 +10,21 @@ Widget selectAutoComplete({
   Widget? leading,
 
   EdgeInsetsGeometry? padding,
-  Color color = const Color(0xFF000000),
+  Color? color,
+  BuildContext? context,
 }) {
+  color = color ?? (context == null ? Get.theme.primaryColor : Theme.of(context).primaryColor);
+
   return Padding(
     padding: padding ?? const EdgeInsets.fromLTRB(0, 5, 0, 5), 
+
     child: Container(
       decoration: BoxDecoration(
         color: Colors.transparent,
-        border: Border.all(color: enable ? color : Colors.black12),
         borderRadius: const BorderRadius.all(Radius.circular(10)),
+        border: Border.all(color: enable ? color : Get.theme.primaryColor),
       ),
+
       child: ListTile(
         dense: true,
         leading: leading,
@@ -43,7 +49,7 @@ Widget selectAutoComplete({
 
         trailing: IconButton(
           icon: const Icon(Icons.delete_outline, size: 22),
-          color: enable ? color : Colors.black12,
+          color: enable ? color : Get.theme.primaryColor,
           onPressed: onPressed,
         ),
       ),

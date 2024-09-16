@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/connector_widget.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/suggestions_controller.dart';
 
-/// Enables navigating to the text field from the suggestions box using
-/// the keyboard.
 class SuggestionsBoxTraversalConnector<T> extends StatefulWidget {
   const SuggestionsBoxTraversalConnector({
     super.key,

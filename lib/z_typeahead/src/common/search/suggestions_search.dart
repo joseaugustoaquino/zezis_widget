@@ -6,7 +6,6 @@ import 'package:zezis_widget/z_typeahead/src/common/base/types.dart';
 import 'package:zezis_widget/z_typeahead/src/common/search/suggestions_search_text_debouncer.dart';
 import 'package:zezis_widget/z_typeahead/src/common/search/suggestions_search_typing_connector.dart';
 
-/// A widget that loads suggestions based on the text entered in a text field.
 class SuggestionsSearch<T> extends StatefulWidget {
   const SuggestionsSearch({
     super.key,
@@ -17,46 +16,10 @@ class SuggestionsSearch<T> extends StatefulWidget {
     this.debounceDuration,
   });
 
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.controller}
   final SuggestionsController<T> controller;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsSearch.textEditingController}
-  /// Controller for the text field used for input.
-  ///
-  /// The value will be used to get suggestions.
-  /// {@endtemplate}
   final TextEditingController textEditingController;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsSearch.suggestionsCallback}
-  /// Called with the search pattern to get matching suggestions.
-  ///
-  /// Example:
-  /// ```dart
-  /// suggestionsCallback: (search) {
-  ///   return Service.of(context).getSuggestions(search);
-  /// }
-  /// ```
-  ///
-  /// If this returns null, the suggestions box will be invisible.
-  ///
-  /// See also:
-  /// * [debounceDuration], which is the duration to wait for changes in the text field before updating suggestions.
-  /// {@endtemplate}
   final SuggestionsCallback<T> suggestionsCallback;
-
-  /// The widget below this widget in the tree.
   final Widget child;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsSearch.debounce}
-  /// Duration to wait for changes in the text field before updating suggestions.
-  ///
-  /// This prevents making unnecessary calls to [suggestionsCallback] while the
-  /// user is still typing.
-  ///
-  /// If you want to update suggestions immediately, set this to Duration.zero.
-  ///
-  /// Defaults to `300 milliseconds`.
-  /// {@endtemplate}
   final Duration? debounceDuration;
 
   @override
@@ -95,13 +58,11 @@ class _SuggestionsSearchState<T> extends State<SuggestionsSearch<T>> {
     load();
   }
 
-  /// Loads suggestions if not already loaded.
   Future<void> load() async {
     if (widget.controller.suggestions != null) return;
     return reload();
   }
 
-  /// Loads suggestions. Discards any previously loaded suggestions.
   Future<void> reload() async {
     if (!mounted) return;
     if (!wasOpen) return;

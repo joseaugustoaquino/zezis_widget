@@ -13,9 +13,8 @@ class _DividerPageState extends State<DividerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Divider"),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        title: const Text("Divider"),
       ),
 
       body: Center(
@@ -23,20 +22,19 @@ class _DividerPageState extends State<DividerPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ZDividerTitle(
-              title: "Divider Title",
-              colorTitle: Colors.blue[300],
-              colorDivider: Colors.black45,
+            const ZDividerTitle(
               fontSize: 18,
+              title: "Divider Title",
             ),
 
             const SizedBox(height: 10),
             
-            ZDividerInformation(
-              title: "Divider Information",
-              colorTitle: Colors.blue[300],
-              colorDivider: Colors.black45,
+            ZDividerInformation(              
               fontSize: 18,
+              icon: Icons.info_rounded,
+              title: "Divider Information",
+
+              onTap: () {},
             ),
           ],
         ),

@@ -2,39 +2,23 @@ PODS:
   - Flutter (1.0.0)
   - flutter_keyboard_visibility (0.0.1):
     - Flutter
-  - libphonenumber_plugin (0.0.1):
-    - Flutter
-    - PhoneNumberKit
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - PhoneNumberKit (3.7.8):
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.7.8)
-    - PhoneNumberKit/UIKit (= 3.7.8)
-  - PhoneNumberKit/PhoneNumberKitCore (3.7.8)
-  - PhoneNumberKit/UIKit (3.7.8):
-    - PhoneNumberKit/PhoneNumberKitCore
   - pointer_interceptor_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
-  - libphonenumber_plugin (from `.symlinks/plugins/libphonenumber_plugin/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pointer_interceptor_ios (from `.symlinks/plugins/pointer_interceptor_ios/ios`)
-
-SPEC REPOS:
-  trunk:
-    - PhoneNumberKit
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
   flutter_keyboard_visibility:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
-  libphonenumber_plugin:
-    :path: ".symlinks/plugins/libphonenumber_plugin/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   pointer_interceptor_ios:
@@ -43,9 +27,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
-  libphonenumber_plugin: 48bf4078546377eedaab4aa54978cd0f6fa23072
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  PhoneNumberKit: ff3827b9bd8a7ac9744963f241665859091c78ab
   pointer_interceptor_ios: 9280618c0b2eeb80081a343924aa8ad756c21375
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796

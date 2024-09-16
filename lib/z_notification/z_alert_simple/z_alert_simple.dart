@@ -17,11 +17,7 @@ Future<T?> zAlertSimple<T>({
   context: context, 
   builder: builder ?? (BuildContext context) {
     return AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10)
-        ),
-      ),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
 
       backgroundColor: Colors.white,
       actionsPadding: const EdgeInsets.all(2.5),

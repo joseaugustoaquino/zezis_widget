@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/suggestions_controller.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/types.dart';
 
-/// A widget that shows a list of suggestions based on user input.
 class SuggestionsList<T> extends StatefulWidget {
   const SuggestionsList({
     super.key,
@@ -20,140 +19,17 @@ class SuggestionsList<T> extends StatefulWidget {
     this.itemSeparatorBuilder,
   });
 
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.controller}
   final SuggestionsController<T> controller;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.retainOnLoading}
-  /// Whether to retain the previous suggestions while loading new suggestions.
-  ///
-  /// If enabled, [loadingBuilder] will be ignored.
-  ///
-  /// Defaults to `true`.
-  /// {@endtemplate}
   final bool? retainOnLoading;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.hideKeyboardOnDrag}
-  /// Whether the keyboard should be hidden when the user scrolls the suggestions list.
-  ///
-  /// Cannot be used together with [hideWithKeyboard].
-  ///
-  /// Defaults to `false`.
-  /// {@endtemplate}
   final bool? hideKeyboardOnDrag;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.hideOnLoading}
-  /// Whether the suggestions box should be hidden during loading.
-  ///
-  /// If enabled, [loadingBuilder] will be ignored.
-  ///
-  /// Defaults to `false`.
-  /// {@endtemplate}
   final bool? hideOnLoading;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.hideOnError}
-  /// Whether the suggestions box should be hidden on error.
-  ///
-  /// If enabled, [errorBuilder] will be ignored.
-  ///
-  /// Defaults to `false`.
-  /// {@endtemplate}
   final bool? hideOnError;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.hideOnEmpty}
-  /// Whether the suggestions box should be hidden when no suggestions are available.
-  ///
-  /// If enabled, [noItemsFoundBuilder] will be ignored.
-  ///
-  /// Defaults to `false`.
-  /// {@endtemplate}
   final bool? hideOnEmpty;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.loadingBuilder}
-  /// Builder function to display a loading indicator.
-  ///
-  /// Called when waiting for [suggestionsCallback] to return.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// loadingBuilder: (context) => Text('Loading suggestions...'),
-  /// ```
-  ///
-  /// See also:
-  /// * [hideOnLoading], which is whether the suggestions box should be hidden during loading.
-  /// {@endtemplate}
   final WidgetBuilder loadingBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.errorBuilder}
-  /// Builds the widget for when the controller has an error.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// errorBuilder: (context, error) => Text(
-  ///   '$error',
-  ///   style: TextStyle(color: Theme.of(context).errorColor),
-  /// ),
-  /// ```
-  ///
-  /// See also:
-  /// * [hideOnError], which is whether the suggestions box should be hidden on error.
-  /// {@endtemplate}
   final SuggestionsErrorBuilder errorBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.emptyBuilder}
-  /// Builds the widget for when the suggestions list is empty.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// emptyBuilder: (context) => Text('No Items Found!'),
-  /// ```
-  /// {@endtemplate}
   final WidgetBuilder emptyBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsListConfig.itemBuilder}
-  /// Called for each suggestion to build the corresponding widget.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// itemBuilder: (context, city) {
-  ///   return ListTile(
-  ///     title: Text(city.name),
-  ///     subtitle: Text(city.country),
-  ///   );
-  /// },
-  /// ```
-  /// {@endtemplate}
   final SuggestionsItemBuilder<T> itemBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.itemSeparatorBuilder}
-  /// Optional builder function to add separators between suggestions.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// itemSeparatorBuilder: (context, index) => Divider(),
-  /// ```
-  ///
-  /// Equivalent to [ListView.separated.separatorBuilder].
-  /// This is only used when [listBuilder] is not specified.
-  /// {@endtemplate}
   final IndexedWidgetBuilder? itemSeparatorBuilder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsList.listBuilder}
-  /// Optional builder function to customize the suggestions list.
-  ///
-  /// Example usage:
-  /// ```dart
-  /// listBuilder: (context, children) => GridView.count(
-  ///   controller: scrollContoller,
-  ///   crossAxisCount: 2,
-  ///   crossAxisSpacing: 8,
-  ///   mainAxisSpacing: 8,
-  ///   shrinkWrap: true,
-  ///   reverse: SuggestionsController.of<City>(context).effectiveDirection ==
-  ///       AxisDirection.up,
-  ///   children: children,
-  /// ),
-  /// ```
-  /// {@endtemplate}
   final ListBuilder? listBuilder;
 
   @override

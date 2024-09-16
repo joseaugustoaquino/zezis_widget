@@ -1,9 +1,5 @@
 import 'package:flutter/widgets.dart';
 
-/// Injects a [PrimaryScrollController] into the widget tree.
-///
-/// Configured to make sure any [ScrollView] that uses `null` as its primary,
-/// will use the scroll controller provided by this widget.
 class SuggestionsBoxScrollInjector extends StatefulWidget {
   const SuggestionsBoxScrollInjector({
     super.key,

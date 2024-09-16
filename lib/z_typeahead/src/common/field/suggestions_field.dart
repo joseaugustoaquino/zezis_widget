@@ -11,7 +11,6 @@ import 'package:zezis_widget/z_typeahead/src/common/field/suggestions_field_sele
 import 'package:zezis_widget/z_typeahead/src/common/field/suggestions_field_tap_connector.dart';
 import 'package:zezis_widget/z_typeahead/src/common/field/suggestions_field_traversal_connector.dart';
 
-/// A widget that displays a list of suggestions above or below another widget.
 class SuggestionsField<T> extends StatefulWidget {
   const SuggestionsField({
     super.key,
@@ -35,128 +34,28 @@ class SuggestionsField<T> extends StatefulWidget {
     this.animationDuration,
   });
 
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.controller}
   final SuggestionsController<T>? controller;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.focusNode}
-  /// The focus node of the child, usually an [EditableText] widget.
-  ///
-  /// This is used to show and hide the suggestions box.
-  /// {@endtemplate}
   final FocusNode focusNode;
+  final Widget child;
+  final ValueSetter<T>? onSelected;
+  final VerticalDirection? direction;
+  final BoxConstraints? constraints;
+  final Offset? offset;
+  final bool autoFlipDirection;
+  final double autoFlipMinHeight;
+  final bool showOnFocus;
+  final bool hideOnUnfocus;
+  final bool hideOnSelect;
+  final bool hideWithKeyboard;
+  final ScrollController? scrollController;
+  final DecorationBuilder? decorationBuilder;
+  final AnimationTransitionBuilder? transitionBuilder;
+  final Duration? animationDuration;
 
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.builder}
   final Widget Function(
     BuildContext context,
     SuggestionsController<T> controller,
   ) builder;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.fieldBuilder}
-  /// The child of the suggestions field.
-  ///
-  /// This is typically an [EditableText] widget.
-  /// {@endtemplate}
-  final Widget child;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.onSelected}
-  /// Called when a suggestion is selected.
-  ///
-  /// If [hideOnSelect] is true, the suggestions box will be closed after this callback is called.
-  ///
-  /// You may also add a callback like this to the [SuggestionsController.selections] stream.
-  /// {@endtemplate}
-  final ValueSetter<T>? onSelected;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.direction}
-  /// The direction in which the suggestions box opens.
-  ///
-  /// Defaults to [VerticalDirection.down].
-  /// {@endtemplate}
-  final VerticalDirection? direction;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.constraints}
-  /// The constraints to be applied to the suggestions box.
-  /// {@endtemplate}
-  final BoxConstraints? constraints;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.offset}
-  /// The offset of the suggestions box.
-  /// The value is automatically flipped if the suggestions box is flipped.
-  ///
-  /// Defaults to `Offset(0, 5)`.
-  /// {@endtemplate}
-  final Offset? offset;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.autoFlipDirection}
-  /// Whether the suggestions box should automatically flip direction if there's not enough space
-  /// in the desired direction, but there is enough space in the opposite direction.
-  ///
-  /// Defaults to false.
-  ///
-  /// See also:
-  /// * [autoFlipListDirection], which controls whether the suggestions list should be reversed if the suggestions box is flipped.
-  /// * [autoFlipMinHeight], which controls the minimum height the suggesttions box can have before attempting to flip.
-  /// {@endtemplate}
-  final bool autoFlipDirection;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.autoFlipMinHeight}
-  /// The minimum height the suggesttions box can have before attempting to flip.
-  ///
-  /// Defaults to 64.
-  /// {@endtemplate}
-  final double autoFlipMinHeight;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.showOnFocus}
-  /// Whether the suggestions box should be shown when the child of the suggestions box gains focus.
-  ///
-  /// If disabled, the suggestions box will remain closed when the user taps on the child of the suggestions box.
-  ///
-  /// Defaults to true.
-  /// {@endtemplate}
-  final bool showOnFocus;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.hideOnUnfocus}
-  /// Whether the suggestions box should be hidden when the child of the suggestions box loses focus.
-  ///
-  /// If disabled, the suggestions box will remain open when the user taps outside of the suggestions box.
-  ///
-  /// Defaults to true.
-  /// {@endtemplate}
-  final bool hideOnUnfocus;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.hideOnSelect}
-  /// Whether to keep the suggestions visible even after a suggestion has been selected.
-  ///
-  /// Note that if this is disabled, the only way
-  /// to close the suggestions box is either via the
-  /// [SuggestionsController] or when the user closes the software
-  /// keyboard with [hideOnUnfocus] set to true.
-  ///
-  /// Users with a physical keyboard will be unable to close the
-  /// box without additional logic.
-  ///
-  /// Defaults to `true`.
-  /// {@endtemplate}
-  final bool hideOnSelect;
-
-  /// {@template zezis_widget/z_typeahead.SuggestionsField.hideWithKeyboard}
-  /// Whether the suggestions box should be hidden when the keyboard is closed.
-  ///
-  /// Defaults to `true`.
-  /// {@endtemplate}
-  final bool hideWithKeyboard;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.scrollController}
-  final ScrollController? scrollController;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.decorationBuilder}
-  final DecorationBuilder? decorationBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.transitionBuilder}
-  final AnimationTransitionBuilder? transitionBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.animationDuration}
-  final Duration? animationDuration;
 
   @override
   State<SuggestionsField<T>> createState() => _SuggestionsFieldState<T>();
@@ -227,12 +126,6 @@ class _SuggestionsFieldState<T> extends State<SuggestionsField<T>> {
             _ => VerticalDirection.down,
           };
           if (newEffectiveDirection != controller.effectiveDirection) {
-            // It is generally discouraged to add side-effects in build methods.
-            // However, this is a place where we can update the effective direction
-            // of the controller easily. Adding a new Widget seemed like bloat.
-            // The post frame delay is necessary to avoid triggering a build during a build.
-            // For maximum cleanliness, we could use a StatefulWidget
-            // and update the controller in didUpdateWidget. Tread carefully.
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (!mounted) return;
               controller.effectiveDirection = newEffectiveDirection;

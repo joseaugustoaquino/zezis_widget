@@ -3,7 +3,6 @@ import 'package:zezis_widget/z_typeahead/src/common/base/connector_widget.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/suggestions_controller.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/types.dart';
 
-/// Animates the suggestions box when it is opened or closed.
 class SuggestionsBoxAnimation<T> extends StatefulWidget {
   const SuggestionsBoxAnimation({
     super.key,
@@ -103,8 +102,7 @@ class _SuggestionsBoxAnimationState<T> extends State<SuggestionsBoxAnimation<T>>
     return ConnectorWidget(
       value: widget.controller,
       connect: (value) => widget.controller.addListener(onOpenedChanged),
-      disconnect: (value, key) =>
-          widget.controller.removeListener(onOpenedChanged),
+      disconnect: (value, key) => widget.controller.removeListener(onOpenedChanged),
       child: child,
     );
   }

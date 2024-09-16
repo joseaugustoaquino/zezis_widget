@@ -7,12 +7,6 @@ import 'package:zezis_widget/z_typeahead/src/common/box/suggestions_list.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/types.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
-/// {@template zezis_widget/z_typeahead.ZRawHeadField}
-/// A widget that shows suggestions above a text field while the user is typing.
-///
-/// This is the base class for the Material and Cupertino versions of the widget.
-/// You may use this class if you want to create your own version of the widget.
-/// {@endtemplate}
 abstract class ZRawHeadField<T> extends StatefulWidget {
   const ZRawHeadField({
     super.key,
@@ -49,97 +43,36 @@ abstract class ZRawHeadField<T> extends StatefulWidget {
     this.offset,
   });
 
-  /// Builds the text field that will be used to search for the suggestions.
   final TextFieldBuilder builder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsSearch.textEditingController}
   final TextEditingController? controller;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.focusNode}
   final FocusNode? focusNode;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.controller}
   final SuggestionsController<T>? suggestionsController;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.onSelected}
   final ValueSetter<T>? onSelected;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.direction}
   final VerticalDirection? direction;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.constraints}
   final BoxConstraints? constraints;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.offset}
   final Offset? offset;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.autoFlipDirection}
   final bool autoFlipDirection;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.autoFlipMinHeight}
   final double autoFlipMinHeight;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.showOnFocus}
   final bool showOnFocus;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.hideOnUnfocus}
   final bool hideOnUnfocus;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.hideOnSelect}
   final bool hideOnSelect;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsField.hideWithKeyboard}
   final bool hideWithKeyboard;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.scrollController}
   final ScrollController? scrollController;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.transitionBuilder}
   final AnimationTransitionBuilder? transitionBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.animationDuration}
   final Duration? animationDuration;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsSearch.suggestionsCallback}
   final SuggestionsCallback<T> suggestionsCallback;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.retainOnLoading}
   final bool? retainOnLoading;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.hideKeyboardOnDrag}
   final bool? hideKeyboardOnDrag;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.hideOnLoading}
   final bool? hideOnLoading;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.hideOnError}
   final bool? hideOnError;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.hideOnEmpty}
   final bool? hideOnEmpty;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.loadingBuilder}
   final WidgetBuilder loadingBuilder;
-
-  //// {@macro zezis_widget/z_typeahead.SuggestionsList.errorBuilder}
   final SuggestionsErrorBuilder errorBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.emptyBuilder}
   final WidgetBuilder emptyBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsListConfig.itemBuilder}
   final SuggestionsItemBuilder<T> itemBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.itemSeparatorBuilder}
   final IndexedWidgetBuilder? itemSeparatorBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsBox.decorationBuilder}
   final DecorationBuilder? decorationBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsList.listBuilder}
   final ListBuilder? listBuilder;
-
-  /// {@macro zezis_widget/z_typeahead.SuggestionsSearch.debounce}
   final Duration? debounceDuration;
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:zezis_widget/zezis_widget.dart';
 
 class ZTextTileCustom extends StatelessWidget {
   final String title; 
@@ -31,8 +32,13 @@ class ZTextTileCustom extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Icon(icon, color: iconColor),
+                Icon(
+                  icon, 
+                  color: iconColor  ?? Theme.of(context).primaryColor
+                ),
+
                 const SizedBox(width: 10),
+                
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,35 +70,15 @@ class ZTextTileCustom extends StatelessWidget {
           labelAlert.isEmpty ? const SizedBox() : const SizedBox(width: 5),
 
           labelAlert.isEmpty ? const SizedBox() : InkWell(
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    content: Text(
-                      labelAlert,
-                      textAlign: TextAlign.justify,
-                      style: GoogleFonts.roboto()
-                    ),
-                    actions: [
-                      TextButton (
-                        child: Text(
-                          "Ok",
-                          style: GoogleFonts.roboto(
-                            color: iconColor,
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Icon(Icons.info_rounded, color: iconColor),
+            onTap: () => zSnackBarCustom(
+              context: context, 
+              message: labelAlert,
+            ),
+            
+            child: Icon(
+              Icons.info_rounded, 
+              color: iconColor ?? Theme.of(context).primaryColor
+            ),
           ),
         ],
       ),

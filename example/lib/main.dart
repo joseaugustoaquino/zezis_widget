@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:example/ui/combo_box_page.dart';
+import 'package:example/ui/input_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:zezis_widget/z_button/z_button.dart';
 import 'package:zezis_widget/z_button/z_button_icon.dart';
 
 import 'ui/divider_page.dart';
@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
+        primaryColor: Colors.blueAccent,
       ),
       home: const MyHomePage(),
     );
@@ -47,117 +47,79 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
 
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextButton(
-              style: const ButtonStyle(
-                elevation: WidgetStatePropertyAll(3),
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              child: SizedBox(
-                width: 120,
-                child: Text(
-                  "Divider",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DividerPage())),
-            ),
+      body: FocusScope(
+        child: FocusTraversalGroup(
+          policy: OrderedTraversalPolicy(),
 
-            TextButton(
-              style: const ButtonStyle(
-                elevation: WidgetStatePropertyAll(3),
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              child: SizedBox(
-                width: 120,
-                child: Text(
-                  "Loading",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoadingPage())),
-            ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(1.0),
 
-            TextButton(
-              style: const ButtonStyle(
-                elevation: WidgetStatePropertyAll(3),
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              child: SizedBox(
-                width: 120,
-                child: Text(
-                  "Notification",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+                  child: ZButton(
+                    width: 145,
+                    label: "Divider",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DividerPage())),
                   ),
                 ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationPage())),
-            ),
           
-            TextButton(
-              style: const ButtonStyle(
-                elevation: WidgetStatePropertyAll(3),
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              child: SizedBox(
-                width: 120,
-                child: Text(
-                  "Date Time",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(2.0),
+
+                  child: ZButton(
+                    width: 145,
+                    label: "Loading",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoadingPage())),
                   ),
                 ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DateTimePage())),
-            ),
+          
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(3.0),
 
-            TextButton(
-              style: const ButtonStyle(
-                elevation: WidgetStatePropertyAll(3),
-                backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-              child: SizedBox(
-                width: 120,
-                child: Text(
-                  "Combo Box",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold
+                  child: ZButton(
+                    width: 145,
+                    label: "Notification",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const NotificationPage())),
                   ),
                 ),
-              ),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ComboBoxPage())),
-            ),
+              
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(4.0),
 
-            ZButtonIcon(
-              icon: Icons.whatshot,
-              label: "Whatsapp", 
-              onTap: () {}
+                  child: ZButton(
+                    width: 145,
+                    label: "Date Time",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DateTimePage())),
+                  ),
+                ),
+          
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(5.0),
+
+                  child: ZButton(
+                    width: 145,
+                    label: "Input",
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InputPage())),
+                  ),
+                ),
+          
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(6.0),
+
+                  child: ZButtonIcon(
+                    width: 145,
+                    label: "Whatsapp", 
+                    icon: Icons.whatshot,
+                  
+                    onTap: () {},
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

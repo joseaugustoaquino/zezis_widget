@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/connector_widget.dart';
 import 'package:zezis_widget/z_typeahead/src/common/base/suggestions_controller.dart';
 
-/// Controls whether the box is open or closed based on the field focus state.
 class SuggestionsFieldBoxConnector<T> extends StatefulWidget {
   const SuggestionsFieldBoxConnector({
     super.key,

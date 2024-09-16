@@ -10,6 +10,6 @@
 
 * Create date time picker
 
-## 0.3.2
+## 0.3.8+1
 
 * Create date time picker

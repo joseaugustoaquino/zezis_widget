@@ -8,6 +8,7 @@ class ZDateTimePicker extends StatefulWidget {
   final EdgeInsetsGeometry? paddingContent;
   final Color? disabledColor;
   final String? dateFormat;
+  final double space;
 
   final String? labelDate;
   final EdgeInsetsGeometry? paddingDate;
@@ -34,6 +35,7 @@ class ZDateTimePicker extends StatefulWidget {
     this.paddingContent,
     this.disabledColor,
     this.dateFormat,
+    this.space = 0.0,
 
     this.labelDate,
     this.paddingDate,
@@ -87,6 +89,8 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
               ),
             ),
           ),
+
+          SizedBox(width: widget.space),
 
           Visibility(
             visible: widget.visibleTime,

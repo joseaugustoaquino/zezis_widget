@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ZButtonIcon extends StatefulWidget {
+class ZButtonIcon extends StatelessWidget {
   final String label;
   final IconData icon;
   final GestureTapCallback onTap;
@@ -36,54 +36,55 @@ class ZButtonIcon extends StatefulWidget {
     this.disableText = false,
     this.style,
     this.padding,
-
+        
     this.color,
     this.colorLabel = Colors.white,
   });
 
   @override
-  State<ZButtonIcon> createState() => _ZButtonIconState();
-}
-
-class _ZButtonIconState extends State<ZButtonIcon> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.padding ?? const EdgeInsets.all(8.0),
+      padding: padding ?? const EdgeInsets.all(8.0),
+
       child: Material(
         elevation: 3.0,
-        borderRadius: BorderRadius.all(Radius.circular(widget.border)),
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(border)),
+
         child: InkWell(
-          onTap: widget.onTap,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          onTap: onTap,
+          focusColor: Theme.of(context).focusColor,
+          hoverColor: Theme.of(context).hoverColor,
+          splashColor: Theme.of(context).splashColor,
+          highlightColor: Theme.of(context).highlightColor,
+
           child: Ink(
+            width: width,
+            height: height ?? 50,
             decoration: BoxDecoration(
-              color: widget.color ?? Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(widget.border)),
+              color: color ?? Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(border)),
             ),
-            height: widget.height ?? 50,
-            width: widget.width,
+            
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
-                  widget.icon,
-                  color: widget.colorLabel,
-                  size: widget.iconSized,
+                  icon,
+                  color: colorLabel,
+                  size: iconSized,
                 ),
 
-                widget.disableText ? const SizedBox() : SizedBox(width: widget.space),
+                disableText ? const SizedBox() : SizedBox(width: space),
                 
-                widget.disableText ? const SizedBox() : Text(
-                  widget.label,
+                disableText ? const SizedBox() : Text(
+                  label,
                   textAlign: TextAlign.center,
-                  style: widget.style ?? GoogleFonts.roboto(
-                    fontSize: widget.fontSized ?? 16, 
-                    color: widget.colorLabel, 
+
+                  style: style ?? GoogleFonts.roboto(
+                    fontSize: fontSized ?? 16, 
+                    color: colorLabel, 
                     fontWeight: FontWeight.w600,
                   ),
                 ),
