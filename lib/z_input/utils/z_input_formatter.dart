@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/services.dart';
 
 enum MaskAutoCompletionType {
@@ -305,4 +304,98 @@ class _TextMatcher {
     }
   }
 
+}
+
+class PhoneInputFormatter extends TextInputFormatter {
+  String maskCellPhone = "## # ####-####";
+  String maskPhone = "## ####-####";
+
+  PhoneInputFormatter({
+    required this.maskCellPhone,
+    required this.maskPhone,
+  });
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String text = newValue.text;
+    String oldText = oldValue.text;
+
+    if (oldText.length > newValue.text.length) {
+      // Remove tudo que não é número
+      text = text.replaceAll(RegExp(r'\D'), '');
+      
+      // Definir qual máscara usar com base no número de dígitos
+      String mask = text.length > 10 ? maskCellPhone : maskPhone;
+
+      // Aplica a máscara ao texto
+      String formattedText = _applyMask(text, mask);
+
+      // Calcula a posição do cursor
+      int cursorPosition = newValue.selection.baseOffset;
+
+      // Ajuste para evitar que o cursor saia dos limites do texto formatado
+      if (cursorPosition > formattedText.length) {
+        cursorPosition = formattedText.length;
+      }
+
+      if (cursorPosition < 0) {
+        cursorPosition = 0;
+      }
+
+      // Retorna o texto formatado com a nova posição do cursor
+      return TextEditingValue(
+        text: formattedText,
+        selection: TextSelection.collapsed(offset: cursorPosition),
+      );
+    }
+
+    text = text.replaceAll(RegExp(r'\D'), '');
+    int cursorPosition = newValue.selection.baseOffset;
+
+    String formattedText = maskPhone;
+    formattedText = _applyMask(text, text.length > 10 ? maskCellPhone : maskPhone);
+
+    cursorPosition = _adjustCursorPosition(formattedText, cursorPosition);
+
+    if (cursorPosition > formattedText.length) {
+      cursorPosition = formattedText.length;
+    }
+
+    return TextEditingValue(
+      text: formattedText,
+      selection: TextSelection.collapsed(offset: cursorPosition),
+    );
+  }
+
+  String _applyMask(String text, String mask) {
+    int textIndex = 0;
+    final buffer = StringBuffer();
+
+    for (int i = 0; i < mask.length; i++) {
+      if (mask[i] == '#') {
+        if (textIndex < text.length) {
+          buffer.write(text[textIndex]);
+          textIndex++;
+        } else {
+          break;
+        }
+      } else {
+        buffer.write(mask[i]);
+      }
+    }
+
+    return buffer.toString();
+  }
+
+  int _adjustCursorPosition(String formattedText, int cursorPosition) {
+    int countNonDigit = 0;
+
+    for (int i = 0; i < cursorPosition && i < formattedText.length; i++) {
+      if (!RegExp(r'\d').hasMatch(formattedText[i])) {
+        countNonDigit++;
+      }
+    }
+
+    return cursorPosition + countNonDigit;
+  }
 }

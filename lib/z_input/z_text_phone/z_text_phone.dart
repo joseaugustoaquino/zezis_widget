@@ -31,8 +31,10 @@ class ZTextFormFieldPhone extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final String? mask;
   final Color? focusColor;
+
+  final String maskCellPhone;
+  final String maskPhone;
 
   final String? Function(dynamic)? validator;
 
@@ -60,9 +62,11 @@ class ZTextFormFieldPhone extends StatefulWidget {
     this.enableIcon = true,
     this.hintText = 'Celular',
     this.errorMessage = 'Número do Celular Inválido',
-    this.mask = "## # ####-####",
     this.focusColor,
     this.padding,
+
+    this.maskCellPhone = "## # ####-####",
+    this.maskPhone = "## ####-####",
   });
 
   @override
@@ -143,9 +147,9 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
               suffixIcon: widget.suffixIcon,
                 
               inputFormatters: [
-                ZInputFormatter(
-                  mask: widget.mask?.replaceAll("0", "#"),
-                  filter: {"#": RegExp(r'[0-9]'), "A": RegExp(r'[^0-9]')}
+                PhoneInputFormatter(
+                  maskCellPhone: widget.maskCellPhone,
+                  maskPhone: widget.maskPhone,
                 )
               ],
                 
