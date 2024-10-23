@@ -1,7 +1,7 @@
 name: zezis_widget
 description: Functions/Widget/Alerts/Dialogs in a customized way and with easy dependency management.
 
-version: 0.3.9
+version: 0.3.10+1
 repository: https://github.com/joseaugustoaquino/zezis_widget
 homepage: https://github.com/joseaugustoaquino
 

@@ -37,7 +37,7 @@ class ZButton extends StatelessWidget {
           splashColor: Theme.of(context).splashColor,
           highlightColor: Theme.of(context).highlightColor,
 
-          child: Ink(
+          child: Container(
             width: width,
             height: height ?? 50,
             

@@ -120,6 +120,7 @@ class _InputPageState extends State<InputPage> {
       return selectAutoComplete(  
         enable: true,   
         context: context,
+        labelText: "Pais",
         title: (country?.descricao ?? "").toUpperCase(),
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
 

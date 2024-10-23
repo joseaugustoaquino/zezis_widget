@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DividerPage())),
                   ),
                 ),
-          
+
                 FocusTraversalOrder(
                   order: const NumericFocusOrder(2.0),
 

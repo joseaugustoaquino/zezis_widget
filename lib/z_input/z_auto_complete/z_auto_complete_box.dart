@@ -1,33 +1,52 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 Widget selectAutoComplete({
   required void Function()? onPressed,
-  required bool enable,
-
+  required BuildContext context,
   required String title,
+  required bool enable,
+  
+  double border = 10.0,
+  String? labelText,
   String? subtitle,
   Widget? leading,
 
   EdgeInsetsGeometry? padding,
   Color? color,
-  BuildContext? context,
 }) {
-  color = color ?? (context == null ? Get.theme.primaryColor : Theme.of(context).primaryColor);
+  color = color ?? Theme.of(context).primaryColor;
 
   return Padding(
     padding: padding ?? const EdgeInsets.fromLTRB(0, 5, 0, 5), 
 
-    child: Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        border: Border.all(color: enable ? color : Get.theme.primaryColor),
+    child: InputDecorator(
+      decoration: InputDecoration(
+        prefixIcon: leading,
+        labelText: labelText,
+        contentPadding: const EdgeInsets.only(left: 15.0),
+        labelStyle: const TextStyle(
+          fontWeight: FontWeight.w300,
+        ),
+        
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(border),
+          borderSide: BorderSide(color: Theme.of(context).primaryColor),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(border),
+          borderSide: BorderSide(color: Theme.of(context).disabledColor),
+        ),
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(border),
+          borderSide: BorderSide(color: Theme.of(context).primaryColor),
+        ),
       ),
 
       child: ListTile(
         dense: true,
-        leading: leading,
         visualDensity: VisualDensity.comfortable,
 
         title: Text(

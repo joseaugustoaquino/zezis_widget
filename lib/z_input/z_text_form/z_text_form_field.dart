@@ -216,11 +216,7 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
             hoverColor: widget.hoverColor ?? Theme.of(context).primaryColor,
             labelStyle: widget.labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
             contentPadding: widget.contentPadding ?? const EdgeInsets.only(left: 15.0),
-            
-            prefixIcon: widget.prefixIcon == null ? null : FocusScope(
-              canRequestFocus: false,
-              child: widget.prefixIcon!,
-            ),
+            prefixIcon: widget.prefixIcon,
 
             suffixIcon: FocusScope(
               canRequestFocus: false,
@@ -286,6 +282,7 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
               borderRadius: BorderRadius.circular(widget.borderRadius),
               borderSide: BorderSide(color: (widget.defocusColor ?? Theme.of(context).primaryColor)),
             ),
+          
           ),
         ),
       ),
