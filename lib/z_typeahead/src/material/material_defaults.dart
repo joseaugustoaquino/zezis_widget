@@ -48,7 +48,7 @@ abstract final class ZHeadMaterialDefaults {
     };
   }
 
-  static SuggestionsItemBuilder<Widget> wrapperBuilder(
+  static SuggestionsItemBuilder wrapperBuilder(
     DecorationBuilder? builder,
   ) {
     return (context, child) {

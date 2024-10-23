@@ -9,12 +9,13 @@ class DragAndDropItemTarget extends StatefulWidget {
   final DragAndDropBuilderParameters parameters;
   final OnItemDropOnLastTarget onReorderOrAdd;
 
-  const DragAndDropItemTarget(
-      {required this.child,
-      required this.onReorderOrAdd,
-      required this.parameters,
-      this.parent,
-      super.key});
+  const DragAndDropItemTarget({
+    required this.child,
+    required this.onReorderOrAdd,
+    required this.parameters,
+    this.parent,
+    super.key
+  });
 
   @override
   State<StatefulWidget> createState() => _DragAndDropItemTarget();
@@ -27,55 +28,49 @@ class _DragAndDropItemTarget extends State<DragAndDropItemTarget>
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      children: [
         Column(
           crossAxisAlignment: widget.parameters.verticalAlignment,
-          children: <Widget>[
+          children: [
             AnimatedSize(
-              duration: Duration(
-                  milliseconds: widget.parameters.itemSizeAnimationDuration),
               alignment: Alignment.bottomCenter,
-              child: _hoveredDraggable != null
-                  ? Opacity(
-                      opacity: widget.parameters.itemGhostOpacity,
-                      child: widget.parameters.itemGhost ??
-                          _hoveredDraggable!.child,
-                    )
-                  : Container(),
+              duration: Duration(milliseconds: widget.parameters.itemSizeAnimationDuration),
+
+              child: _hoveredDraggable == null ? Container() : Opacity(
+                opacity: widget.parameters.itemGhostOpacity,
+                child: widget.parameters.itemGhost ?? _hoveredDraggable!.child,
+              ),
             ),
+            
             widget.child,
           ],
         ),
+
         Positioned.fill(
           child: DragTarget<DragAndDropItem>(
             builder: (context, candidateData, rejectedData) {
               if (candidateData.isNotEmpty) {}
               return Container();
             },
-            onWillAcceptWithDetails: (incoming) {
+            onWillAcceptWithDetails: (details) {
               bool accept = true;
               if (widget.parameters.itemTargetOnWillAccept != null) {
-                accept =
-                    widget.parameters.itemTargetOnWillAccept!(incoming.data, widget);
+                accept = widget.parameters.itemTargetOnWillAccept!(details.data, widget);
               }
               if (accept && mounted) {
-                setState(() {
-                  _hoveredDraggable = incoming.data;
-                });
+                setState(() => _hoveredDraggable = details.data);
               }
               return accept;
             },
-            onLeave: (incoming) {
+            onLeave: (data) {
               if (mounted) {
-                setState(() {
-                  _hoveredDraggable = null;
-                });
+                setState(() => _hoveredDraggable = null);
               }
             },
-            onAcceptWithDetails: (incoming) {
+            onAcceptWithDetails: (details) {
               if (mounted) {
                 setState(() {
-                  widget.onReorderOrAdd(incoming.data, widget.parent!, widget);
+                  widget.onReorderOrAdd(details.data, widget.parent!, widget);
                   _hoveredDraggable = null;
                 });
               }

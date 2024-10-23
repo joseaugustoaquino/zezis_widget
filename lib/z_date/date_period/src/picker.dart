@@ -324,7 +324,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     Widget itemView = _renderItemView(theme);
     if (widget.route.showTitleActions == true) {
       return Column(
-        children: <Widget>[
+        children: [
           _renderTitleActionsView(theme),
           itemView,
         ],
@@ -397,7 +397,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
         textDirection: TextDirection.ltr,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
+          children: [
             Container(
               child: widget.pickerModel.layoutProportions()[0] > 0
                   ? _renderColumnView(
@@ -476,7 +476,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: [
           SizedBox(
             height: theme.titleHeight,
             child: CupertinoButton(

@@ -35,5 +35,5 @@ typedef AnimationTransitionBuilder = Widget Function(
 
 typedef ListBuilder = Widget Function(
   BuildContext context,
-  List<Widget> children,
+  List children,
 );

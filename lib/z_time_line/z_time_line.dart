@@ -27,10 +27,10 @@ class ZTimeLine extends StatelessWidget {
         assert(lineGap >= 0),
         assert(indicators == null || children.length == indicators.length);
 
-  final List<Widget> children;
+  final List children;
   final double itemGap;
   final double gutterSpacing;
-  final List<Widget>? indicators;
+  final List? indicators;
   final bool isLeftAligned;
   final EdgeInsets padding;
   final ScrollController? controller;
@@ -71,7 +71,7 @@ class ZTimeLine extends StatelessWidget {
         final isFirst = index == 0;
         final isLast = index == itemCount - 1;
 
-        final zTimeLineTile = <Widget>[
+        final zTimeLineTile = [
           CustomPaint(
             foregroundPainter: _ZTimeLinePainter(
               hideDefaultIndicator: indicator != null,
