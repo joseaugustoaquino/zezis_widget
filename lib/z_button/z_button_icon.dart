@@ -15,6 +15,7 @@ class ZButtonIcon extends StatelessWidget {
   
   final bool disableText;
   final TextStyle? style;
+  final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
 
   final Color? color;
@@ -35,6 +36,7 @@ class ZButtonIcon extends StatelessWidget {
     
     this.disableText = false,
     this.style,
+    this.margin,
     this.padding,
         
     this.color,
@@ -66,29 +68,36 @@ class ZButtonIcon extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(border)),
             ),
             
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  icon,
-                  color: colorLabel,
-                  size: iconSized,
-                ),
+            child: Padding(
+              padding: margin ?? const EdgeInsets.all(5.0),
 
-                disableText ? const SizedBox() : SizedBox(width: space),
-                
-                disableText ? const SizedBox() : Text(
-                  label,
-                  textAlign: TextAlign.center,
-
-                  style: style ?? GoogleFonts.roboto(
-                    fontSize: fontSized ?? 16, 
-                    color: colorLabel, 
-                    fontWeight: FontWeight.w600,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    icon,
+                    color: colorLabel,
+                    size: iconSized,
                   ),
-                ),
-              ],
+              
+                  disableText ? const SizedBox() : SizedBox(width: space),
+                  
+                  disableText ? const SizedBox() : Expanded(
+                    child: Text(
+                      label,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                    
+                      style: style ?? GoogleFonts.roboto(
+                        fontSize: fontSized ?? 16, 
+                        color: colorLabel, 
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,4 +1,5 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:example/ui/drag_and_drop_page.dart';
 import 'package:example/ui/input_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'ui/loading_page.dart';
 import 'ui/notification_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -115,6 +117,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icons.whatshot,
                   
                     onTap: () {},
+                  ),
+                ),
+
+                FocusTraversalOrder(
+                  order: const NumericFocusOrder(6.0),
+
+                  child: ZButtonIcon(
+                    width: 145,
+                    label: "Drag And Drop", 
+                    icon: Icons.drag_handle_rounded,
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DragAndDropPage())),
                   ),
                 ),
               ],

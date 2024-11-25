@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class DragAndDropList implements DragAndDropListInterface {
+  final double? height;
   final Widget? header;
   final Widget? footer;
   final Widget? leftSide;
@@ -27,6 +28,7 @@ class DragAndDropList implements DragAndDropListInterface {
   DragAndDropList({
     required this.children,
     this.key,
+    this.height,
     this.header,
     this.footer,
     this.leftSide,
@@ -80,6 +82,7 @@ class DragAndDropList implements DragAndDropListInterface {
       key: key,
       decoration: decoration ?? params.listDecoration,
       width: params.axis == Axis.vertical ? double.infinity : params.listWidth - params.listPadding!.horizontal,
+      height: params.axis == Axis.vertical ? null : 500,
 
       child: Column(
         mainAxisSize: MainAxisSize.min,

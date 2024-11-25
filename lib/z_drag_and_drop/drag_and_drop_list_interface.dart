@@ -10,8 +10,7 @@ abstract class DragAndDropListInterface implements DragAndDropInterface {
   Widget generateWidget(DragAndDropBuilderParameters params);
 }
 
-abstract class DragAndDropListExpansionInterface
-    implements DragAndDropListInterface {
+abstract class DragAndDropListExpansionInterface implements DragAndDropListInterface {
   @override
   final List<DragAndDropItem>? children;
 
