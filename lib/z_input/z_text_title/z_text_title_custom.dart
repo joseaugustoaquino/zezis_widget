@@ -10,6 +10,7 @@ class ZTextTileCustom extends StatelessWidget {
   final Color? color;
   final Color? iconColor;
   final EdgeInsetsGeometry? padding;
+  final double? iconSized;
 
   const ZTextTileCustom({
     super.key,
@@ -20,6 +21,7 @@ class ZTextTileCustom extends StatelessWidget {
     this.color,
     this.iconColor,
     this.padding,
+    this.iconSized,
   });
 
   @override
@@ -77,7 +79,8 @@ class ZTextTileCustom extends StatelessWidget {
             
             child: Icon(
               Icons.info_rounded, 
-              color: iconColor ?? Theme.of(context).primaryColor
+              color: iconColor ?? Theme.of(context).primaryColor,
+              size: iconSized,
             ),
           ),
         ],

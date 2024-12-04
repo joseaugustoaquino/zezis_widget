@@ -13,6 +13,7 @@ class ZDividerInformation extends StatelessWidget {
   final Color? colorDivider;
   final EdgeInsetsGeometry? padding;
   final Function()? onTap;
+  final double? iconSized;
 
   const ZDividerInformation({
     super.key,
@@ -28,6 +29,7 @@ class ZDividerInformation extends StatelessWidget {
     this.colorDivider,
     this.padding,
     this.onTap,
+    this.iconSized,
   });
 
   @override
@@ -49,7 +51,6 @@ class ZDividerInformation extends StatelessWidget {
             ),
           ),
 
-
           SizedBox(width: space),
 
           Expanded(
@@ -66,6 +67,7 @@ class ZDividerInformation extends StatelessWidget {
             child: Icon(
               icon,
               color: colorIcon ?? Theme.of(context).primaryColor,
+              size: iconSized,
             ),
           ),
         ],

@@ -13,3 +13,11 @@
 ## 0.3.10+2
 
 * Create date time picker
+
+## 0.3.10+3
+
+* Icon sized
+
+## 0.3.10+4
+
+* Loading page

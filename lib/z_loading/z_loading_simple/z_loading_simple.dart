@@ -6,6 +6,7 @@ class ZLoadingSimple extends StatelessWidget {
   final ThemeData? theme;
   final ThemeMode? themeMode;
   final Color? backgroundColor;
+  final EdgeInsetsGeometry? padding; 
 
   const ZLoadingSimple({
     super.key,
@@ -13,6 +14,7 @@ class ZLoadingSimple extends StatelessWidget {
     required this.image,
 
     this.theme,
+    this.padding,
     this.themeMode,
     this.backgroundColor,
   });
@@ -20,18 +22,19 @@ class ZLoadingSimple extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      /// Theme System
       theme: theme ?? ThemeData(),
+      debugShowCheckedModeBanner: false,
       themeMode: themeMode ?? ThemeMode.system,
 
       home: Scaffold(
-        backgroundColor: theme == null && backgroundColor == null 
-          ? theme?.scaffoldBackgroundColor 
-          : backgroundColor,
-        body: Center(
-          child: Image.asset(image),
+        backgroundColor: (theme == null && backgroundColor == null) ? theme?.scaffoldBackgroundColor : backgroundColor,
+
+        body: Padding(
+          padding: padding ?? const EdgeInsets.all(8.0),
+
+          child: Center(
+            child: Image.asset(image),
+          ),
         ),
       ),
     );
