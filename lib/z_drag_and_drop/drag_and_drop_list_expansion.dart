@@ -10,28 +10,41 @@ import 'package:flutter/material.dart';
 
 typedef OnExpansionChanged = void Function(bool expanded);
 
+/// This class mirrors flutter's [ExpansionTile], with similar options.
 class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
   final Widget? title;
   final Widget? subtitle;
   final Widget? trailing;
   final Widget? leading;
   final bool initiallyExpanded;
+
+  /// Set this to a unique key that will remain unchanged over the lifetime of the list.
+  /// Used to maintain the expanded/collapsed states
   final Key listKey;
+
+  /// This function will be called when the expansion of a tile is changed.
   final OnExpansionChanged? onExpansionChanged;
   final Color? backgroundColor;
-  final bool disableTopAndBottomBorders;
-
   @override
   final List<DragAndDropItem>? children;
   final Widget? contentsWhenEmpty;
   final Widget? lastTarget;
 
+  /// Whether or not this item can be dragged.
+  /// Set to true if it can be reordered.
+  /// Set to false if it must remain fixed.
   @override
   final bool canDrag;
 
+  @override
+  final Key? key;
+
+  /// Disable to borders displayed at the top and bottom when expanded
+  final bool disableTopAndBottomBorders;
 
   final ValueNotifier<bool> _expanded = ValueNotifier<bool>(true);
-  final GlobalKey<ProgrammaticExpansionTileState> _expansionKey = GlobalKey<ProgrammaticExpansionTileState>();
+  final GlobalKey<ProgrammaticExpansionTileState> _expansionKey =
+      GlobalKey<ProgrammaticExpansionTileState>();
 
   DragAndDropListExpansion({
     this.children,
@@ -46,6 +59,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
     this.lastTarget,
     required this.listKey,
     this.canDrag = true,
+    this.key,
     this.disableTopAndBottomBorders = false,
   }) {
     _expanded.value = initiallyExpanded;
@@ -88,7 +102,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
       child: expandable,
       builder: (context, dynamic error, child) {
         if (!_expanded.value) {
-          return Stack(children: [
+          return Stack(children: <Widget>[
             child!,
             Positioned.fill(
               child: DragTarget<DragAndDropItem>(
@@ -116,9 +130,9 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
     return toReturn;
   }
 
-  List<Widget> _generateDragAndDropListInnerContents(DragAndDropBuilderParameters parameters) {
+  List<Widget> _generateDragAndDropListInnerContents(
+      DragAndDropBuilderParameters parameters) {
     var contents = <Widget>[];
-    
     if (children != null && children!.isNotEmpty) {
       for (int i = 0; i < children!.length; i++) {
         contents.add(DragAndDropItemWrapper(
@@ -133,21 +147,30 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
         parent: this,
         parameters: parameters,
         onReorderOrAdd: parameters.onItemDropOnLastTarget!,
-        child: lastTarget ?? Container(height: parameters.lastItemTargetHeight),
+        child: lastTarget ??
+            Container(
+              height: parameters.lastItemTargetHeight,
+            ),
       ));
     } else {
       contents.add(
-        contentsWhenEmpty ?? const Text(
-          'Empty list',
-          style: TextStyle(fontStyle: FontStyle.italic),
-        ),
+        contentsWhenEmpty ??
+            const Text(
+              'Empty list',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
+            ),
       );
       contents.add(
         DragAndDropItemTarget(
           parent: this,
           parameters: parameters,
           onReorderOrAdd: parameters.onItemDropOnLastTarget!,
-          child: lastTarget ?? Container(height: parameters.lastItemTargetHeight),
+          child: lastTarget ??
+              Container(
+                height: parameters.lastItemTargetHeight,
+              ),
         ),
       );
     }
@@ -200,5 +223,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
     }
   }
 
-  _expansionCallback() => expand();
+  _expansionCallback() {
+    expand();
+  }
 }

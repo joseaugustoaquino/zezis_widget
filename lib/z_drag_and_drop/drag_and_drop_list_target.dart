@@ -25,31 +25,37 @@ class DragAndDropListTarget extends StatefulWidget {
   State<StatefulWidget> createState() => _DragAndDropListTarget();
 }
 
-class _DragAndDropListTarget extends State<DragAndDropListTarget> with TickerProviderStateMixin {
+class _DragAndDropListTarget extends State<DragAndDropListTarget>
+    with TickerProviderStateMixin {
   DragAndDropListInterface? _hoveredDraggable;
 
   @override
   Widget build(BuildContext context) {
     Widget visibleContents = Column(
-      children: [
+      children: <Widget>[
         AnimatedSize(
-          duration: Duration(milliseconds: widget.parameters.listSizeAnimationDuration),
-          alignment: widget.parameters.axis == Axis.vertical ? Alignment.bottomCenter : Alignment.centerLeft,
-
-          child: _hoveredDraggable == null ? Container() : Opacity(
-            opacity: widget.parameters.listGhostOpacity,
-            child: widget.parameters.listGhost ?? _hoveredDraggable!.generateWidget(widget.parameters),
-          ),
+          duration: Duration(
+              milliseconds: widget.parameters.listSizeAnimationDuration),
+          alignment: widget.parameters.axis == Axis.vertical
+              ? Alignment.bottomCenter
+              : Alignment.centerLeft,
+          child: _hoveredDraggable != null
+              ? Opacity(
+                  opacity: widget.parameters.listGhostOpacity,
+                  child: widget.parameters.listGhost ??
+                      _hoveredDraggable!.generateWidget(widget.parameters),
+                )
+              : Container(),
         ),
-
-        widget.child ?? SizedBox(
-          height: widget.parameters.axis == Axis.vertical
-              ? widget.lastListTargetSize
-              : null,
-          width: widget.parameters.axis == Axis.horizontal
-              ? widget.lastListTargetSize
-              : null,
-        ),
+        widget.child ??
+            SizedBox(
+              height: widget.parameters.axis == Axis.vertical
+                  ? widget.lastListTargetSize
+                  : null,
+              width: widget.parameters.axis == Axis.horizontal
+                  ? widget.lastListTargetSize
+                  : null,
+            ),
       ],
     );
 
@@ -65,7 +71,7 @@ class _DragAndDropListTarget extends State<DragAndDropListTarget> with TickerPro
     }
 
     return Stack(
-      children: [
+      children: <Widget>[
         visibleContents,
         Positioned.fill(
           child: DragTarget<DragAndDropListInterface>(
@@ -76,16 +82,21 @@ class _DragAndDropListTarget extends State<DragAndDropListTarget> with TickerPro
             onWillAcceptWithDetails: (details) {
               bool accept = true;
               if (widget.parameters.listTargetOnWillAccept != null) {
-                accept = widget.parameters.listTargetOnWillAccept!(details.data, widget);
+                accept =
+                    widget.parameters.listTargetOnWillAccept!(details.data, widget);
               }
               if (accept && mounted) {
-                setState(() => _hoveredDraggable = details.data);
+                setState(() {
+                  _hoveredDraggable = details.data;
+                });
               }
               return accept;
             },
             onLeave: (data) {
               if (mounted) {
-                setState(() => _hoveredDraggable = null);
+                setState(() {
+                  _hoveredDraggable = null;
+                });
               }
             },
             onAcceptWithDetails: (details) {

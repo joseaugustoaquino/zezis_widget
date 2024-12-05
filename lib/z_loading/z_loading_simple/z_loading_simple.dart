@@ -8,6 +8,9 @@ class ZLoadingSimple extends StatelessWidget {
   final Color? backgroundColor;
   final EdgeInsetsGeometry? padding; 
 
+  final double? width;
+  final double? height;
+
   const ZLoadingSimple({
     super.key,
     
@@ -17,6 +20,9 @@ class ZLoadingSimple extends StatelessWidget {
     this.padding,
     this.themeMode,
     this.backgroundColor,
+
+    this.width,
+    this.height,
   });
 
   @override 
@@ -33,7 +39,12 @@ class ZLoadingSimple extends StatelessWidget {
           padding: padding ?? const EdgeInsets.all(8.0),
 
           child: Center(
-            child: Image.asset(image),
+            child: Image.asset(
+              image,
+
+              width: width,
+              height: height,
+            ),
           ),
         ),
       ),

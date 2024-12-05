@@ -21,3 +21,15 @@
 ## 0.3.10+4
 
 * Loading page
+
+## 0.3.10+5
+
+* Sized loading page
+
+## 0.3.11
+
+* Enable focus on text
+
+## 0.3.12
+
+* Drag and drops correction

@@ -47,6 +47,7 @@ class ZTextFormField extends StatefulWidget {
   final Iterable<String>? autofillHints;
   final EdgeInsets? scrollPadding;
   final TextAlignVertical? textAlignVertical;
+  final FocusNode? focusNode;
 
   const ZTextFormField({super.key,
     this.textDirection,
@@ -93,6 +94,7 @@ class ZTextFormField extends StatefulWidget {
     this.clearButton = false,
     this.maxLines = 1,
     this.clearButtonAlwaysShow = false, this.readOnly,
+    this.focusNode,
   });
 
   @override
@@ -182,6 +184,8 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
         padding: widget.padding ?? const EdgeInsets.fromLTRB(8.5, 5.0, 8.5, 5.0),
 
         child: TextFormField(
+          focusNode: widget.focusNode,
+
           onSaved: widget.onSaved,
           maxLines: widget.maxLines,
           onChanged: widget.onChange,
