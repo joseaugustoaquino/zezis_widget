@@ -30,6 +30,6 @@
 
 * Enable focus on text
 
-## 0.3.12
+## 0.3.14
 
 * Drag and drops correction

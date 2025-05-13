@@ -124,6 +124,7 @@ BoxDecoration zBoxDecoration({Color? color}) => BoxDecoration(
   borderRadius: const BorderRadius.all(Radius.circular(10)),
   boxShadow: [
     BoxShadow(
+      // ignore: deprecated_member_use
       color: Colors.grey.withOpacity(0.4),
       spreadRadius: 5,
       blurRadius: 7,

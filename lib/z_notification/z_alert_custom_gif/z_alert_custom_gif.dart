@@ -10,11 +10,15 @@ class ZAlertCustomGif extends StatefulWidget {
   final String? gifPath;
   final double? animationType;
   final TextStyle? style;
+  final TextAlign? textAlign;
 
   final String? oneButton;
   final Function? oneButtonFunction;
   final String? twoButton;
   final Function? twoButtonFunction;
+
+  final Widget? childOneButton;
+  final Widget? childTwoButton;
 
   final Widget? footer;
 
@@ -26,11 +30,15 @@ class ZAlertCustomGif extends StatefulWidget {
     this.gifPath = ZAlertGif.shareGif,
     this.animationType = ZAlertAnimaation.bottomTop,
     this.style,
+    this.textAlign,
 
     this.oneButton,
     this.oneButtonFunction,
     this.twoButton,
     this.twoButtonFunction,
+
+    this.childOneButton,
+    this.childTwoButton,
 
     this.footer,
   });
@@ -124,7 +132,8 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
                     fontSize: 14,
                     color: Colors.black54,
                   ),
-                  textAlign: TextAlign.justify,
+                  
+                  textAlign: widget.textAlign ?? TextAlign.justify,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 5,
                 )
@@ -135,8 +144,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
               widget.footer ?? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-
-                  widget.oneButtonFunction == null ? const SizedBox() : ElevatedButton(
+                  widget.oneButtonFunction == null ? const SizedBox() : widget.childOneButton ?? ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),
@@ -155,7 +163,7 @@ class ZAlertCustomGifState extends State<ZAlertCustomGif> with TickerProviderSta
 
                   widget.oneButtonFunction == null ? const SizedBox() : const SizedBox(width: 10),
 
-                  widget.twoButtonFunction == null ? const SizedBox() : ElevatedButton(
+                  widget.twoButtonFunction == null ? const SizedBox() : widget.childTwoButton ?? ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     ),

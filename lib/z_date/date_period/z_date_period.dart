@@ -28,9 +28,15 @@ class ZDatePeriod extends StatefulWidget {
 
   double width;
   double space;
+
   bool disabled;
   bool isExpanded;
   bool isFormValidator;
+  bool isAllName = false;
+
+  bool dayDisabled = false;
+  bool monthDisabled = false;
+  bool yearDisabled = false;
 
   int dayFlex;
   int yearFlex;
@@ -68,6 +74,11 @@ class ZDatePeriod extends StatefulWidget {
     this.disabled = false,
     this.isExpanded = true,
     this.isFormValidator = false,
+    this.isAllName = false,
+
+    this.dayDisabled = false,
+    this.monthDisabled = false,
+    this.yearDisabled = false,
 
     this.dayFlex = 1,
     this.yearFlex = 2,
@@ -94,26 +105,27 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
   late List listdates = [];
   late List listyears = [];
   late List<dynamic> listMonths = [
-    {"id": 1, "value": "Jan."},
-    {"id": 2, "value": "Fev."},
-    {"id": 3, "value": "Mar."},
-    {"id": 4, "value": "Abr."},
-    {"id": 5, "value": "Mai."},
-    {"id": 6, "value": "Jun."},
-    {"id": 7, "value": "Jul."},
-    {"id": 8, "value": "Aug."},
-    {"id": 9, "value": "Set."},
-    {"id": 10, "value": "Out."},
-    {"id": 11, "value": "Nov."},
-    {"id": 12, "value": "Dez."}
+    {"id": 1, "value": "Jan.", "value2": "Janeiro"},
+    {"id": 2, "value": "Fev.", "value2": "Fevereiro"},
+    {"id": 3, "value": "Mar.", "value2": "Março"},
+    {"id": 4, "value": "Abr.", "value2": "Abril"},
+    {"id": 5, "value": "Mai.", "value2": "Maio"},
+    {"id": 6, "value": "Jun.", "value2": "Junho"},
+    {"id": 7, "value": "Jul.", "value2": "Julho"},
+    {"id": 8, "value": "Aug.", "value2": "Agosto"},
+    {"id": 9, "value": "Set.", "value2": "Setembro"},
+    {"id": 10, "value": "Out.", "value2": "Outubro"},
+    {"id": 11, "value": "Nov.", "value2": "Novembro"},
+    {"id": 12, "value": "Dez.", "value2": "Dezembro"}
   ];
 
   @override
   void initState() {
     super.initState();
+
     dayselVal = widget.selectedDay != null ? widget.selectedDay.toString() : '';
-    monthselVal = widget.selectedMonth != null ? widget.selectedMonth.toString() : '';
     yearselVal = widget.selectedYear != null ? widget.selectedYear.toString() : '';
+    monthselVal = widget.selectedMonth != null ? widget.selectedMonth.toString() : '';
 
     listdates = Iterable<int>.generate(daysIn)
                              .skip(1)
@@ -194,30 +206,48 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
       padding: widget.padding ?? const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Expanded(
-            flex: widget.dayFlex,
-            child: Container(
-              child: dayDropdown(),
+          Visibility(
+            visible: !widget.dayDisabled,
+
+            child: Expanded(
+              flex: widget.dayFlex,
+              child: Container(
+                child: dayDropdown(),
+              ),
             ),
           ),
       
-          SizedBox(width: widget.space),
+          Visibility(
+            visible: !widget.dayDisabled,
+            child: SizedBox(width: widget.space)
+          ),
       
-          Expanded(
-            flex: widget.monthFlex,
-            child: Container(
-              decoration: widget.boxDecoration ?? const BoxDecoration(),
-              child: monthDropdown(),
+          Visibility(
+            visible: !widget.monthDisabled,
+
+            child: Expanded(
+              flex: widget.monthFlex,
+              child: Container(
+                decoration: widget.boxDecoration ?? const BoxDecoration(),
+                child: monthDropdown(),
+              ),
             ),
           ),
           
-          SizedBox(width: widget.space),
-          
-          Expanded(
-            flex: widget.yearFlex,
-            child: Container(
-              decoration: widget.boxDecoration ?? const BoxDecoration(),
-              child: yearDropdown(),
+          Visibility(
+            visible: (!widget.monthDisabled || !widget.yearDisabled),
+            child: SizedBox(width: widget.space)
+          ),
+      
+          Visibility(
+            visible: !widget.yearDisabled,
+
+            child: Expanded(
+              flex: widget.yearFlex,
+              child: Container(
+                decoration: widget.boxDecoration ?? const BoxDecoration(),
+                child: yearDropdown(),
+              ),
             ),
           ),
         ],
@@ -229,34 +259,43 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
   DropdownButtonFormField<String> monthDropdown() {
     return DropdownButtonFormField<String>(
       isExpanded: widget.isExpanded,
-      decoration: widget.inputDecoration,
+      decoration: widget.inputDecoration ?? InputDecoration(
+        enabled: !widget.disabled,
+        contentPadding: const EdgeInsets.only(left: 15.0, right: 10),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).disabledColor),
+        ),
+      ),
+
       value: monthselVal == '' ? null : monthselVal,
       hint: Text(widget.hintMonth, style: widget.hintTextStyle),
-      icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-      
-      onChanged: widget.disabled ? null : (value) {
-        monthSelected(value);
-      },
+      onChanged: widget.disabled ? null : (value) => monthSelected(value),
+      icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),
 
       validator: (value) {
-        return widget.isFormValidator
-            ? value == null
-                ? widget.errorMonth
-                : null
-            : null;
+        return widget.isFormValidator 
+          ? (value == null ? widget.errorMonth : null) : null;
       },
       
       items: listMonths.map((item) {
         return DropdownMenuItem<String>(
           value: item["id"].toString(),
           child: Text(
-            item["value"].toString(),
-            style: widget.textStyle ??
-              const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black
-              ),
+            !widget.isAllName ? item["value"].toString() : item["value2"].toString(),
+            
+            style: widget.textStyle ?? const TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         );
       }
@@ -267,21 +306,30 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
   DropdownButtonFormField<String> yearDropdown() {
     return DropdownButtonFormField<String>(
       isExpanded: widget.isExpanded,
-      decoration: widget.inputDecoration,
+      decoration: widget.inputDecoration ?? InputDecoration(
+        enabled: !widget.disabled,
+        contentPadding: const EdgeInsets.only(left: 15.0, right: 10),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).disabledColor),
+        ),
+      ),
+
       value: yearselVal == '' ? null : yearselVal,
       hint: Text(widget.hintYear, style: widget.hintTextStyle),
-      icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-
-      onChanged: widget.disabled ? null : (value) {
-        yearsSelected(value);
-      },
+      onChanged: widget.disabled ? null : (value) => yearsSelected(value),
+      icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),
       
       validator: (value) {
         return widget.isFormValidator
-            ? value == null
-                ? widget.errorYear
-                : null
-            : null;
+          ? (value == null ? widget.errorYear : null) : null;
       },
       
       items: listyears.map((item) {
@@ -289,11 +337,11 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
           value: item.toString(),
           child: Text(
             item.toString(),
-            style: widget.textStyle ??
-                const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
+            style: widget.textStyle ?? const TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         );
       }
@@ -304,32 +352,42 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
   DropdownButtonFormField<String> dayDropdown() {
     return DropdownButtonFormField<String>(
       isExpanded: widget.isExpanded,
-      decoration: widget.inputDecoration,
+      decoration: widget.inputDecoration ?? InputDecoration(
+        enabled: !widget.disabled,
+        contentPadding: const EdgeInsets.only(left: 15.0, right: 10),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(width: 1.0, color: Theme.of(context).disabledColor),
+        ),
+      ),
+      
       value: dayselVal == '' ? null : dayselVal,
       hint: Text(widget.hintDay, style: widget.hintTextStyle),
-      icon: widget.icon ?? const Icon(Icons.expand_more, color: Colors.grey),
-
-      onChanged: widget.disabled ? null : (value) {
-        daysSelected(value);
-      },
+      onChanged: widget.disabled ? null : (value) => daysSelected(value),
+      icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),
       
       validator: (value) {
         return widget.isFormValidator
-            ? value == null
-                ? widget.errorDay
-                : null
-            : null;
+          ? (value == null ? widget.errorDay : null) : null;
       },
       
       items: listdates.map((item) {
         return DropdownMenuItem<String>(
           value: item.toString(),
           child: Text(item.toString(),
-              style: widget.textStyle ??
-                  const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black)),
+              style: widget.textStyle ?? const TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+            )
+          ),
         );
       }
     ).toList());

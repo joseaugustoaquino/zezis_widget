@@ -48,6 +48,7 @@ class ZTextFormField extends StatefulWidget {
   final EdgeInsets? scrollPadding;
   final TextAlignVertical? textAlignVertical;
   final FocusNode? focusNode;
+  final bool disableSuffixIcon;
 
   const ZTextFormField({super.key,
     this.textDirection,
@@ -95,6 +96,7 @@ class ZTextFormField extends StatefulWidget {
     this.maxLines = 1,
     this.clearButtonAlwaysShow = false, this.readOnly,
     this.focusNode,
+    this.disableSuffixIcon = false,
   });
 
   @override
@@ -222,7 +224,7 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
             contentPadding: widget.contentPadding ?? const EdgeInsets.only(left: 15.0),
             prefixIcon: widget.prefixIcon,
 
-            suffixIcon: FocusScope(
+            suffixIcon: widget.disableSuffixIcon ? const SizedBox() : FocusScope(
               canRequestFocus: false,
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(end: 0.0),

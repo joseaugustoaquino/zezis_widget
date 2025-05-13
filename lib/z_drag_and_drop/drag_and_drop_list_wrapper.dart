@@ -289,9 +289,7 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
         return (_containerSize.height / 2.0) - (_dragHandleSize.height / 2.0);
       case DragHandleVerticalAlignment.bottom:
         return _containerSize.height - _dragHandleSize.height;
-      default:
-        return 0;
-    }
+      }
   }
 
   Offset _feedbackContainerOffset() {

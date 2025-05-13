@@ -28,9 +28,7 @@ class ArrowClipper extends CustomClipper<Path> {
         return _getBottomPath(size);
       case Edge.left:
         return _getLeftPath(size);
-      default:
-        return _getRightPath(size);
-    }
+      }
   }
 
   Path _getTopPath(Size size) {

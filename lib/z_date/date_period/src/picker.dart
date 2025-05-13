@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unused_element_parameter
 
 library flutter_datetime_picker;
 
@@ -244,7 +244,6 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
 
 class _DatePickerComponent extends StatefulWidget {
   const _DatePickerComponent({
-    super.key,
     required this.route,
     required this.pickerModel,
     this.onChanged,

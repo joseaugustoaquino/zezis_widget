@@ -12,6 +12,7 @@ class ZDatePicker extends StatelessWidget {
   final Color? borderColor;
   final bool disabled;
   final Color? iconColor;
+  final bool prefixIcon;
 
   const ZDatePicker({
     super.key,
@@ -25,6 +26,7 @@ class ZDatePicker extends StatelessWidget {
     this.backgroundColor,
     this.disabled = false,
     this.iconColor,
+    this.prefixIcon = false,
   });
 
   @override
@@ -36,7 +38,7 @@ class ZDatePicker extends StatelessWidget {
       controller: TextEditingController(text: labelDate),
       padding: padding ?? const EdgeInsets.fromLTRB(8.5, 5, 8.5, 5),
       
-      prefixIcon: IconButton(
+      prefixIcon: prefixIcon ? null : IconButton(
         onPressed: onPressed,
         icon: Icon(
           Icons.date_range_rounded,
@@ -48,7 +50,7 @@ class ZDatePicker extends StatelessWidget {
       suffixIcon: IconButton(
         onPressed: onPressed,
         icon: Icon(
-          Icons.search_rounded,
+          prefixIcon ? Icons.date_range_rounded : Icons.search_rounded,
           color: Theme.of(context).primaryColor,
         ),
       ),

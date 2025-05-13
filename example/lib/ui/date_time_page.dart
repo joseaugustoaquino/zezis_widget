@@ -55,16 +55,6 @@ class _DateTimePageState extends State<DateTimePage> {
               selectedDay: dateTime?.day,
               selectedYear: dateTime?.year, 
               selectedMonth: dateTime?.month,
-
-              inputDecoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(left: 15.0),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(width: 1.0, color: Theme.of(context).primaryColor),
-                ),
-              ), 
                                 
               onChangedDay: (value) {
                 setState(() => dateTime = DateTime(
