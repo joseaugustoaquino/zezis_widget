@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zezis_widget/src/components/input/z_text_form/z_text_form_field.dart';
-import 'package:zezis_widget/src/components/input/utils/z_input_formatter.dart';
+import 'package:zezis_widget/src/utils/z_input_formatter.dart';
 
 class ZMaskedFormatter extends ZTextFormField {
   ZMaskedFormatter({

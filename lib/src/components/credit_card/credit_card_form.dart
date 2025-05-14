@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/src/components/credit_card/credit_card.dart';
-import 'package:zezis_widget/src/components/input/utils/z_upper_case.dart';
+import 'package:zezis_widget/src/utils/z_upper_case.dart';
 
 class CreditCardForm extends StatefulWidget {
   CreditCardForm({

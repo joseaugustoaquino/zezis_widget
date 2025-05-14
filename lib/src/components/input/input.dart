@@ -1,8 +1,8 @@
 library input;
 
-export 'utils/z_upper_case.dart';
-export 'utils/z_masked_formatter.dart';
-export 'utils/z_input_formatter.dart';
+export '../../utils/z_upper_case.dart';
+export '../../utils/z_masked_formatter.dart';
+export '../../utils/z_input_formatter.dart';
 
 export 'z_auto_complete/z_auto_complete_box.dart';
 export 'z_auto_complete/z_auto_complete_decoration.dart';
