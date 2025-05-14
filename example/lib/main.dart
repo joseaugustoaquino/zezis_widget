@@ -3,8 +3,7 @@ import 'package:example/ui/drag_and_drop_page.dart';
 import 'package:example/ui/input_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:flutter/material.dart';
-import 'package:zezis_widget/z_button/z_button.dart';
-import 'package:zezis_widget/z_button/z_button_icon.dart';
+import 'package:zezis_widget/zezis_widget.dart';
 
 import 'ui/divider_page.dart';
 import 'ui/loading_page.dart';

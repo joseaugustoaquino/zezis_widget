@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zezis_widget/z_button/z_button.dart';
-import 'package:zezis_widget/z_date/z_date_picker.dart';
-import 'package:zezis_widget/z_date/date_period/z_date_period.dart';
+import 'package:zezis_widget/zezis_widget.dart';
 
 class DateTimePage extends StatefulWidget {
   const DateTimePage({super.key});
