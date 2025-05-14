@@ -11,7 +11,7 @@ abstract class DragAndDropListInterface implements DragAndDropInterface {
   /// Set to false if it must remain fixed.
   bool get canDrag;
   Key? get key;
-  Widget generateWidget(DragAndDropBuilderParameters params);
+  Widget generateWidget(DragAndDropBuilderParameters params, double height);
 }
 
 abstract class DragAndDropListExpansionInterface

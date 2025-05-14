@@ -1,9 +1,6 @@
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item_target.dart';
 import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list_interface.dart';
 import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_lists.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_handle.dart';
 
 typedef OnPointerMove = void Function(PointerMoveEvent event);
 typedef OnPointerUp = void Function(PointerUpEvent event);

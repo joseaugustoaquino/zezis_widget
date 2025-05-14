@@ -18,7 +18,7 @@ class _DragAndDropPageState extends State<DragAndDropPage> {
     color: Colors.orange,
     title: "Kanban $i1",
 
-    itens: List.generate(i1 + 25, (i2) => ItemKanbanModel(
+    itens: i1 == 0 ? [] : List.generate(i1 * 2, (i2) => ItemKanbanModel(
       id: i2,
       description: "Item Kanban $i2",
       date: DateTime.now().add(Duration(days: i2)),
@@ -27,7 +27,7 @@ class _DragAndDropPageState extends State<DragAndDropPage> {
 
   @override
   void initState() {
-    kanban.sort((a, b) => b.id?.compareTo(a.id ?? 0) ?? 0);
+    kanban.sort((a, b) => a.id?.compareTo(b.id ?? 0) ?? 0);
     kanbanItens = kanban.map((m) => _dropList(m)).toList();
     super.initState();
   }

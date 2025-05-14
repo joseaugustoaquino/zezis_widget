@@ -25,12 +25,13 @@ class DragAndDropListTarget extends StatefulWidget {
   State<StatefulWidget> createState() => _DragAndDropListTarget();
 }
 
-class _DragAndDropListTarget extends State<DragAndDropListTarget>
-    with TickerProviderStateMixin {
+class _DragAndDropListTarget extends State<DragAndDropListTarget>with TickerProviderStateMixin {
   DragAndDropListInterface? _hoveredDraggable;
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height - (widget.parameters.listPadding?.top ?? 0) - (widget.parameters.listPadding?.bottom ?? 0);
+
     Widget visibleContents = Column(
       children: <Widget>[
         AnimatedSize(
@@ -43,7 +44,7 @@ class _DragAndDropListTarget extends State<DragAndDropListTarget>
               ? Opacity(
                   opacity: widget.parameters.listGhostOpacity,
                   child: widget.parameters.listGhost ??
-                      _hoveredDraggable!.generateWidget(widget.parameters),
+                      _hoveredDraggable!.generateWidget(widget.parameters, height),
                 )
               : Container(),
         ),

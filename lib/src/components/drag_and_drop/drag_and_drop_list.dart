@@ -1,10 +1,6 @@
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_builder_parameters.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item_target.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item_wrapper.dart';
-import 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:zezis_widget/zezis_widget.dart';
 
 class DragAndDropList implements DragAndDropListInterface {
   /// The widget that is displayed at the top of the list.
@@ -51,6 +47,9 @@ class DragAndDropList implements DragAndDropListInterface {
   final bool canDrag;
   @override
   final Key? key;
+
+  final List<GlobalKey> _keys = [];
+
   DragAndDropList({
     required this.children,
     this.key,
@@ -67,7 +66,7 @@ class DragAndDropList implements DragAndDropListInterface {
   });
 
   @override
-  Widget generateWidget(DragAndDropBuilderParameters params) {
+  Widget generateWidget(DragAndDropBuilderParameters params, double height) {
     var contents = <Widget>[];
     if (header != null) {
       contents.add(Flexible(child: header!));
@@ -77,7 +76,7 @@ class DragAndDropList implements DragAndDropListInterface {
         mainAxisAlignment: horizontalAlignment,
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: _generateDragAndDropListInnerContents(params),
+        children: _generateDragAndDropListInnerContents(params, height),
       ),
     );
     if (params.axis == Axis.horizontal) {
@@ -112,38 +111,49 @@ class DragAndDropList implements DragAndDropListInterface {
     );
   }
 
-  List<Widget> _generateDragAndDropListInnerContents(
-      DragAndDropBuilderParameters parameters) {
+  List<Widget> _generateDragAndDropListInnerContents(DragAndDropBuilderParameters parameters, double height) {
     var contents = <Widget>[];
     if (leftSide != null) {
       contents.add(leftSide!);
     }
     if (children.isNotEmpty) {
       List<Widget> allChildren = <Widget>[];
+      double newHeight = 0;
+
+      for (var key in List.generate(children.length, (index) => GlobalKey())) {
+        _keys.add(key);
+      }
+
       if (parameters.addLastItemTargetHeightToTop) {
         allChildren.add(Padding(
           padding: EdgeInsets.only(top: parameters.lastItemTargetHeight),
         ));
       }
+      
       for (int i = 0; i < children.length; i++) {
-        allChildren.add(DragAndDropItemWrapper(
-          key: children[i].key,
-          child: children[i],
-          parameters: parameters,
+        allChildren.add(Container(
+          key: _keys[i],
+          child: DragAndDropItemWrapper(
+            key: children[i].key,
+            child: children[i],
+            parameters: parameters,
+          ),
         ));
         if (parameters.itemDivider != null && i < children.length - 1) {
           allChildren.add(parameters.itemDivider!);
         }
       }
-      allChildren.add(DragAndDropItemTarget(
-        parent: this,
-        parameters: parameters,
-        onReorderOrAdd: parameters.onItemDropOnLastTarget!,
-        child: lastTarget ??
-            Container(
-              height: parameters.lastItemTargetHeight,
-            ),
-      ));
+
+
+      for (final key in _keys) {
+        final context = key.currentContext;
+        
+        if (context != null) {
+          final box = context.findRenderObject() as RenderBox;
+          newHeight += box.size.height;
+        }
+      }
+
       contents.add(
         Expanded(
           child: SingleChildScrollView(
@@ -151,9 +161,13 @@ class DragAndDropList implements DragAndDropListInterface {
             child: Column(
               crossAxisAlignment: verticalAlignment,
               mainAxisSize: MainAxisSize.max,
-              children: allChildren,
+              children: [
+                ...allChildren,
+
+                SizedBox(height: newHeight > height ? height : ((height) - newHeight) > 0 ? ((height) - newHeight) : 0)
+              ],
             ),
-          ),
+          )
         ),
       );
     } else {
@@ -163,6 +177,7 @@ class DragAndDropList implements DragAndDropListInterface {
             physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 contentsWhenEmpty ??
                     const Text(
@@ -171,13 +186,14 @@ class DragAndDropList implements DragAndDropListInterface {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
+                
                 DragAndDropItemTarget(
                   parent: this,
                   parameters: parameters,
                   onReorderOrAdd: parameters.onItemDropOnLastTarget!,
                   child: lastTarget ??
                       Container(
-                        height: parameters.lastItemTargetHeight,
+                        height: height - parameters.lastItemTargetHeight,
                       ),
                 ),
               ],
@@ -186,9 +202,11 @@ class DragAndDropList implements DragAndDropListInterface {
         ),
       );
     }
+
     if (rightSide != null) {
       contents.add(rightSide!);
     }
+    
     return contents;
   }
 }

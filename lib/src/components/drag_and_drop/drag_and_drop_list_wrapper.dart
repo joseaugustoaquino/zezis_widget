@@ -30,8 +30,10 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height - (widget.parameters.listPadding?.top ?? 0) - (widget.parameters.listPadding?.bottom ?? 0);
+
     Widget dragAndDropListContents =
-        widget.dragAndDropList.generateWidget(widget.parameters);
+        widget.dragAndDropList.generateWidget(widget.parameters, height);
 
     Widget draggable;
     if (widget.dragAndDropList.canDrag) {
@@ -135,7 +137,7 @@ class _DragAndDropListWrapper extends State<DragAndDropListWrapper>
                               horizontal:
                                   widget.parameters.listPadding!.horizontal),
                       child:
-                          _hoveredDraggable!.generateWidget(widget.parameters),
+                          _hoveredDraggable!.generateWidget(widget.parameters, height),
                     ),
               )
             : Container(),

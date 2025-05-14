@@ -66,8 +66,8 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
   }
 
   @override
-  Widget generateWidget(DragAndDropBuilderParameters params) {
-    var contents = _generateDragAndDropListInnerContents(params);
+  Widget generateWidget(DragAndDropBuilderParameters params, double height) {
+    var contents = _generateDragAndDropListInnerContents(params, height);
 
     Widget expandable = ProgrammaticExpansionTile(
       title: title,
@@ -130,8 +130,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
     return toReturn;
   }
 
-  List<Widget> _generateDragAndDropListInnerContents(
-      DragAndDropBuilderParameters parameters) {
+  List<Widget> _generateDragAndDropListInnerContents(DragAndDropBuilderParameters parameters, double height) {
     var contents = <Widget>[];
     if (children != null && children!.isNotEmpty) {
       for (int i = 0; i < children!.length; i++) {
@@ -169,7 +168,7 @@ class DragAndDropListExpansion implements DragAndDropListExpansionInterface {
           onReorderOrAdd: parameters.onItemDropOnLastTarget!,
           child: lastTarget ??
               Container(
-                height: parameters.lastItemTargetHeight,
+                height: height - parameters.lastItemTargetHeight,
               ),
         ),
       );
