@@ -14,3 +14,4 @@ export 'src/components/notification/notification.dart';
 export 'src/components/qr/qr_code.dart';
 export 'src/components/time_line/time_line.dart';
 export 'src/components/typeahead/typeahead.dart';
+export 'src/models/country_model.dart';

@@ -1,8 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
-import 'package:example/ui/drag_and_drop_page.dart';
 import 'package:example/ui/input_page.dart';
 import 'package:example/ui/date_time_page.dart';
+import 'package:example/ui/new_kanban/home_screen.dart';
+import 'package:example/ui/new_kanban/kanban_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:zezis_widget/zezis_widget.dart';
 
 import 'ui/divider_page.dart';
@@ -10,7 +14,13 @@ import 'ui/loading_page.dart';
 import 'ui/notification_page.dart';
 
 void main() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/UFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+  
   WidgetsFlutterBinding.ensureInitialized();
+  Provider.debugCheckInvalidValueType = null;
   runApp(const MyApp());
 }
 
@@ -19,14 +29,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.blueAccent,
+    return Provider<KanbanProvider>(
+      create: (_) => KanbanProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          primaryColor: Colors.blueAccent,
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -126,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 145,
                     label: "Drag And Drop", 
                     icon: Icons.drag_handle_rounded,
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DragAndDropPage())),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreen())),
                   ),
                 ),
               ],

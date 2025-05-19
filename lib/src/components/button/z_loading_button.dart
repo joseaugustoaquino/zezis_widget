@@ -4,7 +4,7 @@ library rounded_loading_button;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:zezis_widget/data/rx_dart/subjects.dart';
+import 'package:zezis_widget/src/components/rx_dart/subjects.dart';
 
 /// States that your button can assume via the controller
 // ignore: public_member_api_docs

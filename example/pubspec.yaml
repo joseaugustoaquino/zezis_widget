@@ -12,7 +12,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  uuid: ^4.5.1
+  provider: ^6.1.5
+  google_fonts: ^6.1.0
   cupertino_icons: ^1.0.2
+  flutter_slidable: ^4.0.0
+  shared_preferences: ^2.5.3
+  
   zezis_widget:
     path: ../
 

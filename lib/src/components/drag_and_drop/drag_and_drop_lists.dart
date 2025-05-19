@@ -30,7 +30,6 @@ export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item.dar
 export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item_target.dart';
 export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_item_wrapper.dart';
 export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list.dart';
-export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list_expansion.dart';
 export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list_target.dart';
 export 'package:zezis_widget/src/components/drag_and_drop/drag_and_drop_list_wrapper.dart';
 export 'package:zezis_widget/src/components/drag_and_drop/drag_handle.dart';

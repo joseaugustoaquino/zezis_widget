@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zezis_widget/data/models/country_model.dart';
+import 'package:zezis_widget/src/models/country_model.dart';
 import 'package:zezis_widget/src/components/input/z_combo_box/z_combo_box.dart';
 import 'package:zezis_widget/src/utils/z_input_formatter.dart';
 import 'package:zezis_widget/src/components/input/z_text_form/z_text_form_field.dart';

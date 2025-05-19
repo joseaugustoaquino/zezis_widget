@@ -4,7 +4,6 @@ export 'drag_and_drop_interface.dart';
 export 'drag_and_drop_item_target.dart';
 export 'drag_and_drop_item_wrapper.dart';
 export 'drag_and_drop_item.dart';
-export 'drag_and_drop_list_expansion.dart';
 export 'drag_and_drop_list_interface.dart';
 export 'drag_and_drop_list_target.dart';
 export 'drag_and_drop_list_wrapper.dart';
