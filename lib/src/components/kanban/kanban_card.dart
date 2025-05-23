@@ -64,17 +64,6 @@ class CardKanbanModelWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Título do card
-                    Text(
-                      card.title ?? "",
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: theme.colorScheme.onSurface,
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 8),
-                    
                     // Body do card
                     if (card.bodyCard?.isNotEmpty ?? false) ...[
                       ...card.bodyCard!,
