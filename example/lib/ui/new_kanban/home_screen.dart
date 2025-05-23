@@ -1,9 +1,9 @@
+// ignore_for_file: implementation_imports
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:example/ui/new_kanban/kanban_board.dart';
-import 'package:example/ui/new_kanban/kanban_models.dart';
+import 'package:zezis_widget/zezis_widget.dart';
+import 'package:zezis_widget/src/models/models.dart';
 import 'package:example/ui/new_kanban/kanban_provider.dart';
-import 'package:example/ui/new_kanban/card_editor_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -44,25 +44,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  void _showAddCardDialog(String columnId, BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => CardEditorScreen(
-          columnId: columnId,
-          onSave: (columnId, card) {
-            final provider = Provider.of<KanbanProvider>(context, listen: false);
-            provider.addCard(columnId, card);
-          },
-        ),
-        fullscreenDialog: true,
-      ),
-    );
+  void _showAddCardDialog(int columnId, BuildContext context) {
+    showSnackBar("Novo card criado");
   }
 
-  void _showEditCardDialog(KanbanCard card) {
+  void _showEditCardDialog(CardKanbanModel card) {
     // Find which column contains this card
     final provider = Provider.of<KanbanProvider>(context, listen: false);
-    String foundColumnId = '';
+    int? foundColumnId;
     
     for (final column in provider.columns) {
       if (column.cards.any((c) => c.id == card.id)) {
@@ -71,55 +60,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       }
     }
     
-    if (foundColumnId.isEmpty) return;
-    
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => CardEditorScreen(
-          card: card,
-          columnId: foundColumnId,
-          onSave: (columnId, updatedCard) {
-            final provider = Provider.of<KanbanProvider>(context, listen: false);
-            provider.updateCard(columnId, updatedCard);
-          },
-        ),
-        fullscreenDialog: true,
-      ),
-    );
-  }
-
-  void _deleteCard(KanbanCard card) {
-    // Find which column contains this card
-    final provider = Provider.of<KanbanProvider>(context, listen: false);
-    String foundColumnId = '';
-    
-    // Find which column contains this card
-    for (final column in provider.columns) {
-      if (column.cards.any((c) => c.id == card.id)) {
-        foundColumnId = column.id;
-        break;
-      }
-    }
-    
-    if (foundColumnId.isEmpty) return;
-    
-    // Now we have a non-nullable string
-    provider.deleteCard(foundColumnId, card.id);
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Card deleted'),
-        behavior: SnackBarBehavior.floating,
-        action: SnackBarAction(
-          label: 'Undo',
-          onPressed: () {
-            // For a real undo, we'd need to store the deleted card
-            // This is simplified
-            provider.addCard(foundColumnId, card);
-          },
-        ),
-      ),
-    );
+    if (foundColumnId == null) return;
+    showSnackBar("Card editado");
   }
 
   void _showAddColumnDialog() {
@@ -197,53 +139,53 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             backgroundColor: Theme.of(context).primaryColor,
 
             title: _isEditingBoardTitle
-                ? TextField(
-                    controller: _boardTitleController,
-                    focusNode: _boardTitleFocusNode,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      hintText: 'Board Title',
-                      hintStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary.withAlpha(179),
-                      ),
-                    ),
-                    onSubmitted: (_) => _saveBoardTitle(),
-                  )
-                : GestureDetector(
-                    onTap: () {
-                      if (board != null) {
-                        _startEditingBoardTitle(board.title);
-                      }
-                    },
-                    child: Row(
-                      children: [
-                        Flexible(
-                          child: Text(
-                            board?.title ?? 'Loading...',
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        if (board != null) ...[                          
-                          const SizedBox(width: 8),
-                          Icon(
-                            Icons.edit,
-                            color: Theme.of(context).colorScheme.onPrimary.withAlpha(179),
-                            size: 16,
-                          ),
-                        ],
-                      ],
+              ? TextField(
+                  controller: _boardTitleController,
+                  focusNode: _boardTitleFocusNode,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    hintText: 'Board Title',
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary.withAlpha(179),
                     ),
                   ),
+                  onSubmitted: (_) => _saveBoardTitle(),
+                )
+              : GestureDetector(
+                  onTap: () {
+                    if (board != null) {
+                      _startEditingBoardTitle(board.title);
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          board?.title ?? 'Loading...',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onPrimary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (board != null) ...[                          
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.edit,
+                          color: Theme.of(context).colorScheme.onPrimary.withAlpha(179),
+                          size: 16,
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
             
             actions: [
               if (_isEditingBoardTitle)
@@ -254,39 +196,39 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                   onPressed: _saveBoardTitle,
                 ),
+              
               IconButton(
                 icon: Icon(
                   Icons.refresh,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
-                onPressed: () {
-                  kanbanProvider.resetBoard();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Board reset with sample data'),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
+                onPressed: () async {
+                  await kanbanProvider.resetBoard().then((value) {
+                    showSnackBar("Board reset with sample data");
+                    setState(() {});
+                  });
                 },
                 tooltip: 'Reset board',
               ),
             ],
           ),
+
           body: kanbanProvider.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: KanbanBoardWidget(
-                    board: board,
-                    onCardTap: _showEditCardDialog,
-                    onCardEdit: _showEditCardDialog,
-                    onCardDelete: _deleteCard,
-                    onAddCard: _showAddCardDialog,
-                    onCardDropped: kanbanProvider.moveCard,
-                    onColumnTitleEdit: kanbanProvider.updateColumnTitle,
-                    onAddColumn: _showAddColumnDialog,
-                  ),
+            ? const Center(child: CircularProgressIndicator())
+            : FadeTransition(
+                opacity: _fadeAnimation,
+                child: KanbanBoardWidget(
+                  board: board,
+                  onCardTap: _showEditCardDialog,
+                  onAddCard: _showAddCardDialog,
+                  onCardDropped: kanbanProvider.moveCard,
+                  onColumnTitleEdit: kanbanProvider.updateColumnTitle,
+                  onAddColumn: _showAddColumnDialog,
+
+                  sortIconColumn: Icons.sort_rounded,
+                  sortColumn: () {},
                 ),
+              ),
         );
       },
     );

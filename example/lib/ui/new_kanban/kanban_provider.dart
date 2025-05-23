@@ -1,5 +1,6 @@
+// ignore_for_file: implementation_imports
 import 'package:flutter/material.dart';
-import 'package:example/ui/new_kanban/kanban_models.dart';
+import 'package:zezis_widget/src/models/models.dart';
 import 'package:example/ui/new_kanban/storange_service.dart';
 
 class KanbanProvider extends ChangeNotifier {
@@ -14,7 +15,7 @@ class KanbanProvider extends ChangeNotifier {
   // Getters
   KanbanBoard? get board => _board;
   bool get isLoading => _isLoading;
-  List<KanbanColumn> get columns => _board?.columns ?? [];
+  List<ColumnKanbanModel> get columns => _board?.columns ?? [];
 
   // Load board from storage
   Future<void> _loadBoard() async {
@@ -35,7 +36,7 @@ class KanbanProvider extends ChangeNotifier {
   }
 
   // Add a new card to a column
-  Future<void> addCard(String columnId, KanbanCard card) async {
+  Future<void> addCard(int columnId, CardKanbanModel card) async {
     if (_board == null) return;
 
     final columnIndex = _board!.columns.indexWhere((col) => col.id == columnId);
@@ -54,7 +55,7 @@ class KanbanProvider extends ChangeNotifier {
   }
 
   // Update an existing card
-  Future<void> updateCard(String columnId, KanbanCard updatedCard) async {
+  Future<void> updateCard(int columnId, CardKanbanModel updatedCard) async {
     if (_board == null) return;
 
     final columnIndex = _board!.columns.indexWhere((col) => col.id == columnId);
@@ -77,7 +78,7 @@ class KanbanProvider extends ChangeNotifier {
   }
 
   // Delete a card
-  Future<void> deleteCard(String columnId, String cardId) async {
+  Future<void> deleteCard(int columnId, int cardId) async {
     if (_board == null) return;
 
     final columnIndex = _board!.columns.indexWhere((col) => col.id == columnId);
@@ -97,8 +98,8 @@ class KanbanProvider extends ChangeNotifier {
 
   // Move a card between columns
   Future<void> moveCard(
-    String sourceColumnId,
-    String targetColumnId,
+    int sourceColumnId,
+    int targetColumnId,
     int targetIndex,
   ) async {
     if (_board == null) return;
@@ -146,7 +147,7 @@ class KanbanProvider extends ChangeNotifier {
   }
 
   // Update column title
-  Future<void> updateColumnTitle(String columnId, String newTitle) async {
+  Future<void> updateColumnTitle(int columnId, String newTitle) async {
     if (_board == null) return;
 
     final columnIndex = _board!.columns.indexWhere((col) => col.id == columnId);
@@ -167,7 +168,7 @@ class KanbanProvider extends ChangeNotifier {
   Future<void> addColumn(String title) async {
     if (_board == null) return;
 
-    final newColumn = KanbanColumn.create(title);
+    final newColumn = ColumnKanbanModel.create(title);
     final updatedColumns = [..._board!.columns, newColumn];
 
     _board = _board!.copyWith(columns: updatedColumns);
@@ -176,7 +177,7 @@ class KanbanProvider extends ChangeNotifier {
   }
 
   // Delete a column
-  Future<void> deleteColumn(String columnId) async {
+  Future<void> deleteColumn(int columnId) async {
     if (_board == null) return;
 
     final updatedColumns = _board!.columns.where((col) => col.id != columnId).toList();

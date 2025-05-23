@@ -33,3 +33,7 @@
 ## 0.3.14
 
 * Drag and drops correction
+
+## 0.3.14+10
+
+* New kanban
