@@ -60,6 +60,13 @@ class KanbanBoardWidget extends StatelessWidget {
       height: double.infinity,
       decoration: BoxDecoration(
         color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(13),
+            offset: const Offset(0, 2),
+            blurRadius: 10,
+          ),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
