@@ -11,19 +11,19 @@ import 'package:zezis_widget/src/models/kanban/card_kanban_model.dart';
 /// cor e prioridade para organização visual.
 class ColumnKanbanModel {
   /// Identificador único da coluna
-  final int id;
+  int id;
   
   /// Prioridade da coluna para ordenação
-  final int priority;
+  int priority;
   
   /// Cor de destaque da coluna
-  final Color color;
+  Color color;
   
   /// Título da coluna
-  final String title;
+  String title;
   
   /// Lista de cards contidos na coluna
-  final List<CardKanbanModel> cards;
+  List<CardKanbanModel> cards;
 
   /// Construtor da coluna Kanban
   /// 

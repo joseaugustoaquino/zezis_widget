@@ -9,58 +9,58 @@ import 'package:flutter/material.dart';
 /// status e dados de esquecimento.
 class CardKanbanModel {
   /// Identificador único do card
-  final int? id;
+  int? id;
 
   /// Informações do curso
-  final String? courseDescription;
-  final int? idCourse;
+  String? courseDescription;
+  int? idCourse;
 
   /// Informações da turma
-  final String? classDescription;
-  final int? idTurma;
+  String? classDescription;
+  int? idTurma;
 
   /// Informações da pessoa
-  final String? personDescription;
-  final int? idPersonal;
+  String? personDescription;
+  int? idPersonal;
 
   /// Informações do kanban
-  final String? kanbanDescription;
-  final int? idKanban;
+  String? kanbanDescription;
+  int? idKanban;
 
   /// Informações da fonte de indicação
-  final String? sourceIndicationDescription;
-  final int? idIndicatesFont;
+  String? sourceIndicationDescription;
+  int? idIndicatesFont;
 
   /// Informações do município
-  final String? municipalityDescription;
-  final int? idMunicipality;
+  String? municipalityDescription;
+  int? idMunicipality;
 
   /// Informações do usuário
-  final String? userDescription;
-  final int? idUser;
+  String? userDescription;
+  int? idUser;
 
   /// Dados básicos do card
-  final String? title;
-  final String? origin;
-  final String? observation;
-  final double currency;
-  final bool selected;
-  final DateTime? registrationDate;
+  String? title;
+  String? origin;
+  String? observation;
+  double currency;
+  bool selected;
+  DateTime? registrationDate;
 
   /// Status do card
-  final Color? colorStatus;
-  final String? descriptionStatus;
+  Color? colorStatus;
+  String? descriptionStatus;
 
   /// Informações de esquecimento
-  final int? dayForgotten;
-  final Color? colorForgotten;
+  int? dayForgotten;
+  Color? colorForgotten;
 
   /// Widgets personalizados
-  final List<Widget>? bodyCard;
-  final List<Widget>? footerCard;
+  List<Widget>? bodyCard;
+  List<Widget>? footerCard;
 
   /// Construtor principal do modelo
-  const CardKanbanModel({
+  CardKanbanModel({
     this.id,
     this.courseDescription,
     this.idCourse,

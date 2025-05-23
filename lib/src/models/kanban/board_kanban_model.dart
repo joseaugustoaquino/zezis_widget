@@ -3,13 +3,13 @@ import 'package:zezis_widget/src/models/kanban/column_kanban_model.dart';
 /// Representa um quadro Kanban com colunas e cartões.
 class KanbanBoard {
   /// Identificador único do quadro
-  final String id;
+  String id;
   
   /// Título do quadro
-  final String title;
+  String title;
   
   /// Lista de colunas do quadro
-  final List<ColumnKanbanModel> columns;
+  List<ColumnKanbanModel> columns;
 
   /// Construtor do quadro Kanban
   KanbanBoard({

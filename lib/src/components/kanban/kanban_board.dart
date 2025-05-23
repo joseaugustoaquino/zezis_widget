@@ -9,7 +9,9 @@ import 'package:zezis_widget/src/components/kanban/kanban_column.dart';
 class KanbanBoardWidget extends StatelessWidget {
   final KanbanBoard? board;
   final VoidCallback onAddColumn;
+
   final bool enableNewColumn;
+  final Color? backgroundColor;
 
   final Function(CardKanbanModel) onCardTap;
   final Function(int, int, int) onCardDropped;
@@ -27,7 +29,9 @@ class KanbanBoardWidget extends StatelessWidget {
     super.key,
     required this.board,
     required this.onAddColumn,
+
     this.enableNewColumn = false,
+    this.backgroundColor,
 
     required this.onCardTap,
     required this.onCardDropped,
@@ -55,7 +59,7 @@ class KanbanBoardWidget extends StatelessWidget {
     return Container(
       height: double.infinity,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
