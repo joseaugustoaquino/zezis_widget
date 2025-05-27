@@ -43,6 +43,14 @@ class ColumnKanbanModelWidget extends StatefulWidget {
 }
 
 class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
+  bool isOrderByColumn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isOrderByColumn = widget.column.orderBy;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -107,13 +115,16 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                     
                     if (widget.sortColumn != null)
                       IconButton(
-                        onPressed: () => widget.sortColumn!(widget.column.id),
+                        tooltip: 'Ordenar coluna',
+                        onPressed: () {
+                          widget.sortColumn!(widget.column.id);
+                          setState(() => isOrderByColumn = !isOrderByColumn);
+                        },
                         icon: Icon(
-                          widget.column.orderBy ? FontAwesomeIcons.arrowUp19 : FontAwesomeIcons.arrowDown91,
+                          isOrderByColumn ? FontAwesomeIcons.arrowUp19 : FontAwesomeIcons.arrowDown91,
                           color: backgroundColor,
                           size: 20,
                         ),
-                        tooltip: 'Ordenar coluna',
                       ),
                   ],
                 ),
