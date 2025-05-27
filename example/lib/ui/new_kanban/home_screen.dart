@@ -224,8 +224,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   onCardDropped: kanbanProvider.moveCard,
                   onColumnTitleEdit: kanbanProvider.updateColumnTitle,
                   onAddColumn: _showAddColumnDialog,
-
-                  sortIconColumn: Icons.sort_rounded,
+                  
                   sortColumn: (value) {},
                 ),
               ),

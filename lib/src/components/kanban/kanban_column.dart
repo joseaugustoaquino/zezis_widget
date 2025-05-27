@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:zezis_widget/src/models/models.dart';
 import 'package:zezis_widget/src/utils/z_extensions.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zezis_widget/src/components/kanban/kanban_card.dart';
 
 /// Widget que representa uma coluna no quadro Kanban.
@@ -20,8 +21,7 @@ class ColumnKanbanModelWidget extends StatefulWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
-  final IconData? sortIconColumn;
-  final Function(int) sortColumn;
+  final Function(int)? sortColumn;
 
   const ColumnKanbanModelWidget({
     super.key,
@@ -34,9 +34,8 @@ class ColumnKanbanModelWidget extends StatefulWidget {
     required this.onAddCard,
 
     this.sizedColumn = 300,
-    this.isEmptyColumn = "Nenhum Card Localizado",
-    this.sortIconColumn,
     required this.sortColumn,
+    this.isEmptyColumn = "Nenhum Card Localizado",
   });
 
   @override
@@ -106,11 +105,11 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                       ),
                     ),
                     
-                    if (widget.sortIconColumn != null)
+                    if (widget.sortColumn != null)
                       IconButton(
-                        onPressed: () => widget.sortColumn(widget.column.id),
+                        onPressed: () => widget.sortColumn!(widget.column.id),
                         icon: Icon(
-                          widget.sortIconColumn,
+                          widget.column.orderBy ? FontAwesomeIcons.arrowUp19 : FontAwesomeIcons.arrowDown91,
                           color: backgroundColor,
                           size: 20,
                         ),

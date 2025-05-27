@@ -22,7 +22,6 @@ class KanbanBoardWidget extends StatelessWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
-  final IconData? sortIconColumn;
   final void Function(int) sortColumn;
 
   const KanbanBoardWidget({
@@ -41,9 +40,8 @@ class KanbanBoardWidget extends StatelessWidget {
     required this.onAddCard,
 
     this.sizedColumn = 300,
-    this.isEmptyColumn = "Nenhum Card Localizado",
-    this.sortIconColumn,    
     required this.sortColumn,
+    this.isEmptyColumn = "Nenhum Card Localizado",
   });
 
   @override
@@ -93,7 +91,6 @@ class KanbanBoardWidget extends StatelessWidget {
                   onAddCard: onAddCard,
 
                   sortColumn: sortColumn,
-                  sortIconColumn: sortIconColumn,
                   isEmptyColumn: isEmptyColumn,
                   sizedColumn: size < 300 ? 325 : (size - (5 * (board?.columns.length ?? 0))),
                 );
