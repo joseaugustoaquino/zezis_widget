@@ -15,6 +15,7 @@ class ColumnKanbanModel {
   
   /// Prioridade da coluna para ordenação
   int priority;
+  bool orderBy;
   
   /// Cor de destaque da coluna
   Color color;
@@ -35,6 +36,7 @@ class ColumnKanbanModel {
   ColumnKanbanModel({
     required this.id,
     this.priority = 0,
+    this.orderBy = false,
     this.color = Colors.blue,
     required this.title,
     List<CardKanbanModel>? cards,
@@ -44,6 +46,7 @@ class ColumnKanbanModel {
   ColumnKanbanModel copyWith({
     int? id,
     int? priority,
+    bool? orderBy,
     Color? color,
     String? title,
     List<CardKanbanModel>? cards,
@@ -51,6 +54,7 @@ class ColumnKanbanModel {
     return ColumnKanbanModel(
       id: id ?? this.id,
       priority: priority ?? this.priority,
+      orderBy: orderBy ?? this.orderBy,
       color: color ?? this.color,
       title: title ?? this.title,
       cards: cards ?? this.cards,
@@ -62,6 +66,7 @@ class ColumnKanbanModel {
     return <String, dynamic>{
       'id': id,
       'priority': priority,
+      'orderBy': orderBy,
       'color': color.toARGB32(),
       'title': title,
       'cards': cards.map((x) => x.toMap()).toList(),
@@ -73,6 +78,7 @@ class ColumnKanbanModel {
     return ColumnKanbanModel(
       id: map['id'] as int,
       priority: map['priority'] as int? ?? 0,
+      orderBy: map['orderBy'] as bool? ?? false,
       color: map['color'] != null 
           ? Color(map['color'] as int) 
           : Colors.blue,
@@ -141,6 +147,7 @@ class ColumnKanbanModel {
     return other is ColumnKanbanModel &&
         other.id == id &&
         other.priority == priority &&
+        other.orderBy == orderBy &&
         other.color == color &&
         other.title == title &&
         listEquals(other.cards, cards);
@@ -148,6 +155,6 @@ class ColumnKanbanModel {
 
   @override
   int get hashCode {
-    return Object.hash(id, priority, color, title, Object.hashAll(cards));
+    return Object.hash(id, priority, orderBy, color, title, Object.hashAll(cards));
   }
 }

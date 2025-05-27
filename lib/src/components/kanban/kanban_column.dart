@@ -21,7 +21,7 @@ class ColumnKanbanModelWidget extends StatefulWidget {
   final double sizedColumn;
   final String isEmptyColumn;
   final IconData? sortIconColumn;
-  final void Function()? sortColumn;
+  final Function(int) sortColumn;
 
   const ColumnKanbanModelWidget({
     super.key,
@@ -36,7 +36,7 @@ class ColumnKanbanModelWidget extends StatefulWidget {
     this.sizedColumn = 300,
     this.isEmptyColumn = "Nenhum Card Localizado",
     this.sortIconColumn,
-    this.sortColumn,
+    required this.sortColumn,
   });
 
   @override
@@ -108,7 +108,7 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                     
                     if (widget.sortIconColumn != null)
                       IconButton(
-                        onPressed: widget.sortColumn,
+                        onPressed: () => widget.sortColumn(widget.column.id),
                         icon: Icon(
                           widget.sortIconColumn,
                           color: backgroundColor,

@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   onAddColumn: _showAddColumnDialog,
 
                   sortIconColumn: Icons.sort_rounded,
-                  sortColumn: () {},
+                  sortColumn: (value) {},
                 ),
               ),
         );
