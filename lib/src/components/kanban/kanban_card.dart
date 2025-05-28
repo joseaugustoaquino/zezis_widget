@@ -22,17 +22,17 @@ class CardKanbanModelWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      duration: const Duration(milliseconds: 200),
+      margin: card.selected ? const EdgeInsets.symmetric(horizontal: 14, vertical: 12) : const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [                
           BoxShadow(
-            color: Colors.black.withAlpha(13),
+            color: card.selected ? (card.colorStatus?.withAlpha(100) ?? theme.primaryColor.withAlpha(100)) : Colors.black.withAlpha(13),
+            offset: const Offset(2, 4),
             blurRadius: 8,
-            offset: const Offset(0, 2),
           ),
         ],
         border: Border.all(

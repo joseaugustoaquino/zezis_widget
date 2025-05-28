@@ -165,8 +165,9 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                 );
               },
               onAcceptWithDetails: (details) {
+                final cardId = details.data['cardId'] as int;
                 final sourceColumnId = details.data['sourceColumnId'] as int;
-                widget.onCardDropped(sourceColumnId, widget.column.id, widget.column.cards.length);
+                widget.onCardDropped(sourceColumnId, widget.column.id, cardId);
               },
             ),
           ),
@@ -230,11 +231,11 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
     return ListView.builder(
       itemCount: widget.column.cards.length,
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemBuilder: (context, index) => _buildDraggableCard(widget.column.cards[index], index)
+      itemBuilder: (context, index) => _buildDraggableCard(widget.column.cards[index])
     );
   }
 
-  Widget _buildDraggableCard(CardKanbanModel card, int index) {
+  Widget _buildDraggableCard(CardKanbanModel card) {
     return Draggable<Map<String, dynamic>>(
       data: {
         'cardId': card.id,
@@ -276,8 +277,9 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
         },
 
         onAcceptWithDetails: (details) {
+          final cardId = details.data['cardId'] as int;
           final sourceColumnId = details.data['sourceColumnId'] as int;
-          widget.onCardDropped(sourceColumnId, widget.column.id, index);
+          widget.onCardDropped(sourceColumnId, widget.column.id, cardId);
         },
       ),
     );

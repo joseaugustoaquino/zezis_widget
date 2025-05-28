@@ -229,6 +229,7 @@ class CardKanbanModel {
     Color? colorForgotten,
     List<Widget>? bodyCard,
     List<Widget>? footerCard,
+    bool selected = false,
   }) {
     return CardKanbanModel(
       id: id,
@@ -250,7 +251,7 @@ class CardKanbanModel {
       origin: "Lorem Lorem",
       observation: "Lorem Lorem",
       currency: id.toDouble(),
-      selected: false,
+      selected: selected,
       registrationDate: DateTime.now(),
       colorStatus: colorStatus,
       descriptionStatus: descriptionStatus,

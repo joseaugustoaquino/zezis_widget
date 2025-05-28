@@ -53,6 +53,7 @@ class StorageService {
         colorStatus: Colors.orange,
         descriptionStatus: "In Negotiation",
         
+        selected: true,
         dayForgotten: 5,
         colorForgotten: Colors.orange,
 
@@ -66,6 +67,7 @@ class StorageService {
         colorStatus: Colors.orange,
         descriptionStatus: "In Negotiation",
         
+        selected: true,
         dayForgotten: 5,
         colorForgotten: Colors.orange,
 
@@ -118,6 +120,7 @@ class StorageService {
         colorStatus: Colors.green,
         descriptionStatus: "In Negotiation",
         
+        selected: true,
         dayForgotten: 5,
         colorForgotten: Colors.green,
         
