@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZComboBox<T> extends StatelessWidget {
   final T? value;
@@ -72,7 +71,7 @@ class ZComboBox<T> extends StatelessWidget {
                 focusColor: Theme.of(context).focusColor,
                 hoverColor: Theme.of(context).hoverColor,
                 errorText: state.hasError ? state.errorText : null,
-                labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
+                labelStyle: labelStyle ?? const TextStyle(color: Colors.grey),
                 contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0, right: 10),
                 
                 enabledBorder: border ?? OutlineInputBorder(
@@ -91,7 +90,7 @@ class ZComboBox<T> extends StatelessWidget {
                   isDense: true,
                   isExpanded: true,
                   dropdownColor: dropdownColor,
-                  style: style ?? GoogleFonts.roboto(),
+                  style: style ?? const TextStyle(),
                   focusColor: Theme.of(context).focusColor,
 
                   value: value,

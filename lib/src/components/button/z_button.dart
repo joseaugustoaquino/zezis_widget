@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZButton extends StatelessWidget {
   final String label;
@@ -53,7 +52,7 @@ class ZButton extends StatelessWidget {
                   child: Center(
                     child: Text(
                       label,
-                      style: GoogleFonts.roboto(
+                      style: const TextStyle(
                         fontSize: 16, 
                         color: Colors.white, 
                         fontWeight: FontWeight.w600,

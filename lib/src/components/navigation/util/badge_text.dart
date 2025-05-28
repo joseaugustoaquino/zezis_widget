@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BadgeText extends StatelessWidget {
   const BadgeText({
@@ -34,7 +33,7 @@ class BadgeText extends StatelessWidget {
               ),
               child: Text(
                 count! > 10 ? '10+' : '$count',
-                style: GoogleFonts.roboto(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 6,
                 ),

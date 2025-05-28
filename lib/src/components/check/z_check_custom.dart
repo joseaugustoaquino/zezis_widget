@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZCheckCustom extends StatelessWidget {
   final bool value;
@@ -34,7 +33,7 @@ class ZCheckCustom extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: GoogleFonts.roboto(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                   color: color ?? Colors.black

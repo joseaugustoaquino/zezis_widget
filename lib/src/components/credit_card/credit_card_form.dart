@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable, library_private_types_in_public_api, deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/src/components/credit_card/credit_card.dart';
 import 'package:zezis_widget/src/utils/z_upper_case.dart';
 
@@ -128,7 +127,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
                   autovalidateMode: AutovalidateMode.disabled,
-                  style: GoogleFonts.roboto(color: widget.textColor),
+                  style: TextStyle(color: widget.textColor),
                   cursorColor: widget.cursorColor ?? widget.themeColor,
                   autofillHints: const <String>[AutofillHints.creditCardNumber],
                   onEditingComplete: () => FocusScope.of(context).requestFocus(widget.cardExpiryFocus),
@@ -137,8 +136,8 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   decoration: InputDecoration(
                     labelText: 'Número do Cartão',
                     hintText: 'XXXX XXXX XXXX XXXX',
-                    hintStyle: GoogleFonts.roboto(),
-                    labelStyle: GoogleFonts.roboto(),
+                    hintStyle: const TextStyle(),
+                    labelStyle: const TextStyle(),
                     focusedBorder: widget.border,
                     enabledBorder: widget.border,
                   ),
@@ -172,13 +171,13 @@ class _CreditCardFormState extends State<CreditCardForm> {
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                         cursorColor: widget.cursorColor ?? widget.themeColor,
-                        style: GoogleFonts.roboto(color: widget.textColor),
+                        style: TextStyle(color: widget.textColor),
                         autofillHints: const <String>[AutofillHints.creditCardExpirationDate],
                         onEditingComplete: () => FocusScope.of(context).requestFocus(widget.cardCvvFocus),
 
                         decoration: InputDecoration(
-                          hintStyle: GoogleFonts.roboto(),
-                          labelStyle: GoogleFonts.roboto(),
+                          hintStyle: const TextStyle(),
+                          labelStyle: const TextStyle(),
                           focusedBorder: widget.border,
                           enabledBorder: widget.border,
                           labelText: 'MM/YY',
@@ -220,7 +219,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
 
                       obscureText: widget.obscureCvv,
                       keyboardType: TextInputType.number,
-                      style: GoogleFonts.roboto(color: widget.textColor),
+                      style: TextStyle(color: widget.textColor),
                       cursorColor: widget.cursorColor ?? widget.themeColor,
                       autofillHints: const <String>[AutofillHints.creditCardSecurityCode],
                       onEditingComplete: () => FocusScope.of(context).requestFocus(widget.cardHolderFocus),
@@ -228,8 +227,8 @@ class _CreditCardFormState extends State<CreditCardForm> {
                       onChanged: widget.onChangedcardCvv,
                       
                       decoration: InputDecoration(
-                        hintStyle: GoogleFonts.roboto(),
-                        labelStyle: GoogleFonts.roboto(),
+                        hintStyle: const TextStyle(),
+                        labelStyle: const TextStyle(),
                         focusedBorder: widget.border,
                         enabledBorder: widget.border,
                         labelText: 'CVV',
@@ -262,7 +261,7 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   keyboardType: TextInputType.text,
                   validator: widget.cardHolderValidator,
                   textInputAction: TextInputAction.done,
-                  style: GoogleFonts.roboto(color: widget.textColor),
+                  style: TextStyle(color: widget.textColor),
                   cursorColor: widget.cursorColor ?? widget.themeColor,
                   autofillHints: const <String>[AutofillHints.creditCardName],
                   onEditingComplete: () => FocusScope.of(context).unfocus(),
@@ -270,8 +269,8 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   inputFormatters: [UpperCaseTextFormatter()],
 
                   decoration: InputDecoration(
-                    hintStyle: GoogleFonts.roboto(),
-                    labelStyle: GoogleFonts.roboto(),
+                    hintStyle: const TextStyle(),
+                    labelStyle: const TextStyle(),
                     focusedBorder: widget.border,
                     enabledBorder: widget.border,
                     labelText: 'Nome Impresso no Cartão',

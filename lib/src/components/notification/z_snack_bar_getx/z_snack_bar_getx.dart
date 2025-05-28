@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void showSnackBarX(
   String? message, {
@@ -62,7 +61,7 @@ void showSnackBarX(
     titleText: titleText,
     messageText: Text(
       message ?? "",
-      style: GoogleFonts.roboto(
+      style: const TextStyle(
         fontSize: 16, 
         color: Colors.white, 
         fontWeight: FontWeight.w600,

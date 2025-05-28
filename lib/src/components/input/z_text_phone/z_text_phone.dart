@@ -1,7 +1,6 @@
 // ignore_for_file: overridden_fieldss
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/src/models/country_model.dart';
 import 'package:zezis_widget/src/components/input/z_combo_box/z_combo_box.dart';
 import 'package:zezis_widget/src/utils/z_input_formatter.dart';
@@ -95,7 +94,7 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
                   ? Text(
                       "+${x.ddi}",
                       textDirection: TextDirection.ltr,
-                      style: GoogleFonts.roboto(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ) 
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -114,7 +113,7 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
                         Text(
                           "+${x.ddi}",
                           textDirection: TextDirection.ltr,
-                          style: GoogleFonts.roboto(color: Colors.black),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ],
                     )
@@ -133,7 +132,7 @@ class _ZTextFormFieldPhoneState extends State<ZTextFormFieldPhone> {
             child: ZTextFormField(
               autofocus: false,
               enable: widget.enable,
-              style: GoogleFonts.roboto(),
+              style: const TextStyle(),
               focusColor: widget.focusColor,
               textDirection: TextDirection.ltr,
               controller: widget.textFieldController,

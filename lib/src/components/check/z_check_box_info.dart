@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZCheckBoxInfo extends StatelessWidget {
   final bool value;
@@ -70,7 +69,7 @@ class ZCheckBoxInfo extends StatelessWidget {
                       padding: contentPadding ?? const EdgeInsets.only(left: 16),
                       child: Text(
                         label,
-                        style: GoogleFonts.roboto(),
+                        style: const TextStyle(),
                       ),
                     ),
                   ),

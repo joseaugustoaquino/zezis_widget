@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/src/components/credit_card/glassmorphism_config.dart';
 import 'package:zezis_widget/src/components/credit_card/z_card_type_enum.dart';
 import 'package:zezis_widget/src/components/credit_card/z_credit_model.dart';
@@ -208,7 +207,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> with SingleTickerPr
   Widget _buildFrontContainer() {
     final TextStyle defaultTextStyle =
     Theme.of(context).textTheme.headlineMedium!.merge(
-      GoogleFonts.roboto(
+      const TextStyle(
         fontSize: 16,
         color: Colors.white,
       ),
@@ -341,7 +340,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> with SingleTickerPr
   Widget _buildBackContainer() {
     final TextStyle defaultTextStyle =
     Theme.of(context).textTheme.titleLarge!.merge(
-      GoogleFonts.roboto(
+      const TextStyle(
         fontSize: 16,
         color: Colors.black,
       ),

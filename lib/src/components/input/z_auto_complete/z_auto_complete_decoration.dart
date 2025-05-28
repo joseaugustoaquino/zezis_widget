@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 InputDecoration bgInputDecoration({
   required BuildContext context,
@@ -27,7 +26,7 @@ InputDecoration bgInputDecoration({
     fillColor: fillColor ?? Theme.of(context).primaryColor,
     focusColor: focusColor ?? Theme.of(context).focusColor,
     hoverColor: hoverColor ?? Theme.of(context).primaryColor,
-    labelStyle: labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
+    labelStyle: labelStyle ?? const TextStyle(color: Colors.grey),
     contentPadding: contentPadding ?? const EdgeInsets.only(left: 15.0),
     
     prefixIcon: prefixIcon,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZTextTileSimple extends StatelessWidget {
   final String title; 
@@ -24,7 +23,7 @@ class ZTextTileSimple extends StatelessWidget {
 
         Text(
           title,
-          style: GoogleFonts.roboto(
+          style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
             color: color

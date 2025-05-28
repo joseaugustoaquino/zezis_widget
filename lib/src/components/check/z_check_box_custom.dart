@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZCheckBoxCustom extends StatelessWidget {
   final bool value;
@@ -65,7 +64,7 @@ class ZCheckBoxCustom extends StatelessWidget {
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.clip,
 
-                style: GoogleFonts.roboto(
+                style: TextStyle(
                   fontWeight: value ? FontWeight.bold : FontWeight.normal,
                 ),
               ),

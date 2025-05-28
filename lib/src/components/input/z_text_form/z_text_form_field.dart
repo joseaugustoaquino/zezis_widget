@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZTextFormField extends StatefulWidget {
   final TextEditingController? controller;
@@ -212,7 +211,7 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
           textAlign: widget.textAlign ?? TextAlign.start,
           scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20.0),
           obscureText: (widget.obscureText ? _passwordVisible : widget.obscureText),
-          style: widget.style ?? GoogleFonts.roboto(color: widget.textStyle ?? Colors.black),
+          style: widget.style ?? TextStyle(color: widget.textStyle ?? Colors.black),
 
           decoration: widget.decoration ?? InputDecoration(
             hintText: widget.hintText,
@@ -222,7 +221,7 @@ class _ZTextFormFieldState extends State<ZTextFormField> {
             fillColor: widget.fillColor ?? Theme.of(context).primaryColor,
             focusColor: widget.focusColor ?? Theme.of(context).focusColor,
             hoverColor: widget.hoverColor ?? Theme.of(context).primaryColor,
-            labelStyle: widget.labelStyle ?? GoogleFonts.roboto(color: Colors.grey),
+            labelStyle: widget.labelStyle ?? const TextStyle(color: Colors.grey),
             contentPadding: widget.contentPadding ?? const EdgeInsets.only(left: 15.0),
             prefixIcon: widget.prefixIcon,
 

@@ -3,9 +3,7 @@ import 'package:example/ui/input_page.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:example/ui/new_kanban/home_screen.dart';
 import 'package:example/ui/new_kanban/kanban_provider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:zezis_widget/zezis_widget.dart';
 
@@ -14,11 +12,6 @@ import 'ui/loading_page.dart';
 import 'ui/notification_page.dart';
 
 void main() {
-  LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('google_fonts/UFL.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
-  
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
   runApp(const MyApp());

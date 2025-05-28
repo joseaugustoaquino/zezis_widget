@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:zezis_widget/src/components/notification/notification.dart';
 
 class ZTextTileCustom extends StatelessWidget {
@@ -49,7 +48,7 @@ class ZTextTileCustom extends StatelessWidget {
                       Text(
                         title,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.roboto(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w800
                         ),
@@ -57,7 +56,7 @@ class ZTextTileCustom extends StatelessWidget {
                       Text(
                         label,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.roboto(
+                        style: TextStyle(
                           fontSize: 16,
                           color: color,
                         ),

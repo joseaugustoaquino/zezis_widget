@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ZDividerInformation extends StatelessWidget {
   final double space;
@@ -44,7 +43,7 @@ class ZDividerInformation extends StatelessWidget {
           Text(
             title,
             overflow: TextOverflow.ellipsis,
-            style: style ?? GoogleFonts.roboto(
+            style: style ?? TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: colorTitle ?? Theme.of(context).primaryColor,
