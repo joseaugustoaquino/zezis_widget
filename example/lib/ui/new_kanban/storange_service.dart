@@ -201,6 +201,65 @@ class StorageService {
       ),
     ];
 
+
+    final finishedCard = [
+      CardKanbanModel.create(
+        title: 'In Negotiation',
+
+        colorStatus: Colors.orange,
+        descriptionStatus: "In Negotiation",
+        
+        dayForgotten: 5,
+        colorForgotten: Colors.orange,
+        
+        bodyCard: _body(),
+        id: Random().nextInt(100) + DateTime.now().microsecond,
+        footerCard: _footer((Random().nextInt(100) + DateTime.now().microsecond).toDouble()),
+      ),
+
+      CardKanbanModel.create(
+        title: 'In Negotiation',
+
+        colorStatus: Colors.orange,
+        descriptionStatus: "In Negotiation",
+        
+        dayForgotten: 5,
+        colorForgotten: Colors.orange,
+        
+        bodyCard: _body(),
+        id: Random().nextInt(100) + DateTime.now().microsecond,
+        footerCard: _footer((Random().nextInt(100) + DateTime.now().microsecond).toDouble()),
+      ),
+
+      CardKanbanModel.create(
+        title: 'In Negotiation',
+
+        colorStatus: Colors.orange,
+        descriptionStatus: "In Negotiation",
+        
+        dayForgotten: 5,
+        colorForgotten: Colors.orange,
+        
+        bodyCard: _body(),
+        id: Random().nextInt(100) + DateTime.now().microsecond,
+        footerCard: _footer((Random().nextInt(100) + DateTime.now().microsecond).toDouble()),
+      ),
+
+      CardKanbanModel.create(
+        title: 'In Negotiation',
+
+        colorStatus: Colors.orange,
+        descriptionStatus: "In Negotiation",
+        
+        dayForgotten: 5,
+        colorForgotten: Colors.orange,
+        
+        bodyCard: _body(),
+        id: Random().nextInt(100) + DateTime.now().microsecond,
+        footerCard: _footer((Random().nextInt(100) + DateTime.now().microsecond).toDouble()),
+      ),
+    ];
+
     final lostCards = [
       CardKanbanModel.create(
         title: 'Loss',
@@ -221,8 +280,9 @@ class StorageService {
     final updatedColumns = [
       defaultBoard.columns[0].copyWith(cards: inNegotiationCards, color: Colors.blue),
       defaultBoard.columns[1].copyWith(cards: paymentCards, color: Colors.amber),
-      defaultBoard.columns[2].copyWith(cards: pausedCards, color: Colors.green),
-      defaultBoard.columns[3].copyWith(cards: lostCards, color: Colors.red),
+      defaultBoard.columns[2].copyWith(cards: finishedCard, color: Colors.green),
+      defaultBoard.columns[3].copyWith(cards: pausedCards, color: Colors.brown),
+      defaultBoard.columns[4].copyWith(cards: lostCards, color: Colors.red),
     ];
     
     final boardWithSampleData = defaultBoard.copyWith(columns: updatedColumns);

@@ -48,8 +48,8 @@ void showSnackBar(
   SnackPosition snackPosition = SnackPosition.BOTTOM,
 }) {
   Get.rawSnackbar(
-    title: title,
-    message: message,
+    title: title ?? "",
+    message: message ?? "",
 
     icon: icon,
     titleText: titleText,

@@ -12,6 +12,7 @@ class KanbanBoardWidget extends StatelessWidget {
 
   final bool enableNewColumn;
   final Color? backgroundColor;
+  final Duration dragStartDelay;
 
   final Function(CardKanbanModel) onCardTap;
   final Function(int, int, int) onCardDropped;
@@ -29,8 +30,9 @@ class KanbanBoardWidget extends StatelessWidget {
     required this.board,
     required this.onAddColumn,
 
-    this.enableNewColumn = false,
     this.backgroundColor,
+    this.enableNewColumn = false,
+    this.dragStartDelay = const Duration(milliseconds: 500),
 
     required this.onCardTap,
     required this.onCardDropped,
@@ -87,8 +89,9 @@ class KanbanBoardWidget extends StatelessWidget {
                   onCardDropped: onCardDropped,
                   onColumnTitleEdit: onColumnTitleEdit,
 
-                  titleAddCard: titleAddCard,
                   onAddCard: onAddCard,
+                  titleAddCard: titleAddCard,
+                  dragStartDelay: dragStartDelay,
 
                   sortColumn: sortColumn,
                   isEmptyColumn: isEmptyColumn,

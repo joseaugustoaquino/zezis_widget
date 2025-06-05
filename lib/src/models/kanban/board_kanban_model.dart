@@ -32,6 +32,7 @@ class KanbanBoard {
       columns: [
         ColumnKanbanModel.create('Em Negociação'),
         ColumnKanbanModel.create('Pagamento'),
+        ColumnKanbanModel.create('Finalizado'),
         ColumnKanbanModel.create('Pausado'),
         ColumnKanbanModel.create('Perdido'),
       ],

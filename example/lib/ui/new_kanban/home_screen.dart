@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   late FocusNode _boardTitleFocusNode;
   bool _isEditingBoardTitle = false;
   final TextEditingController _boardTitleController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -41,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     _columnTitleController.dispose();
     _boardTitleController.dispose();
     _boardTitleFocusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -132,7 +134,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return Consumer<KanbanProvider>(
       builder: (context, kanbanProvider, child) {
         final board = kanbanProvider.board;
-        
+        double size = MediaQuery.of(context).size.width / (board?.columns.length ?? 1);
+        double sizedColumn = size < 300 ? 325 : (size - (5 * (board?.columns.length ?? 0)));
+
         return Scaffold(
           appBar: AppBar(
             elevation: 0,
@@ -217,15 +221,30 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             ? const Center(child: CircularProgressIndicator())
             : FadeTransition(
                 opacity: _fadeAnimation,
-                child: KanbanBoardWidget(
-                  board: board,
-                  onCardTap: _showEditCardDialog,
-                  onAddCard: _showAddCardDialog,
-                  onCardDropped: kanbanProvider.moveCard,
-                  onColumnTitleEdit: kanbanProvider.updateColumnTitle,
-                  onAddColumn: _showAddColumnDialog,
-                  
-                  sortColumn: (value) {},
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    thumbVisibility: true,
+                    thickness: 8,
+                    radius: const Radius.circular(4),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      child: SizedBox(
+                        width: (sizedColumn + 20) * (board?.columns.length ?? 1),
+                        child: KanbanBoardWidget(
+                          board: board,
+                          onCardTap: _showEditCardDialog,
+                          onAddCard: _showAddCardDialog,
+                          onCardDropped: kanbanProvider.moveCard,
+                          onColumnTitleEdit: kanbanProvider.updateColumnTitle,
+                          onAddColumn: _showAddColumnDialog,
+                          sortColumn: (value) {},
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
         );

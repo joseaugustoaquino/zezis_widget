@@ -21,6 +21,7 @@ class ColumnKanbanModelWidget extends StatefulWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
+  final Duration dragStartDelay;
   final Function(int)? sortColumn;
 
   const ColumnKanbanModelWidget({
@@ -36,6 +37,7 @@ class ColumnKanbanModelWidget extends StatefulWidget {
     this.sizedColumn = 300,
     required this.sortColumn,
     this.isEmptyColumn = "Nenhum Card Localizado",
+    this.dragStartDelay = const Duration(milliseconds: 500),
   });
 
   @override
@@ -236,12 +238,12 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
   }
 
   Widget _buildDraggableCard(CardKanbanModel card) {
-    return Draggable<Map<String, dynamic>>(
+    return LongPressDraggable<Map<String, dynamic>>(
       data: {
         'cardId': card.id,
         'sourceColumnId': widget.column.id,
       },
-
+      delay: widget.dragStartDelay,
       feedback: SizedBox(
         width: 280,
         child: CardKanbanModelWidget(
@@ -250,7 +252,6 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
           isDragging: true,
         ),
       ),
-      
       childWhenDragging: Opacity(
         opacity: 0.3,
         child: CardKanbanModelWidget(
@@ -258,7 +259,6 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
           onTap: () => widget.onCardTap(card),
         ),
       ),
-
       child: DragTarget<Map<String, dynamic>>(
         builder: (context, candidateData, rejectedData) {
           return AnimatedContainer(
@@ -275,7 +275,6 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
             ),
           );
         },
-
         onAcceptWithDetails: (details) {
           final cardId = details.data['cardId'] as int;
           final sourceColumnId = details.data['sourceColumnId'] as int;
