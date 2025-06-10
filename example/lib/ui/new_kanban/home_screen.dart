@@ -235,12 +235,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         width: (sizedColumn + 20) * (board?.columns.length ?? 1),
                         child: KanbanBoardWidget(
                           board: board,
-                          onCardTap: _showEditCardDialog,
+                          selectValueColumn: null,
+
                           onAddCard: _showAddCardDialog,
+                          onCardTap: _showEditCardDialog,
+                          onAddColumn: _showAddColumnDialog,
                           onCardDropped: kanbanProvider.moveCard,
                           onColumnTitleEdit: kanbanProvider.updateColumnTitle,
-                          onAddColumn: _showAddColumnDialog,
-                          sortColumn: (value) {},
+                          
+                          sortColumn: (value) {print(value);},
+                          selectColumn: (value) {print(value);}
                         ),
                       ),
                     ),

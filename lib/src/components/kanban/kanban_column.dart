@@ -21,8 +21,10 @@ class ColumnKanbanModelWidget extends StatefulWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
+  final bool? selectValueColumn;
   final Duration dragStartDelay;
   final Function(int)? sortColumn;
+  final Function(int)? selectColumn;
 
   const ColumnKanbanModelWidget({
     super.key,
@@ -34,7 +36,9 @@ class ColumnKanbanModelWidget extends StatefulWidget {
     required this.titleAddCard,
     required this.onAddCard,
 
+    this.selectColumn,
     this.sizedColumn = 300,
+    this.selectValueColumn,
     required this.sortColumn,
     this.isEmptyColumn = "Nenhum Card Localizado",
     this.dragStartDelay = const Duration(milliseconds: 500),
@@ -92,53 +96,92 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                 Row(
                   children: [
                     Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: widget.column.title,
-                              style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w600,
-                                color: backgroundColor
-                              )
-                            ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: widget.column.title,
+                                  style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontWeight: FontWeight.w600,
+                                    color: backgroundColor
+                                  )
+                                ),
 
-                            TextSpan(
-                              text: " (${widget.column.cards.length.toString()})",
-                              style: TextStyle(
-                                color: backgroundColor,
-                              )
+                                TextSpan(
+                                  text: " (${widget.column.cards.length.toString()})",
+                                  style: TextStyle(
+                                    color: backgroundColor,
+                                  )
+                                ),
+                              ]
                             ),
-                          ]
-                        ),
+                          ),
+                          
+                          const SizedBox(height: 5),
+
+                          Text(
+                            widget.column.cards.sumBy((s) => s.currency).toCurrency(),
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: backgroundColor,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    
-                    if (widget.sortColumn != null)
-                      IconButton(
-                        tooltip: 'Ordenar coluna',
-                        onPressed: () {
+
+                    if (widget.sortColumn != null && widget.selectValueColumn == null) Container(
+                      margin: const EdgeInsets.only(left: 8),
+                      child: InkWell(
+                        onTap: () {
                           widget.sortColumn!(widget.column.id);
                           setState(() => isOrderByColumn = !isOrderByColumn);
                         },
-                        icon: Icon(
+                        child: Icon(
                           isOrderByColumn ? FontAwesomeIcons.arrowUp19 : FontAwesomeIcons.arrowDown91,
                           color: backgroundColor,
                           size: 20,
                         ),
                       ),
-                  ],
-                ),
+                    ),
 
-                Text(
-                  widget.column.cards.sumBy((s) => s.currency).toCurrency(),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: backgroundColor,
-                  ),
+                    if (widget.selectValueColumn != null) Container(
+                      margin: const EdgeInsets.only(left: 8),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: widget.selectValueColumn ?? false
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context).colorScheme.outline.withAlpha(128),
+                          width: 1,
+                        ),
+                      ),
+                      child: Checkbox(
+                        value: (widget.selectValueColumn ?? false),
+                        activeColor: widget.column.color,
+                        checkColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        side: BorderSide(
+                          color: widget.selectValueColumn ?? false
+                            ? Theme.of(context).primaryColor
+                            : Theme.of(context).colorScheme.outline.withAlpha(128),
+                          width: 1.5,
+                        ),
+                        onChanged: (value) { 
+                          widget.selectColumn!(widget.column.id); 
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -24,13 +24,13 @@ class CardKanbanModelWidget extends StatelessWidget {
     return AnimatedContainer(
       curve: Curves.easeInOut,
       duration: const Duration(milliseconds: 200),
-      margin: card.selected ? const EdgeInsets.symmetric(horizontal: 14, vertical: 12) : const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      margin: card.selected ? const EdgeInsets.symmetric(horizontal: 18, vertical: 12) : const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [                
           BoxShadow(
-            color: card.selected ? (card.colorStatus?.withAlpha(100) ?? theme.primaryColor.withAlpha(100)) : Colors.black.withAlpha(13),
+            color: card.selected ? (card.colorStatus?.withAlpha(255) ?? theme.primaryColor.withAlpha(255)) : Colors.black.withAlpha(13),
             offset: const Offset(2, 4),
             blurRadius: 8,
           ),
@@ -53,8 +53,8 @@ class CardKanbanModelWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: card.colorStatus?.withAlpha(215),
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
+                    topLeft: Radius.circular(12),
                   ),
                 ),
               ),
