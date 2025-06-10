@@ -23,7 +23,6 @@ class KanbanBoardWidget extends StatelessWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
-  final bool? selectValueColumn;
   final void Function(int) sortColumn;
   final void Function(int)? selectColumn;
 
@@ -45,7 +44,6 @@ class KanbanBoardWidget extends StatelessWidget {
 
     this.selectColumn,
     this.sizedColumn = 300,
-    this.selectValueColumn,
     required this.sortColumn,
     this.isEmptyColumn = "Nenhum Card Localizado",
   });
@@ -100,7 +98,6 @@ class KanbanBoardWidget extends StatelessWidget {
                   sortColumn: sortColumn,
                   selectColumn: selectColumn,
                   isEmptyColumn: isEmptyColumn,
-                  selectValueColumn: selectValueColumn,
                   sizedColumn: size < 300 ? 325 : (size - (5 * (board?.columns.length ?? 0))),
                 );
               },

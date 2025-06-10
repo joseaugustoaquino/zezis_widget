@@ -26,6 +26,9 @@ class ColumnKanbanModel {
   /// Lista de cards contidos na coluna
   List<CardKanbanModel> cards;
 
+  /// Selecionar itens da coluna
+  bool? selectionColumn;
+
   /// Construtor da coluna Kanban
   /// 
   /// [id] - Identificador único da coluna
@@ -33,6 +36,7 @@ class ColumnKanbanModel {
   /// [color] - Cor de destaque (padrão: Colors.blue)
   /// [title] - Título da coluna
   /// [cards] - Lista inicial de cards (padrão: lista vazia)
+  /// [selectionColumn] - Selecionar itens da coluna (padrão: desmarcado)
   ColumnKanbanModel({
     required this.id,
     this.priority = 0,
@@ -40,6 +44,7 @@ class ColumnKanbanModel {
     this.color = Colors.blue,
     required this.title,
     List<CardKanbanModel>? cards,
+    this.selectionColumn
   }) : cards = cards ?? [];
 
   /// Cria uma cópia do modelo com campos opcionais atualizados
@@ -50,6 +55,7 @@ class ColumnKanbanModel {
     Color? color,
     String? title,
     List<CardKanbanModel>? cards,
+    bool? selectionColumn,
   }) {
     return ColumnKanbanModel(
       id: id ?? this.id,
@@ -58,6 +64,7 @@ class ColumnKanbanModel {
       color: color ?? this.color,
       title: title ?? this.title,
       cards: cards ?? this.cards,
+      selectionColumn: selectionColumn ?? this.selectionColumn,
     );
   }
 
@@ -70,6 +77,7 @@ class ColumnKanbanModel {
       'color': color.toARGB32(),
       'title': title,
       'cards': cards.map((x) => x.toMap()).toList(),
+      'selectionColumn': selectionColumn,
     };
   }
 
@@ -83,6 +91,7 @@ class ColumnKanbanModel {
           ? Color(map['color'] as int) 
           : Colors.blue,
       title: map['title'] as String,
+      selectionColumn: map['selectionColumn'],
       cards: map['cards'] != null 
           ? List<CardKanbanModel>.from(
               (map['cards'] as List<dynamic>).map<CardKanbanModel>(
@@ -150,11 +159,12 @@ class ColumnKanbanModel {
         other.orderBy == orderBy &&
         other.color == color &&
         other.title == title &&
+        other.selectionColumn == selectionColumn &&
         listEquals(other.cards, cards);
   }
 
   @override
   int get hashCode {
-    return Object.hash(id, priority, orderBy, color, title, Object.hashAll(cards));
+    return Object.hash(id, priority, orderBy, color, title, Object.hashAll(cards), selectionColumn);
   }
 }

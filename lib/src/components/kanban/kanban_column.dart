@@ -120,9 +120,7 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                               ]
                             ),
                           ),
-                          
                           const SizedBox(height: 5),
-
                           Text(
                             widget.column.cards.sumBy((s) => s.currency).toCurrency(),
                             overflow: TextOverflow.ellipsis,
