@@ -23,7 +23,7 @@ class KanbanBoardWidget extends StatelessWidget {
   
   final double sizedColumn;
   final String isEmptyColumn;
-  final void Function(int) sortColumn;
+  final void Function(int)? sortColumn;
   final void Function(int)? selectColumn;
 
   const KanbanBoardWidget({
@@ -42,9 +42,9 @@ class KanbanBoardWidget extends StatelessWidget {
     this.titleAddCard = "Adicionar",
     required this.onAddCard,
 
+    this.sortColumn,
     this.selectColumn,
     this.sizedColumn = 300,
-    required this.sortColumn,
     this.isEmptyColumn = "Nenhum Card Localizado",
   });
 

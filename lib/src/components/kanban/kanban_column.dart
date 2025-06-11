@@ -36,10 +36,10 @@ class ColumnKanbanModelWidget extends StatefulWidget {
     required this.titleAddCard,
     required this.onAddCard,
 
+    this.sortColumn,
     this.selectColumn,
     this.sizedColumn = 300,
     this.selectValueColumn,
-    required this.sortColumn,
     this.isEmptyColumn = "Nenhum Card Localizado",
     this.dragStartDelay = const Duration(milliseconds: 500),
   });
@@ -134,7 +134,7 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                       ),
                     ),
 
-                    if (widget.sortColumn != null && widget.selectValueColumn == null) Container(
+                    if (widget.sortColumn != null && widget.selectColumn == null) Container(
                       margin: const EdgeInsets.only(left: 8),
                       child: InkWell(
                         onTap: () {
@@ -149,7 +149,7 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                       ),
                     ),
 
-                    if (widget.selectValueColumn != null) Container(
+                    if (widget.sortColumn == null && widget.selectColumn != null) Container(
                       margin: const EdgeInsets.only(left: 8),
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.surface,

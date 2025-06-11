@@ -235,7 +235,6 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         width: (sizedColumn + 20) * (board?.columns.length ?? 1),
                         child: KanbanBoardWidget(
                           board: board,
-                          selectValueColumn: null,
 
                           onAddCard: _showAddCardDialog,
                           onCardTap: _showEditCardDialog,
