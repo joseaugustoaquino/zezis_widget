@@ -1,5 +1,6 @@
-// ignore_for_file: implementation_imports
+// ignore_for_file: implementation_imports, depend_on_referenced_packages
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 import 'package:zezis_widget/src/models/models.dart';
 import 'package:example/ui/new_kanban/storange_service.dart';
 
@@ -142,6 +143,22 @@ class KanbanProvider extends ChangeNotifier {
     updatedColumns[targetColumnIndex] = updatedTargetColumn;
 
     _board = _board!.copyWith(columns: updatedColumns);
+    notifyListeners();
+    await _saveBoard();
+  }
+
+  // Select all card
+  Future<void> selectCard(int idColumn) async {
+    var kanban = _board?.columns.singleWhereOrNull((s) => s.id == idColumn);
+    if (kanban == null) return;
+
+    kanban.selectionColumn = !(kanban.selectionColumn ?? false);
+    
+    for (var kb in kanban.cards) {
+      kb.selected = (kanban.selectionColumn ?? false);
+    }
+    
+    _board = _board!.copyWith(columns: _board?.columns ?? []);
     notifyListeners();
     await _saveBoard();
   }

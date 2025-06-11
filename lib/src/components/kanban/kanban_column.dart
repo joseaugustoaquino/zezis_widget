@@ -155,24 +155,19 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                         color: Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(6),
                         border: Border.all(
-                          color: widget.selectValueColumn ?? false
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).colorScheme.outline.withAlpha(128),
                           width: 1,
+                          color: widget.column.color,
                         ),
                       ),
                       child: Checkbox(
-                        value: (widget.selectValueColumn ?? false),
                         activeColor: widget.column.color,
-                        checkColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
+                        value: (widget.selectValueColumn ?? false),
+                        checkColor: Theme.of(context).colorScheme.surface,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+
                         side: BorderSide(
-                          color: widget.selectValueColumn ?? false
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).colorScheme.outline.withAlpha(128),
-                          width: 1.5,
+                          width: 2,
+                          color: widget.column.color,
                         ),
                         onChanged: (value) { 
                           widget.selectColumn!(widget.column.id); 
