@@ -45,6 +45,7 @@ class CardKanbanModel {
   String? observation;
   double currency;
   bool selected;
+  bool blockSelected;
   DateTime? registrationDate;
 
   /// Status do card
@@ -81,6 +82,7 @@ class CardKanbanModel {
     this.observation,
     this.currency = 0.0,
     this.selected = false,
+    this.blockSelected = false,
     this.registrationDate,
     this.colorStatus,
     this.descriptionStatus,
@@ -112,6 +114,7 @@ class CardKanbanModel {
     String? observation,
     double? currency,
     bool? selected,
+    bool? blockSelected,
     DateTime? registrationDate,
     Color? colorStatus,
     String? descriptionStatus,
@@ -141,6 +144,7 @@ class CardKanbanModel {
       observation: observation ?? this.observation,
       currency: currency ?? this.currency,
       selected: selected ?? this.selected,
+      blockSelected: blockSelected ?? this.blockSelected,
       registrationDate: registrationDate ?? this.registrationDate,
       colorStatus: colorStatus ?? this.colorStatus,
       descriptionStatus: descriptionStatus ?? this.descriptionStatus,
@@ -174,6 +178,7 @@ class CardKanbanModel {
       'observation': observation,
       'currency': currency,
       'selected': selected,
+      'blockSelected': blockSelected,
       'registrationDate': registrationDate?.toIso8601String(),
       'colorStatus': colorStatus?.toARGB32(),
       'descriptionStatus': descriptionStatus,
@@ -205,6 +210,7 @@ class CardKanbanModel {
       observation: map['observation'] as String?,
       currency: (map['currency'] as num?)?.toDouble() ?? 0.0,
       selected: map['selected'] as bool? ?? false,
+      blockSelected: map['blockSelected'] as bool? ?? false,
       registrationDate: map['registrationDate'] != null 
           ? DateTime.parse(map['registrationDate'] as String)
           : null,
@@ -230,6 +236,7 @@ class CardKanbanModel {
     List<Widget>? bodyCard,
     List<Widget>? footerCard,
     bool selected = false,
+    bool blockSelected = false,
   }) {
     return CardKanbanModel(
       id: id,
@@ -252,6 +259,7 @@ class CardKanbanModel {
       observation: "Lorem Lorem",
       currency: id.toDouble(),
       selected: selected,
+      blockSelected: blockSelected,
       registrationDate: DateTime.now(),
       colorStatus: colorStatus,
       descriptionStatus: descriptionStatus,
@@ -294,6 +302,7 @@ class CardKanbanModel {
       other.observation == observation &&
       other.currency == currency &&
       other.selected == selected &&
+      other.blockSelected == blockSelected &&
       other.registrationDate == registrationDate &&
       other.colorStatus == colorStatus &&
       other.descriptionStatus == descriptionStatus &&
@@ -323,6 +332,7 @@ class CardKanbanModel {
       observation.hashCode ^
       currency.hashCode ^
       selected.hashCode ^
+      blockSelected.hashCode ^
       registrationDate.hashCode ^
       colorStatus.hashCode ^
       descriptionStatus.hashCode ^
