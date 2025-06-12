@@ -84,7 +84,7 @@ class KanbanBoardWidget extends StatelessWidget {
                 }
 
                 final column = board!.columns[index];
-                final selectValueColumn = column.cards.isNotEmpty && column.cards.every((card) => card.selected && !card.blockSelected);
+                final selectValueColumn = column.cards.isNotEmpty && column.cards.every((card) => card.selected || card.blockSelected);
 
                 return ColumnKanbanModelWidget(
                   key: ValueKey(column.id),

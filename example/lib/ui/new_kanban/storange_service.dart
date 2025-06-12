@@ -138,6 +138,7 @@ class StorageService {
         descriptionStatus: "Loss",
         
         dayForgotten: 5,
+        blockSelected: true,
         colorForgotten: Colors.red,
         
         bodyCard: _body(),
@@ -200,7 +201,6 @@ class StorageService {
         footerCard: _footer((Random().nextInt(100) + DateTime.now().microsecond).toDouble()),
       ),
     ];
-
 
     final finishedCard = [
       CardKanbanModel.create(

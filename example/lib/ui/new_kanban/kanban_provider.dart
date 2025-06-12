@@ -155,7 +155,9 @@ class KanbanProvider extends ChangeNotifier {
     kanban.selectionColumn = !(kanban.selectionColumn ?? false);
     
     for (var kb in kanban.cards) {
-      kb.selected = (kanban.selectionColumn ?? false);
+      if (!kb.blockSelected) {
+        kb.selected = (kanban.selectionColumn ?? false);
+      } 
     }
     
     _board = _board!.copyWith(columns: _board?.columns ?? []);

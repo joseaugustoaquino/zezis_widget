@@ -241,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           onAddColumn: _showAddColumnDialog,
                           onCardDropped: kanbanProvider.moveCard,
                           onColumnTitleEdit: kanbanProvider.updateColumnTitle,
-                          selectColumn: (value) => kanbanProvider.selectCard(value),
+                          selectColumn: (value) => kanbanProvider.selectCard(value).then((value) => setState(() {})),
                           
                           sortColumn: null,
                         ),
