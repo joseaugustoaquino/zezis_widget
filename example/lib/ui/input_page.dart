@@ -95,6 +95,10 @@ class _InputPageState extends State<InputPage> {
                     autofocus: false,
                     labelText: "Pais",
                     controller: phone,
+                    prefixIcon: Icon(
+                      Icons.travel_explore_rounded,
+                      color: Theme.of(context).primaryColor,
+                    ),
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   ),
                 ),
@@ -123,7 +127,7 @@ class _InputPageState extends State<InputPage> {
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
 
         leading: Icon(
-          Icons.person_rounded,
+          Icons.travel_explore_rounded,
           color: Theme.of(context).primaryColor,
         ),
 

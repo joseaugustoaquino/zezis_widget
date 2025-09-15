@@ -45,32 +45,35 @@ Widget selectAutoComplete({
         ),
       ),
 
-      child: ListTile(
-        dense: true,
-        visualDensity: VisualDensity.comfortable,
-
-        title: Text(
-          title.toUpperCase(),
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: subtitle == null ? FontWeight.normal : FontWeight.w700
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              title.toUpperCase(),
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: subtitle == null ? FontWeight.normal : FontWeight.w700
+              ),
+            ),
           ),
-        ),
 
-        subtitle: subtitle == null ? null : Text(
-          subtitle.toUpperCase(),
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontWeight: FontWeight.w400,
+          if (subtitle != null)
+            Text(
+              subtitle.toUpperCase(),
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+
+          IconButton(
+            icon: const Icon(Icons.delete_outline, size: 22),
+            color: enable ? color : Get.theme.primaryColor,
+            onPressed: onPressed,
           ),
-        ),
-
-        trailing: IconButton(
-          icon: const Icon(Icons.delete_outline, size: 22),
-          color: enable ? color : Get.theme.primaryColor,
-          onPressed: onPressed,
-        ),
+        ],
       ),
     ),
   );
