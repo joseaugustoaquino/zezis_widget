@@ -1,4 +1,4 @@
-library rx_streams;
+library;
 
 export 'src/streams/combine_latest.dart';
 export 'src/streams/concat.dart';

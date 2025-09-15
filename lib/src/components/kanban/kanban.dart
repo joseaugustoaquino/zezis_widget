@@ -1,4 +1,4 @@
-library kanban;
+library;
 
 /// Componente Kanban para gerenciamento visual de tarefas e fluxos de trabalho.
 /// 

@@ -1,4 +1,4 @@
-library zezis_widget;
+library;
 
 export 'src/components/button/button.dart';
 export 'src/components/check/check.dart';

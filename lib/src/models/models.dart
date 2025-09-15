@@ -1,4 +1,4 @@
-library models;
+library;
 
 export 'country_model.dart';
 export 'kanban/board_kanban_model.dart';

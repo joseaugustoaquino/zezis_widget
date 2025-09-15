@@ -1,4 +1,4 @@
-library notification;
+library;
 
 export 'package:zezis_widget/src/components/notification/z_alert_custom_gif/z_alert_custom_gif.dart';
 export 'package:zezis_widget/src/components/notification/z_alert_simple/z_alert_simple.dart';

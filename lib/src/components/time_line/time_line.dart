@@ -1,4 +1,4 @@
-library time_line;
+library;
 import 'package:flutter/material.dart';
 
 class ZTimeLine extends StatelessWidget {

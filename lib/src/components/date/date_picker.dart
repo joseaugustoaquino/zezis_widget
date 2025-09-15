@@ -1,4 +1,4 @@
-library date;
+library;
 
 export 'date_period/src/date_format.dart';
 export 'date_period/src/date_model.dart';

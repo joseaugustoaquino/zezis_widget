@@ -1,4 +1,4 @@
-library rx_transformers;
+library;
 
 export 'src/transformers/backpressure/buffer.dart';
 export 'src/transformers/backpressure/debounce.dart';

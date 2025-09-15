@@ -1,4 +1,4 @@
-library utils;
+library;
 
 export 'documents/z_cnpj_validator.dart';
 export 'documents/z_cpf_validator.dart';

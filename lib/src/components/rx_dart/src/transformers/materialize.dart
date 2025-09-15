@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:zezis_widget/src/components/rx_dart/src/utils/notification.dart';
 
 class _MaterializeStreamSink<S> implements EventSink<S> {
@@ -55,7 +54,7 @@ extension MaterializeExtension<T> on Stream<T> {
   /// no data is emitted as part of the [Notification].
   ///
   /// Example:
-  ///     Stream<int>.fromIterable([1])
+  ///     Stream.fromIterable([1])
   ///         .materialize()
   ///         .listen((i) => print(i)); // Prints onData & onDone Notification
   ///

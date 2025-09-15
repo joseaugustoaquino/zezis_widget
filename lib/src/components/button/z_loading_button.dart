@@ -1,6 +1,6 @@
 // ignore_for_file: close_sinks
 
-library rounded_loading_button;
+library;
 
 import 'dart:async';
 import 'package:flutter/material.dart';

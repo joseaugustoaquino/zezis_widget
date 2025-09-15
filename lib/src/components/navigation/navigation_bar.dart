@@ -1,4 +1,4 @@
-library navigation;
+library;
 
 export 'custom_navigation_bar_item.dart';
 export 'custome_navigation_bar.dart';

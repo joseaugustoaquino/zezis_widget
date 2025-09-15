@@ -1,4 +1,4 @@
-library rx_utils;
+library;
 
 export 'src/utils/composite_subscription.dart';
 export 'src/utils/error_and_stacktrace.dart';

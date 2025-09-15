@@ -1,4 +1,4 @@
-library flutter_typeahead;
+library;
 
 export 'package:zezis_widget/src/components/typeahead/src/common/base/suggestions_controller.dart';
 export 'package:zezis_widget/src/components/typeahead/src/common/field/typeahead_field.dart';

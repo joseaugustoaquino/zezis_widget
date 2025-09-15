@@ -1,11 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:example/ui/input_page.dart';
+import 'package:zezis_widget/zezis_widget.dart';
 import 'package:example/ui/date_time_page.dart';
 import 'package:example/ui/new_kanban/home_screen.dart';
 import 'package:example/ui/new_kanban/kanban_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:zezis_widget/zezis_widget.dart';
 
 import 'ui/divider_page.dart';
 import 'ui/loading_page.dart';

@@ -120,7 +120,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
     );
   }
 
-  _onChangeDate(BuildContext context) async {
+  Future _onChangeDate(BuildContext context) async {
     return await showDatePicker(
       context: context, 
       lastDate: widget.lastDate,
@@ -139,7 +139,7 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
      .catchError((error) => printError(info: error.toString()));
   }
 
-  _onChangeTime(BuildContext context) async {
+  Future<void> _onChangeTime(BuildContext context) async {
     await showTimePicker(
       context: context, 
       initialTime: widget.initialTime,
@@ -163,14 +163,14 @@ class _ZDateTimePickerState extends State<ZDateTimePicker> {
      .catchError((error) => printError(info: error.toString()));
   }
 
-  _thenDate(DateTime? value) {
+  void _thenDate(DateTime? value) {
     value ??= widget.initialDate;
 
     widget.onChangedDate.call(value);
     setState(() {});
   }
 
-  _thenHour(TimeOfDay? value) {
+  void _thenHour(TimeOfDay? value) {
     value ??= widget.initialTime;
 
     widget.onChangedPicker.call(value);

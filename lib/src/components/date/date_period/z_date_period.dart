@@ -1,7 +1,7 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-library datepicker_dropdown;
+library;
 
 import 'package:flutter/material.dart';
 
@@ -141,7 +141,7 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
   }
 
   ///check dates for selected month and year
-  void checkDates(days) {
+  void checkDates(int days) {
     if (dayselVal != '') {
       if (int.parse(dayselVal) > days) {
         dayselVal = '';
@@ -152,10 +152,11 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
     }
   }
 
-  int daysInMonth(year, month) => DateTimeRange(start: DateTime(year, month, 1), end: DateTime(year, month + 1)).duration.inDays;
+  int daysInMonth(int year, int month) => DateTimeRange(start: DateTime(year, month, 1), end: DateTime(year, month + 1)).duration.inDays;
 
   ///Selection dropdown function
-  daysSelected(value) {
+  void daysSelected(String? value) {
+    if (value == null) { return; }
     if (widget.onChangedDay == null) { return; }
 
     widget.onChangedDay!(value);
@@ -163,7 +164,8 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
     setState(() {});
   }
 
-  monthSelected(value) {
+  void monthSelected(String? value) {
+    if (value == null) { return; }
     if (widget.onChangedMonth == null) { return; }
 
     widget.onChangedMonth!(value);
@@ -178,7 +180,8 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
     setState(() {});
   }
 
-  yearsSelected(value) {
+  void yearsSelected(String? value) {
+    if (value == null) { return; }
     if (widget.onChangedYear == null) { return; }
 
     widget.onChangedYear!(value);
@@ -275,7 +278,7 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
         ),
       ),
 
-      value: monthselVal == '' ? null : monthselVal,
+      initialValue: monthselVal == '' ? null : monthselVal,
       hint: Text(widget.hintMonth, style: widget.hintTextStyle),
       onChanged: widget.disabled ? null : (value) => monthSelected(value),
       icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),
@@ -322,7 +325,7 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
         ),
       ),
 
-      value: yearselVal == '' ? null : yearselVal,
+      initialValue: yearselVal == '' ? null : yearselVal,
       hint: Text(widget.hintYear, style: widget.hintTextStyle),
       onChanged: widget.disabled ? null : (value) => yearsSelected(value),
       icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),
@@ -368,7 +371,7 @@ class _ZDatePeriodState extends State<ZDatePeriod> {
         ),
       ),
       
-      value: dayselVal == '' ? null : dayselVal,
+      initialValue: dayselVal == '' ? null : dayselVal,
       hint: Text(widget.hintDay, style: widget.hintTextStyle),
       onChanged: widget.disabled ? null : (value) => daysSelected(value),
       icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: widget.disabled ? Theme.of(context).disabledColor : Theme.of(context).primaryColor),

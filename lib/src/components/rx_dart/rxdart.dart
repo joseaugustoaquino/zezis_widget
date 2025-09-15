@@ -1,4 +1,4 @@
-library rx;
+library;
 
 export 'src/rx.dart';
 export 'streams.dart';

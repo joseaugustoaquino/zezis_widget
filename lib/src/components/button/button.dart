@@ -1,4 +1,4 @@
-library button;
+library;
 
 export 'z_button.dart';
 export 'z_button_icon.dart';

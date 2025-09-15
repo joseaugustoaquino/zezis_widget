@@ -1,4 +1,4 @@
-library rx_subjects;
+library;
 
 export 'src/subjects/behavior_subject.dart';
 export 'src/subjects/publish_subject.dart';

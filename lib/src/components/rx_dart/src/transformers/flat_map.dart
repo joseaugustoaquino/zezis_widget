@@ -131,7 +131,7 @@ extension FlatMapExtension<T> on Stream<T> {
   /// Iterable. Then, each item from the Iterable will be emitted one by one.
   ///
   /// Use case: you may have an API that returns a list of items, such as
-  /// a Stream<List<String>>. However, you might want to operate on the individual items
+  /// a Stream. However, you might want to operate on the individual items
   /// rather than the list itself. This is the job of `flatMapIterable`.
   ///
   /// ### Example

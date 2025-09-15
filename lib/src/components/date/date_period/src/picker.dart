@@ -1,6 +1,6 @@
 // ignore_for_file: unused_element, unused_element_parameter
 
-library flutter_datetime_picker;
+library;
 
 import 'dart:async';
 import 'package:flutter/material.dart';

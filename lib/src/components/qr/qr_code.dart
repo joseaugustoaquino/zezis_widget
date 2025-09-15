@@ -1,4 +1,4 @@
-library qr;
+library;
 
 export 'package:zezis_widget/src/components/qr/qr_code.dart';
 export 'src/errors.dart';

@@ -1,4 +1,4 @@
-library input;
+library;
 
 export '../../utils/z_upper_case.dart';
 export '../../utils/z_masked_formatter.dart';
