@@ -54,6 +54,7 @@ class CardKanbanModel {
 
   /// Informações de esquecimento
   int? dayForgotten;
+  int? dayNextEvent;
   Color? colorForgotten;
 
   /// Widgets personalizados
@@ -87,6 +88,7 @@ class CardKanbanModel {
     this.colorStatus,
     this.descriptionStatus,
     this.dayForgotten,
+    this.dayNextEvent,
     this.colorForgotten,
     this.bodyCard,
     this.footerCard,
@@ -119,6 +121,7 @@ class CardKanbanModel {
     Color? colorStatus,
     String? descriptionStatus,
     int? dayForgotten,
+    int? dayNextEvent,
     Color? colorForgotten,
     List<Widget>? bodyCard,
     List<Widget>? footerCard,
@@ -149,6 +152,7 @@ class CardKanbanModel {
       colorStatus: colorStatus ?? this.colorStatus,
       descriptionStatus: descriptionStatus ?? this.descriptionStatus,
       dayForgotten: dayForgotten ?? this.dayForgotten,
+      dayNextEvent: dayNextEvent ?? this.dayNextEvent,
       colorForgotten: colorForgotten ?? this.colorForgotten,
       bodyCard: bodyCard ?? this.bodyCard,
       footerCard: footerCard ?? this.footerCard,
@@ -183,6 +187,7 @@ class CardKanbanModel {
       'colorStatus': colorStatus?.toARGB32(),
       'descriptionStatus': descriptionStatus,
       'dayForgotten': dayForgotten,
+      'dayNextEvent': dayNextEvent,
       'colorForgotten': colorForgotten?.toARGB32(),
     };
   }
@@ -219,6 +224,7 @@ class CardKanbanModel {
           : null,
       descriptionStatus: map['descriptionStatus'] as String?,
       dayForgotten: map['dayForgotten'] as int?,
+      dayNextEvent: map['dayNextEvent'] as int?,
       colorForgotten: map['colorForgotten'] != null 
           ? Color(map['colorForgotten'] as int)
           : null,
@@ -232,6 +238,7 @@ class CardKanbanModel {
     Color? colorStatus,
     String? descriptionStatus,
     int? dayForgotten,
+    int? dayNextEvent,
     Color? colorForgotten,
     List<Widget>? bodyCard,
     List<Widget>? footerCard,
@@ -264,6 +271,7 @@ class CardKanbanModel {
       colorStatus: colorStatus,
       descriptionStatus: descriptionStatus,
       dayForgotten: dayForgotten,
+      dayNextEvent: dayNextEvent,
       colorForgotten: colorForgotten,
       bodyCard: bodyCard,
       footerCard: footerCard,
@@ -307,6 +315,7 @@ class CardKanbanModel {
       other.colorStatus == colorStatus &&
       other.descriptionStatus == descriptionStatus &&
       other.dayForgotten == dayForgotten &&
+      other.dayNextEvent == dayNextEvent &&
       other.colorForgotten == colorForgotten;
   }
 
@@ -337,6 +346,7 @@ class CardKanbanModel {
       colorStatus.hashCode ^
       descriptionStatus.hashCode ^
       dayForgotten.hashCode ^
+      dayNextEvent.hashCode ^
       colorForgotten.hashCode;
   }
 }
