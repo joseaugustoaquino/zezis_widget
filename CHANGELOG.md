@@ -31,5 +31,5 @@
 ## 0.3.15
 * New kanban
 
-## 0.3.15+3
+## 0.3.16
 * Update version

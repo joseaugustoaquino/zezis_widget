@@ -1,86 +1,138 @@
 import 'dart:math';
 
 class CnpjValidator {
-  static const blackList = <String>[
-    "11111111111111",
-    "22222222222222",
-    "33333333333333",
-    "44444444444444",
-    "55555555555555",
-    "66666666666666",
-    "77777777777777",
-    "88888888888888",
-    "99999999999999"
-  ];
+  static const _weightsFirst = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  static const _weightsSecond = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
 
-  static const stripRegex = r'[^\d]';
+  /// Remove qualquer caractere inválido
+  static String strip(String? value) {
+    if (value == null) return '';
 
-  static int verifyingDigit(String cnpj) {
-    int index = 2;
+    return value
+        .replaceAll(RegExp(r'[^A-Za-z0-9]'), '')
+        .toUpperCase();
+  }
 
-    List<int> reverse =
-        cnpj.split("").map((s) => int.parse(s)).toList().reversed.toList();
+  /// Converte caractere seguindo regra oficial da Receita:
+  /// ASCII - 48
+  ///
+  /// Ex:
+  /// 0 => 0
+  /// 9 => 9
+  /// A => 17
+  /// B => 18
+  /// Z => 42
+  static int _charToValue(String char) {
+    return char.codeUnitAt(0) - 48;
+  }
 
+  static int _calculateDigit(
+    String base,
+    List<int> weights,
+  ) {
     int sum = 0;
 
-    for (var number in reverse) {
-      sum += number * index;
-      index = (index == 9 ? 2 : index + 1);
+    for (int i = 0; i < base.length; i++) {
+      final value = _charToValue(base[i]);
+
+      sum += value * weights[i];
     }
 
-    int mod = sum % 11;
+    final remainder = sum % 11;
 
-    return (mod < 2 ? 0 : 11 - mod);
+    return remainder < 2 ? 0 : 11 - remainder;
   }
 
-  static String format(String cnpj) {
-    RegExp regExp = RegExp(r'^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$');
-
-    return strip(cnpj).replaceAllMapped(
-        regExp, (Match m) => "${m[1]}.${m[2]}.${m[3]}/${m[4]}-${m[5]}");
-  }
-
-  static String strip(String? cnpj) {
-    RegExp regex = RegExp(stripRegex);
-    cnpj = cnpj ?? "";
-
-    return cnpj.replaceAll(regex, "");
-  }
-
-  static bool isValid(String? cnpj, [stripBeforeValidation = true]) {
-    if (stripBeforeValidation) {
-      cnpj = strip(cnpj);
-    }
-
+  /// Validação oficial Receita Federal
+  static bool isValid(
+    String? cnpj, [
+    bool stripBeforeValidation = true,
+  ]) {
     if (cnpj == null || cnpj.isEmpty) {
       return false;
     }
 
+    if (stripBeforeValidation) {
+      cnpj = strip(cnpj);
+    }
+
+    /// Deve possuir exatamente 14 caracteres
     if (cnpj.length != 14) {
       return false;
     }
 
-    if (blackList.contains(cnpj)) {
+    /// Apenas letras e números
+    if (!RegExp(r'^[A-Z0-9]{14}$').hasMatch(cnpj)) {
       return false;
     }
 
-    String numbers = cnpj.substring(0, 12);
-    numbers += verifyingDigit(numbers).toString();
-    numbers += verifyingDigit(numbers).toString();
+    final base = cnpj.substring(0, 12);
 
-    return numbers.substring(numbers.length - 2) == cnpj.substring(cnpj.length - 2);
+    final digit1 = _calculateDigit(
+      base,
+      _weightsFirst,
+    );
+
+    final digit2 = _calculateDigit(
+      '$base$digit1',
+      _weightsSecond,
+    );
+
+    final calculatedDigits = '$digit1$digit2';
+
+    final informedDigits = cnpj.substring(12);
+
+    return calculatedDigits == informedDigits;
   }
 
-  static String generate([bool useFormat = false]) {
-    String numbers = "";
+  /// Formatação oficial:
+  /// XX.XXX.XXX/XXXX-XX
+  static String format(String value) {
+    final cnpj = strip(value);
 
-    for (var i = 0; i < 12; i += 1) {
-      numbers += Random().nextInt(9).toString();
+    if (cnpj.length != 14) {
+      return cnpj;
     }
 
-    numbers += verifyingDigit(numbers).toString();
-    numbers += verifyingDigit(numbers).toString();
+    final match = RegExp(
+      r'^([A-Z0-9]{2})([A-Z0-9]{3})([A-Z0-9]{3})([A-Z0-9]{4})([0-9]{2})$',
+    ).firstMatch(cnpj);
 
-    return (useFormat ? format(numbers) : numbers);
+    if (match == null) {
+      return cnpj;
+    }
+
+    return '${match.group(1)}.'
+        '${match.group(2)}.'
+        '${match.group(3)}/'
+        '${match.group(4)}-'
+        '${match.group(5)}';
+  }
+
+  /// Geração aleatória válida
+  static String generate([bool useFormat = false]) {
+    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    final random = Random();
+
+    String base = '';
+
+    for (int i = 0; i < 12; i++) {
+      base += chars[random.nextInt(chars.length)];
+    }
+
+    final digit1 = _calculateDigit(
+      base,
+      _weightsFirst,
+    );
+
+    final digit2 = _calculateDigit(
+      '$base$digit1',
+      _weightsSecond,
+    );
+
+    final result = '$base$digit1$digit2';
+
+    return useFormat ? format(result) : result;
   }
 }
