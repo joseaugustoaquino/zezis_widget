@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:zezis_widget/src/models/models.dart';
 import 'package:zezis_widget/src/utils/z_extensions.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:zezis_widget/src/components/kanban/kanban_card.dart';
 
 /// Widget que representa uma coluna no quadro Kanban.
@@ -141,10 +140,13 @@ class _ColumnKanbanModelWidgetState extends State<ColumnKanbanModelWidget> {
                           widget.sortColumn!(widget.column.id);
                           setState(() => isOrderByColumn = !isOrderByColumn);
                         },
-                        child: Icon(
-                          isOrderByColumn ? FontAwesomeIcons.arrowUp19 : FontAwesomeIcons.arrowDown91,
-                          color: backgroundColor,
-                          size: 20,
+                        child: RotatedBox(
+                          quarterTurns: isOrderByColumn ? 0 : 2,
+                          child: Icon(
+                            Icons.sort,
+                            color: backgroundColor,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),
